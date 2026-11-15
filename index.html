@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>SINGAPORE — The Little Red Dot That Became a Giant</title>
+  <meta name="description" content="An interactive 3D visual story exploring Singapore's journey from an 1819 trading post to a global economic and multicultural powerhouse." />
+  <meta name="theme-color" content="#060811" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SINGAPORE — The Little Red Dot That Became a Giant" />
+  <meta property="og:description" content="Explore Singapore's history, economic miracle, and resilient multicultural heritage in an interactive 3D web experience." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Inline SVG Favicon (Singapore Red Dot + Crescent Motif) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23060811'/%3E%3Ccircle cx='32' cy='32' r='18' fill='%23EF3340'/%3E%3Ccircle cx='36' cy='28' r='5' fill='%23FAF8F5' opacity='0.9'/%3E%3C/svg%3E" />
+
+  <!-- Google Fonts: Syne (Display), Plus Jakarta Sans (UI/Body), JetBrains Mono (Data/Years) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/sections.css" />
+
+  <!-- Pinned CDN Libraries (GSAP 3.12.5 + Lenis 1.1.13) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+
+  <!-- Pinned Import Map for Three.js 0.160.0 -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Subtle Film Grain & Cursor Glow -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- CINEMATIC LOADER -->
+  <div id="loader" class="loader" role="status" aria-live="polite" aria-label="Loading Singapore experience">
+    <div class="loader__backdrop"></div>
+    <div class="loader__inner">
+      <div class="loader__emblem">
+        <span class="loader__red-dot"></span>
+        <span class="loader__ring"></span>
+      </div>
+      <div class="loader__meta">
+        <span class="loader__coords">01°17′N 103°50′E</span>
+        <span class="loader__status" id="loader-status">Initializing 3D Skyline</span>
+      </div>
+      <div class="loader__bar-track">
+        <div class="loader__bar-fill" id="loader-bar"></div>
+      </div>
+      <div class="loader__counter-row">
+        <span class="loader__label">REPUBLIC OF SINGAPORE</span>
+        <span class="loader__percent" id="loader-percent">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIXED GLASS NAVIGATION -->
+  <header class="site-header" id="site-header">
+    <nav class="nav-glass" aria-label="Primary Navigation">
+      <a href="#hero" class="nav-brand" aria-label="Singapore Home">
+        <span class="nav-brand__dot" aria-hidden="true"></span>
+        <span class="nav-brand__text">SGP</span>
+        <span class="nav-brand__sub">1965</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li>
+          <a href="#history" class="nav-link" data-section="history">
+            <span class="nav-link__num">01</span>
+            <span class="nav-link__label">History</span>
+          </a>
+        </li>
+        <li>
+          <a href="#economy" class="nav-link" data-section="economy">
+            <span class="nav-link__num">02</span>
+            <span class="nav-link__label">Economy</span>
+          </a>
+        </li>
+        <li>
+          <a href="#culture" class="nav-link" data-section="culture">
+            <span class="nav-link__num">03</span>
+            <span class="nav-link__label">Culture</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-meta">
+        <span class="quality-pill" id="quality-badge" title="Adaptive Graphics Preset">HIGH 3D</span>
+      </div>
+
+      <!-- Integrated Scroll Progress Bar -->
+      <div class="nav-progress" aria-hidden="true">
+        <div class="nav-progress__bar" id="scroll-progress-bar"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- ==========================================
+         HERO SECTION — FULL-SCREEN WEBGL SKYLINE
+         ========================================== -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-title">
+      <div class="hero-canvas-wrap" id="hero-canvas-container">
+        <canvas id="hero-canvas" aria-label="Interactive 3D silhouette of Singapore's Marina Bay skyline with floating light lanterns"></canvas>
+        <div class="hero-vignette" aria-hidden="true"></div>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-eyebrow" data-reveal="fade">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span class="mono-tag">01° 17′ N · 103° 50′ E — SOUTHEAST ASIA</span>
+        </div>
+
+        <h1 id="hero-title" class="hero-title">
+          <span class="hero-title__kicker" data-reveal="lines">SINGAPORE</span>
+          <span class="hero-title__main" data-reveal="lines">
+            The Little <span class="text-accent">Red Dot</span> That Became a Giant
+          </span>
+        </h1>
+
+        <p class="hero-lead" data-reveal="fade">
+          From a strategic 1819 trading outpost and an unexpected 1965 expulsion to a global benchmark in human capital, smart infrastructure, and multicultural resilience.
+        </p>
+
+        <div class="hero-actions" data-reveal="fade">
+          <a href="#history" class="btn btn--primary magnetic" data-magnetic>
+            <span>Begin the Journey</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#peranakan-stage" class="btn btn--glass magnetic" data-magnetic>
+            <span>3D Peranakan Attire</span>
+          </a>
+        </div>
+
+        <div class="hero-Chapter-strip" data-reveal="fade" aria-label="Presentation Chapters">
+          <a href="#history" class="hero-chapter-card tilt-card">
+            <span class="hero-chapter-card__index">01 / HISTORY</span>
+            <strong class="hero-chapter-card__title">1819 — 1965</strong>
+            <span class="hero-chapter-card__desc">Free port, occupation &amp; reluctant birth</span>
+          </a>
+          <a href="#economy" class="hero-chapter-card tilt-card">
+            <span class="hero-chapter-card__index">02 / ECONOMY</span>
+            <strong class="hero-chapter-card__title">Third World to First</strong>
+            <span class="hero-chapter-card__desc">Jurong, global hubs &amp; human capital</span>
+          </a>
+          <a href="#culture" class="hero-chapter-card tilt-card">
+            <span class="hero-chapter-card__index">03 / CULTURE</span>
+            <strong class="hero-chapter-card__title">Unity in Diversity</strong>
+            <span class="hero-chapter-card__desc">CMIO, HDB life &amp; 3D Peranakan craft</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">
+        <span class="scroll-cue__mouse">
+          <span class="scroll-cue__wheel"></span>
+        </span>
+        <span class="scroll-cue__text">Scroll to explore depth</span>
+      </div>
+    </section>
+
+    <!-- CALM EDITORIAL MILESTONES DIVIDER (Replacing continuous loop) -->
+    <div class="milestones-strip" aria-label="Key Historical Milestones">
+      <div class="container milestones-strip__inner">
+        <div class="milestone-item">
+          <span class="milestone-year">1819</span>
+          <span class="milestone-text">Free Port Founded</span>
+        </div>
+        <span class="milestone-divider" aria-hidden="true">✦</span>
+        <div class="milestone-item">
+          <span class="milestone-year">9 AUG 1965</span>
+          <span class="milestone-text">Sovereign Republic</span>
+        </div>
+        <span class="milestone-divider" aria-hidden="true">✦</span>
+        <div class="milestone-item">
+          <span class="milestone-year">80%+</span>
+          <span class="milestone-text">HDB Homeownership</span>
+        </div>
+        <span class="milestone-divider" aria-hidden="true">✦</span>
+        <div class="milestone-item">
+          <span class="milestone-year">UNESCO</span>
+          <span class="milestone-text">Hawker Heritage</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SECTION 1 — HISTORY (3D PINNED TIMELINE)
+         ========================================== -->
+    <section id="history" class="section history-section" aria-labelledby="history-heading">
+      <div class="container section-intro">
+        <div class="section-eyebrow" data-reveal="fade">
+          <span class="section-num">01</span>
+          <span class="section-tag">CRUCIBLE OF A NATION</span>
+        </div>
+        <h2 id="history-heading" class="section-title" data-reveal="lines">
+          Forged by Vulnerability
+        </h2>
+        <p class="section-subtitle" data-reveal="fade">
+          Scroll through the five pivotal turning points that transformed a Malay Peninsula fishing village into a sovereign republic by necessity.
+        </p>
+      </div>
+
+      <!-- Pinned 3D Viewport for Timeline -->
+      <div class="history-pin-wrapper" id="history-pin-wrapper">
+        <div class="history-stage" id="history-stage">
+          <canvas id="history-canvas" aria-label="3D atmospheric background shifting across five historical eras of Singapore"></canvas>
+
+          <!-- HUD: Morphing Year Counter & Era Mood Indicator -->
+          <div class="history-hud">
+            <div class="history-hud__year-wrap">
+              <span class="history-hud__era-tag" id="history-era-tag">ERA 01 / 05 — MARITIME FOUNDATION</span>
+              <div class="history-hud__year" id="history-year-display" aria-live="polite">1819</div>
+            </div>
+
+            <!-- Interactive Era Progress Dots -->
+            <div class="history-timeline-nav" role="tablist" aria-label="Historical Eras">
+              <button class="history-dot is-active" data-era-index="0" role="tab" aria-selected="true" aria-label="1819 Raffles and the free port">
+                <span class="history-dot__year">1819</span>
+              </button>
+              <button class="history-dot" data-era-index="1" role="tab" aria-selected="false" aria-label="1819 to 1941 Crown jewel">
+                <span class="history-dot__year">1819–1941</span>
+              </button>
+              <button class="history-dot" data-era-index="2" role="tab" aria-selected="false" aria-label="1942 Fall of Singapore">
+                <span class="history-dot__year">1942</span>
+              </button>
+              <button class="history-dot" data-era-index="3" role="tab" aria-selected="false" aria-label="1963 Merger">
+                <span class="history-dot__year">1963</span>
+              </button>
+              <button class="history-dot" data-era-index="4" role="tab" aria-selected="false" aria-label="9 August 1965 Expulsion">
+                <span class="history-dot__year">1965</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3D Depth Stack of Era Cards -->
+          <div class="history-cards-viewport" id="history-cards-viewport">
+            <article class="history-card is-active" data-era="0" data-year="1819" data-tag="ERA 01 / 05 — MARITIME FOUNDATION">
+              <div class="history-card__header">
+                <span class="history-card__badge">1819</span>
+                <span class="history-card__coords">STRAITS OF MALACCA</span>
+              </div>
+              <h3 class="history-card__title">Raffles &amp; the Free Port</h3>
+              <p class="history-card__body">
+                Sir Stamford Raffles, for the British East India Company, recognizes the island's strategic value at the tip of the Malay Peninsula and founds a free-trade port. A fishing village becomes a booming trade hub; immigrants from China, India and the Malay Archipelago arrive.
+              </p>
+              <div class="history-card__footer">
+                <span class="history-card__pillar">Foundation: Maritime trade + diverse immigrant labor</span>
+              </div>
+            </article>
+
+            <article class="history-card" data-era="1" data-year="1819–1941" data-tag="ERA 02 / 05 — IMPERIAL ZENITH">
+              <div class="history-card__header">
+                <span class="history-card__badge">1819–1941</span>
+                <span class="history-card__coords">BRITISH STRAITS SETTLEMENTS</span>
+              </div>
+              <h3 class="history-card__title">Crown Jewel</h3>
+              <p class="history-card__body">
+                Singapore thrives as the jewel of the British Empire in Southeast Asia, connecting global shipping lanes and growing into a cosmopolitan entrepôt.
+              </p>
+              <div class="history-card__footer">
+                <span class="history-card__pillar">Status: Premier strategic port of Southeast Asia</span>
+              </div>
+            </article>
+
+            <article class="history-card" data-era="2" data-year="1942" data-tag="ERA 03 / 05 — SHATTERED MYTHS">
+              <div class="history-card__header">
+                <span class="history-card__badge history-card__badge--alert">1942</span>
+                <span class="history-card__coords">3.5-YEAR OCCUPATION</span>
+              </div>
+              <h3 class="history-card__title">Fall of Singapore</h3>
+              <p class="history-card__body">
+                Japan captures the island, called by Churchill the worst disaster in British military history. The 3.5-year occupation shatters the myth of colonial invincibility and awakens a new political consciousness: self-reliance.
+              </p>
+              <div class="history-card__footer">
+                <span class="history-card__pillar">Turning Point: Awakening of self-reliance</span>
+              </div>
+            </article>
+
+            <article class="history-card" data-era="3" data-year="1963" data-tag="ERA 04 / 05 — TURBULENT UNION">
+              <div class="history-card__header">
+                <span class="history-card__badge">1963</span>
+                <span class="history-card__coords">FEDERATION OF MALAYSIA</span>
+              </div>
+              <h3 class="history-card__title">The Merger</h3>
+              <p class="history-card__body">
+                Singapore gains independence from Britain by joining the Federation of Malaysia, hoping for a shared common market and security. Deep political disputes and racial riots soon follow.
+              </p>
+              <div class="history-card__footer">
+                <span class="history-card__pillar">Tension: Economic hope vs. ideological friction</span>
+              </div>
+            </article>
+
+            <article class="history-card" data-era="4" data-year="9 AUG 1965" data-tag="ERA 05 / 05 — SOVEREIGN REPUBLIC">
+              <div class="history-card__header">
+                <span class="history-card__badge history-card__badge--red">9 August 1965</span>
+                <span class="history-card__coords">REPUBLIC BY NECESSITY</span>
+              </div>
+              <h3 class="history-card__title">Expulsion &amp; Resolve</h3>
+              <p class="history-card__body">
+                Singapore is expelled from Malaysia. Founding Prime Minister Lee Kuan Yew weeps on national television. An independent republic by necessity: no natural resources, no hinterland, tiny market, fractured population. That vulnerability forges a relentless, pragmatic work ethic.
+              </p>
+              <div class="history-card__footer">
+                <span class="history-card__pillar">Ethos: Relentless, pragmatic survival</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="history-scroll-hint" aria-hidden="true">
+            <span>Scroll to explore eras</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2 — ECONOMY ("THIRD WORLD TO FIRST")
+         ========================================== -->
+    <section id="economy" class="section economy-section" aria-labelledby="economy-heading">
+      <div class="container section-intro">
+        <div class="section-eyebrow" data-reveal="fade">
+          <span class="section-num">02</span>
+          <span class="section-tag">ECONOMIC METAMORPHOSIS</span>
+        </div>
+        <h2 id="economy-heading" class="section-title" data-reveal="lines">
+          Third World to First
+        </h2>
+        <p class="section-subtitle" data-reveal="fade">
+          With zero natural resources and not even enough fresh water in 1965, Singapore turned human capital and relentless pragmatism into a rising global metropolis.
+        </p>
+      </div>
+
+      <div class="container economy-grid">
+        <!-- Sticky 3D Rising City & Trade Flow Stage -->
+        <div class="economy-visual-col">
+          <div class="economy-stage-card glass-panel" id="economy-stage-card">
+            <!-- Clean Stacked HUD — No Title/Year Collision -->
+            <div class="economy-stage-hud">
+              <div class="economy-stage-hud__left">
+                <span class="mono-label">URBAN &amp; TRADE EVOLUTION</span>
+                <strong class="economy-stage-hud__title" id="economy-stage-label">1965: Starting Point</strong>
+              </div>
+              <div class="economy-stage-hud__year" id="economy-year-counter">1965</div>
+            </div>
+
+            <!-- 3D Mini-World Canvas with Interactive Hotspot Layer -->
+            <div class="economy-canvas-wrap">
+              <canvas id="economy-canvas" aria-label="3D visualization of Singapore's urban districts, factories, port and skyline evolving across economic stages"></canvas>
+
+              <!-- Interactive Landmark Hotspots -->
+              <div class="econ-hotspots-layer" id="econ-hotspots-layer" aria-label="Interactive District Insights">
+                <!-- Hotspot 1: Jurong Industrialization -->
+                <div class="econ-hotspot" style="left: 22%; top: 64%;">
+                  <button type="button" class="econ-hotspot__btn" aria-label="Jurong Industrial Estate Milestone">
+                    <span>1</span>
+                  </button>
+                  <div class="econ-hotspot__card" role="tooltip">
+                    <strong>Jurong Industrial Estate</strong>
+                    <p>1961: Pioneer swampland clearance established Southeast Asia's first heavy manufacturing park.</p>
+                  </div>
+                </div>
+
+                <!-- Hotspot 2: Port of Singapore -->
+                <div class="econ-hotspot" style="left: 60%; top: 74%;">
+                  <button type="button" class="econ-hotspot__btn" aria-label="Port of Singapore Milestone">
+                    <span>2</span>
+                  </button>
+                  <div class="econ-hotspot__card" role="tooltip">
+                    <strong>Port of Singapore</strong>
+                    <p>1982: World's premier container hub connecting trade across 600 global ports.</p>
+                  </div>
+                </div>
+
+                <!-- Hotspot 3: Changi Airport Hub -->
+                <div class="econ-hotspot" style="left: 80%; top: 38%;">
+                  <button type="button" class="econ-hotspot__btn" aria-label="Changi Aviation Gateway Milestone">
+                    <span>3</span>
+                  </button>
+                  <div class="econ-hotspot__card" role="tooltip">
+                    <strong>Changi Airport Hub</strong>
+                    <p>1981: Terminal 1 opens, establishing global aviation and logistics dominance.</p>
+                  </div>
+                </div>
+
+                <!-- Hotspot 4: Smart Nation & Marina Bay -->
+                <div class="econ-hotspot" style="left: 48%; top: 42%;">
+                  <button type="button" class="econ-hotspot__btn" aria-label="Smart Nation Innovation Milestone">
+                    <span>4</span>
+                  </button>
+                  <div class="econ-hotspot__card" role="tooltip">
+                    <strong>Smart Nation Infrastructure</strong>
+                    <p>Today: Seamless civic platforms like Parking.sg, digital twin sensors &amp; green towers.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Swipeable / Scroll-Snap Stage Legend on Mobile -->
+            <div class="economy-stage-legend" role="group" aria-label="Select economic stage to preview in 3D">
+              <button class="econ-stage-btn is-active" data-econ-stage="0">1965 Baseline</button>
+              <button class="econ-stage-btn" data-econ-stage="1">Stage 1: Jurong</button>
+              <button class="econ-stage-btn" data-econ-stage="2">Stage 2: 1980s–90s</button>
+              <button class="econ-stage-btn" data-econ-stage="3">Stage 3: Smart Hub</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll-Driven Narrative Cards + Interactive Parking.sg Demo -->
+        <div class="economy-narrative-col">
+          <!-- 1965 Starting Point -->
+          <article class="econ-card glass-panel tilt-card" data-econ-card="0">
+            <div class="econ-card__top">
+              <span class="econ-card__step">STARTING POINT · 1965</span>
+              <span class="econ-card__status econ-card__status--warn">CRITICAL VULNERABILITY</span>
+            </div>
+            <h3 class="econ-card__title">Survival Without Resources</h3>
+            <p class="econ-card__text">
+              In 1965, the newly separated island faced massive unemployment, a severe housing shortage, and no natural resources—not even enough fresh water to sustain its population independently.
+            </p>
+            <div class="econ-metrics-row">
+              <div class="econ-metric">
+                <span class="econ-metric__val">Zero</span>
+                <span class="econ-metric__label">Natural Resources</span>
+              </div>
+              <div class="econ-metric">
+                <span class="econ-metric__val">Acute</span>
+                <span class="econ-metric__label">Unemployment &amp; Housing Crisis</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Stage 1 -->
+          <article class="econ-card glass-panel tilt-card" data-econ-card="1">
+            <div class="econ-card__top">
+              <span class="econ-card__step">STAGE 01 · INDUSTRIALIZATION</span>
+              <span class="econ-card__status">JURONG ESTATE</span>
+            </div>
+            <h3 class="econ-card__title">Export-Oriented Manufacturing</h3>
+            <p class="econ-card__text">
+              Swampland in the west was cleared to build the Jurong Industrial Estate. Singapore courted multinationals with tax incentives, political stability, and strict labor laws. Factories producing garments, toys, and then electronics solved unemployment.
+            </p>
+            <div class="econ-tags">
+              <span class="chip">Jurong Industrial Estate</span>
+              <span class="chip">Tax Incentives</span>
+              <span class="chip">Garments → Toys → Electronics</span>
+            </div>
+          </article>
+
+          <!-- Stage 2 -->
+          <article class="econ-card glass-panel tilt-card" data-econ-card="2">
+            <div class="econ-card__top">
+              <span class="econ-card__step">STAGE 02 · 1980s–90s UPGRADE</span>
+              <span class="econ-card__status">GLOBAL CONNECTIVITY</span>
+            </div>
+            <h3 class="econ-card__title">High-Value Engineering &amp; Mega-Hubs</h3>
+            <p class="econ-card__text">
+              Heavy investment in education and infrastructure propelled the next leap. The Port of Singapore became one of the world's busiest, Changi Airport rose as a global aviation hub, and industry shifted to petrochemicals, semiconductors, and advanced engineering.
+            </p>
+            <div class="econ-tags">
+              <span class="chip">Port of Singapore</span>
+              <span class="chip">Changi Airport Hub</span>
+              <span class="chip">Semiconductors &amp; Petrochemicals</span>
+            </div>
+          </article>
+
+          <!-- Stage 3 + Interactive Parking.sg Phone Mockup -->
+          <article class="econ-card glass-panel" data-econ-card="3">
+            <div class="econ-card__top">
+              <span class="econ-card__step">STAGE 03 · TODAY</span>
+              <span class="econ-card__status econ-card__status--live">SMART NATION</span>
+            </div>
+            <h3 class="econ-card__title">Finance, AI &amp; Digital Infrastructure</h3>
+            <p class="econ-card__text">
+              Today Singapore stands as Asia's premier wealth-management and banking hub, powered by smart-city technology, AI, and seamless digital public infrastructure.
+            </p>
+
+            <!-- Interactive Phone Mockup: Parking.sg Mini Demo -->
+            <div class="phone-demo" id="parking-demo" aria-label="Interactive Parking.sg mobile app demonstration">
+              <div class="phone-demo__header">
+                <div class="phone-demo__notch" aria-hidden="true"></div>
+                <div class="phone-demo__status-bar">
+                  <span>Parking.sg</span>
+                  <span class="phone-demo__live-pill">CIVIC DEMO</span>
+                </div>
+              </div>
+
+              <div class="phone-demo__body">
+                <p class="phone-demo__intro">
+                  Residents find a car park, book, pay digitally, extend remotely, and receive automatic refunds for unused time:
+                </p>
+
+                <!-- Carpark Selector -->
+                <div class="phone-demo__field">
+                  <label class="phone-demo__label" for="parking-zone-select">1. Select Car Park Zone</label>
+                  <select id="parking-zone-select" class="phone-demo__select">
+                    <option value="MB01" data-rate="1.20">MB01 — Marina Bay Link (S$1.20 / 30m)</option>
+                    <option value="TG04" data-rate="0.60">TG04 — Tiong Bahru Market (S$0.60 / 30m)</option>
+                    <option value="JR88" data-rate="0.60">JR88 — Jurong East Central (S$0.60 / 30m)</option>
+                  </select>
+                </div>
+
+                <!-- Duration Stepper -->
+                <div class="phone-demo__row">
+                  <div class="phone-demo__stat">
+                    <span class="phone-demo__label">Booked Duration</span>
+                    <strong class="phone-demo__value" id="parking-duration-val">1.0 hr</strong>
+                  </div>
+                  <div class="phone-demo__stat">
+                    <span class="phone-demo__label">Digital Charge</span>
+                    <strong class="phone-demo__value text-accent" id="parking-cost-val">S$2.40</strong>
+                  </div>
+                </div>
+
+                <!-- Interactive Session State Display -->
+                <div class="phone-demo__session" id="parking-session-box" aria-live="polite">
+                  <span class="phone-demo__session-dot" id="parking-session-dot"></span>
+                  <span class="phone-demo__session-text" id="parking-session-text">Ready to start digital parking session.</span>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="phone-demo__actions">
+                  <button type="button" class="phone-btn phone-btn--primary" id="parking-start-btn">
+                    Start &amp; Pay
+                  </button>
+                  <button type="button" class="phone-btn" id="parking-extend-btn" disabled>
+                    +30m Extend
+                  </button>
+                  <button type="button" class="phone-btn phone-btn--refund" id="parking-end-btn" disabled>
+                    End Early (Refund)
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- The Real Resource: Human Capital -->
+          <article class="econ-card econ-card--highlight glass-panel tilt-card" data-econ-card="3">
+            <div class="econ-card__top">
+              <span class="econ-card__step">CORE ENGINE</span>
+              <span class="econ-card__status econ-card__status--red">THE REAL RESOURCE</span>
+            </div>
+            <h3 class="econ-card__title">Human Capital &amp; Sovereign Stewardship</h3>
+            <p class="econ-card__text">
+              In a state-managed economy, sovereign wealth funds <strong>Temasek Holdings</strong> and <strong>GIC</strong> invest national reserves globally. Hyper-efficiency, openness to global talent, and zero tolerance for corruption yield one of the world's highest GDP per capita.
+            </p>
+            <div class="econ-pillars-grid">
+              <div class="econ-pillar-box">
+                <strong>Temasek &amp; GIC</strong>
+                <span>Global sovereign reserve investment</span>
+              </div>
+              <div class="econ-pillar-box">
+                <strong>Zero Corruption</strong>
+                <span>Strict institutional integrity &amp; rule of law</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3 — CULTURE (BENTO + 3D PERANAKAN)
+         ========================================== -->
+    <section id="culture" class="section culture-section" aria-labelledby="culture-heading">
+      <div class="container section-intro">
+        <div class="section-eyebrow" data-reveal="fade">
+          <span class="section-num">03</span>
+          <span class="section-tag">SOCIAL ARCHITECTURE &amp; HERITAGE</span>
+        </div>
+        <h2 id="culture-heading" class="section-title" data-reveal="lines">
+          Engineered Harmony, Living Heritage
+        </h2>
+        <p class="section-subtitle" data-reveal="fade">
+          Rather than forcing assimilation, Singapore protects each community's heritage while designing everyday spaces where all backgrounds meet as neighbors.
+        </p>
+      </div>
+
+      <!-- Bento 3D-Tilt Grid with Visual Relief Micro-Motifs -->
+      <div class="container culture-bento">
+        <!-- HERO CARD: HDB Housing (80%+) & Ethnic Integration Policy -->
+        <article class="bento-card bento-card--hdb glass-panel tilt-card" data-reveal="fade">
+          <div>
+            <div class="bento-card__eyebrow">PUBLIC HOUSING · ETHNIC INTEGRATION POLICY</div>
+            <div class="bento-stat-row">
+              <span class="bento-big-stat" data-count-target="80" data-count-suffix="%+">80%+</span>
+              <span class="bento-stat-caption">of residents live in government-built HDB flats</span>
+            </div>
+            <h3 class="bento-card__title">Neighbors by Design</h3>
+            <p class="bento-card__text">
+              The <strong>Ethnic Integration Policy</strong> ensures every apartment block mirrors the national demographic mix so children of all races grow up side by side as neighbors.
+            </p>
+          </div>
+
+          <!-- Visual Relief Motif: Stylized HDB Building Facade with Mixed Community Windows -->
+          <div class="bento-motif-wrap" aria-hidden="true">
+            <svg class="bento-motif-svg" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="8" width="220" height="44" rx="6" fill="#11182c" stroke="#2dd4bf" stroke-width="1.5" stroke-dasharray="4 2"/>
+              <!-- Windows in CMIO Harmony Colors -->
+              <rect x="25" y="16" width="14" height="12" rx="2" fill="#2dd4bf" opacity="0.9"/>
+              <rect x="47" y="16" width="14" height="12" rx="2" fill="#ef3340" opacity="0.85"/>
+              <rect x="69" y="16" width="14" height="12" rx="2" fill="#f59e0b" opacity="0.9"/>
+              <rect x="91" y="16" width="14" height="12" rx="2" fill="#faf8f5" opacity="0.8"/>
+              <rect x="113" y="16" width="14" height="12" rx="2" fill="#2dd4bf" opacity="0.85"/>
+              <rect x="135" y="16" width="14" height="12" rx="2" fill="#ef3340" opacity="0.9"/>
+              <rect x="157" y="16" width="14" height="12" rx="2" fill="#f59e0b" opacity="0.85"/>
+              <rect x="179" y="16" width="14" height="12" rx="2" fill="#faf8f5" opacity="0.9"/>
+              <rect x="201" y="16" width="14" height="12" rx="2" fill="#2dd4bf" opacity="0.85"/>
+              <!-- Lower Row Windows -->
+              <rect x="25" y="32" width="14" height="12" rx="2" fill="#f59e0b" opacity="0.85"/>
+              <rect x="47" y="32" width="14" height="12" rx="2" fill="#faf8f5" opacity="0.9"/>
+              <rect x="69" y="32" width="14" height="12" rx="2" fill="#2dd4bf" opacity="0.85"/>
+              <rect x="91" y="32" width="14" height="12" rx="2" fill="#ef3340" opacity="0.85"/>
+              <rect x="113" y="32" width="14" height="12" rx="2" fill="#f59e0b" opacity="0.9"/>
+              <rect x="135" y="32" width="14" height="12" rx="2" fill="#faf8f5" opacity="0.85"/>
+              <rect x="157" y="32" width="14" height="12" rx="2" fill="#2dd4bf" opacity="0.9"/>
+              <rect x="179" y="32" width="14" height="12" rx="2" fill="#ef3340" opacity="0.9"/>
+              <rect x="201" y="32" width="14" height="12" rx="2" fill="#f59e0b" opacity="0.85"/>
+            </svg>
+          </div>
+        </article>
+
+        <!-- CMIO Framework -->
+        <article class="bento-card bento-card--cmio glass-panel tilt-card" data-reveal="fade">
+          <div>
+            <div class="bento-card__eyebrow">FRAMEWORK · CMIO MODEL</div>
+            <h3 class="bento-card__title">Protected Pluralism</h3>
+            <p class="bento-card__text">
+              <strong>Chinese, Malay, Indian, Others</strong> — the state explicitly protects and values each heritage rather than forcing cultural assimilation.
+            </p>
+          </div>
+          <div class="cmio-pills" aria-label="CMIO Categories">
+            <span class="cmio-pill"><b>C</b>hinese</span>
+            <span class="cmio-pill"><b>M</b>alay</span>
+            <span class="cmio-pill"><b>I</b>ndian</span>
+            <span class="cmio-pill"><b>O</b>thers</span>
+          </div>
+        </article>
+
+        <!-- Language Policy -->
+        <article class="bento-card bento-card--lang glass-panel tilt-card" data-reveal="fade">
+          <div>
+            <div class="bento-card__eyebrow">BILINGUAL POLICY &amp; IDENTITY</div>
+            <h3 class="bento-card__title">Global Bridge, Local Soul</h3>
+            <p class="bento-card__text">
+              <strong>English</strong> serves as the shared language of business and education alongside a mandatory <strong>mother tongue</strong>—while colloquial <strong>Singlish</strong> thrives as an affectionate badge of national belonging.
+            </p>
+          </div>
+
+          <!-- Visual Relief Motif: Bilingual Speech Bubbles -->
+          <div class="bento-motif-wrap" aria-hidden="true">
+            <svg class="bento-motif-svg" viewBox="0 0 160 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="8" width="76" height="32" rx="8" fill="#16223e" stroke="#2dd4bf" stroke-width="1.2"/>
+              <text x="18" y="28" fill="#2dd4bf" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">English</text>
+              <rect x="74" y="16" width="80" height="32" rx="8" fill="#2a1420" stroke="#ef3340" stroke-width="1.2"/>
+              <text x="86" y="36" fill="#ff5c67" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">母语/Bahasa</text>
+            </svg>
+          </div>
+
+          <div class="lang-chips">
+            <span class="chip">English (Bridge)</span>
+            <span class="chip">Mother Tongue</span>
+            <span class="chip chip--accent">Singlish Identity</span>
+          </div>
+        </article>
+
+        <!-- Hawker Centres (Normalized with Steaming Bowl Motif) -->
+        <article class="bento-card bento-card--hawker glass-panel tilt-card" data-reveal="fade">
+          <div>
+            <div class="bento-card__eyebrow">UNESCO INTANGIBLE HERITAGE</div>
+            <h3 class="bento-card__title">The Community Dining Room</h3>
+            <p class="bento-card__text">
+              Open-air <strong>hawker centres</strong> are the great social equalizer where a minister and a taxi driver share a table over chicken rice or laksa; recognized by UNESCO.
+            </p>
+          </div>
+
+          <!-- Visual Relief Motif: Steaming Hawker Bowl (Fills Empty Gap) -->
+          <div class="bento-motif-wrap" aria-hidden="true">
+            <svg class="bento-motif-svg" viewBox="0 0 140 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Bowl Outline -->
+              <path d="M20 28 C20 48 120 48 120 28 Z" fill="#151b32" stroke="#f59e0b" stroke-width="1.5"/>
+              <line x1="16" y1="28" x2="124" y2="28" stroke="#f59e0b" stroke-width="1.5"/>
+              <!-- Steaming Vapor Plumes -->
+              <path d="M48 22 C44 14 54 8 50 2" stroke="#faf8f5" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+              <path d="M70 20 C66 12 76 6 72 0" stroke="#faf8f5" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+              <path d="M92 22 C88 14 98 8 94 2" stroke="#faf8f5" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+            </svg>
+          </div>
+        </article>
+
+        <!-- Shared Celebrations -->
+        <article class="bento-card bento-card--festivals glass-panel tilt-card" data-reveal="fade">
+          <div>
+            <div class="bento-card__eyebrow">SHARED CELEBRATIONS</div>
+            <h3 class="bento-card__title">Every Faith on the Calendar</h3>
+            <p class="bento-card__text">
+              Public holidays are evenly shared among major faiths and ethnicities—from Lunar New Year to Hari Raya, Deepavali, and Christmas.
+            </p>
+          </div>
+
+          <!-- Visual Relief Motif: Festive Cultural Lanterns -->
+          <div class="bento-motif-wrap" aria-hidden="true">
+            <svg class="bento-motif-svg" viewBox="0 0 140 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Left Lantern -->
+              <line x1="45" y1="0" x2="45" y2="10" stroke="#ef3340" stroke-width="1.2"/>
+              <rect x="32" y="10" width="26" height="30" rx="10" fill="#2a1018" stroke="#ef3340" stroke-width="1.5"/>
+              <line x1="45" y1="40" x2="45" y2="52" stroke="#f59e0b" stroke-width="1.2"/>
+              <!-- Right Lantern -->
+              <line x1="95" y1="0" x2="95" y2="12" stroke="#2dd4bf" stroke-width="1.2"/>
+              <rect x="82" y="12" width="26" height="28" rx="8" fill="#10252b" stroke="#2dd4bf" stroke-width="1.5"/>
+              <line x1="95" y1="40" x2="95" y2="50" stroke="#2dd4bf" stroke-width="1.2"/>
+            </svg>
+          </div>
+
+          <blockquote class="culture-quote">
+            “Mutual respect for food, faith and festivals makes Singapore's social fabric uniquely resilient.”
+          </blockquote>
+        </article>
+      </div>
+
+      <!-- ==========================================
+           3D PERANAKAN OUTFIT EXPERIENCE
+           ========================================== -->
+      <div id="peranakan-stage" class="container peranakan-wrapper">
+        <div class="peranakan-header">
+          <div class="section-eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span class="section-tag">INTERACTIVE 3D STUDIO · STRAITS CHINESE HERITAGE</span>
+          </div>
+          <h3 class="peranakan-title">The Peranakan Attire: Nyonya &amp; Baba</h3>
+          <p class="peranakan-lead">
+            Born from the centuries-old synthesis of early Chinese settlers and local Malay Nusantara traditions, Peranakan dress pairs intricate embroidery, batik sarongs, and hand-beaded craft. Inspect both characters in 3D or press <strong>Explore Outfit</strong> to disassemble and rebuild each ensemble layer by layer.
+          </p>
+        </div>
+
+        <div class="peranakan-studio glass-panel" id="peranakan-studio">
+          <!-- Top Bar: Character Switcher (Mobile Carousel / Desktop Focus) + Controls -->
+          <div class="studio-topbar">
+            <div class="studio-char-tabs" role="tablist" aria-label="Choose Peranakan Character">
+              <button type="button" class="char-tab is-active" data-char-select="both" role="tab" aria-selected="true">
+                Side-by-Side Stage
+              </button>
+              <button type="button" class="char-tab" data-char-select="female" role="tab" aria-selected="false">
+                Nyonya (Female)
+              </button>
+              <button type="button" class="char-tab" data-char-select="male" role="tab" aria-selected="false">
+                Baba (Male)
+              </button>
+            </div>
+
+            <div class="studio-gesture-hint" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Drag to rotate · Pinch/Scroll to zoom</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 3D WebGL Character Stage -->
+          <div class="studio-canvas-area" id="peranakan-canvas-wrap">
+            <canvas id="peranakan-canvas" aria-label="Interactive 3D Peranakan Nyonya and Baba characters in traditional attire"></canvas>
+
+            <!-- Floating Character Pedestal Triggers (Default Mode) -->
+            <div class="studio-pedestal-ui" id="studio-pedestal-ui">
+              <div class="pedestal-card">
+                <span class="pedestal-card__tag">FEMALE · 6 LAYERS</span>
+                <strong class="pedestal-card__name">Nyonya Kebaya &amp; Sarong</strong>
+                <button type="button" class="btn btn--primary btn--sm" data-explore-trigger="female">
+                  Explore Nyonya Outfit
+                </button>
+              </div>
+
+              <div class="pedestal-card">
+                <span class="pedestal-card__tag">MALE · 5 LAYERS</span>
+                <strong class="pedestal-card__name">Baba Baju Panjang</strong>
+                <button type="button" class="btn btn--primary btn--sm" data-explore-trigger="male">
+                  Explore Baba Outfit
+                </button>
+              </div>
+            </div>
+
+            <!-- Mobile Drawer Scrim Overlay -->
+            <div id="inspector-scrim" class="inspector-scrim is-hidden" aria-hidden="true"></div>
+
+            <!-- Exploded / Layer-by-Layer Assembly Inspector Card (Bottom Sheet Drawer on Mobile) -->
+            <aside class="inspector-panel glass-panel is-hidden" id="outfit-inspector" aria-live="polite" aria-label="Garment Layer Inspector">
+              <!-- Mobile Drawer Handle -->
+              <div class="inspector-drawer-handle" aria-hidden="true"></div>
+
+              <div class="inspector-panel__top">
+                <span class="inspector-panel__char" id="inspector-char-label">NYONYA ATTIRE</span>
+                <span class="inspector-panel__counter" id="inspector-step-counter">STEP 1 / 6</span>
+              </div>
+
+              <!-- Progress Bar -->
+              <div class="inspector-progress">
+                <div class="inspector-progress__fill" id="inspector-progress-fill"></div>
+              </div>
+
+              <h4 class="inspector-panel__title" id="inspector-layer-title">Base Undergarment Layer</h4>
+
+              <div class="inspector-panel__detail">
+                <span class="inspector-detail-label">What it is</span>
+                <p id="inspector-what">A breathable cotton inner camisole that creates a modest silhouette beneath the sheer lace blouse.</p>
+              </div>
+
+              <div class="inspector-panel__detail">
+                <span class="inspector-detail-label">How it is worn</span>
+                <p id="inspector-how">Worn snugly as the foundation layer before wrapping the batik sarong and draping the kebaya.</p>
+              </div>
+
+              <!-- Step Dots (44x44px touch targets) -->
+              <div class="inspector-dots" id="inspector-dots" role="tablist" aria-label="Assembly steps"></div>
+
+              <!-- Step Navigation Controls -->
+              <div class="inspector-controls">
+                <button type="button" class="btn btn--glass btn--sm" id="inspector-prev-btn" aria-label="Previous garment layer">
+                  ← Prev
+                </button>
+                <button type="button" class="btn btn--primary btn--sm" id="inspector-next-btn" aria-label="Next garment layer">
+                  Next Layer →
+                </button>
+              </div>
+
+              <div class="inspector-footer">
+                <button type="button" class="inspector-reset-btn" id="inspector-reset-btn">
+                  Reset / Skip to Full Outfit
+                </button>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="nav-brand__dot" aria-hidden="true"></span>
+        <div>
+          <strong>SINGAPORE — The Little Red Dot That Became a Giant</strong>
+          <p>Interactive School Presentation · Built with Vanilla ES Modules, Three.js, GSAP &amp; Lenis</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#hero" class="footer-top-link">Back to Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main ES Module Entry Point -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

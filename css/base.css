@@ -1,0 +1,358 @@
+/* ==========================================================================
+   BASE.CSS — Design Tokens, Reset, Typography & Tactile Utilities
+   Crafted with Impeccable (a11y & contrast), Taste (breathing room),
+   and Emil Kowalski (tactile physics & spring curves) principles.
+   ========================================================================== */
+
+:root {
+  /* Deep Indigo-Black Void Canvas & Solidified Glass Surfaces */
+  --bg-void: #060811;
+  --bg-deep: #0a0e1d;
+  --bg-elevated: #11172c;
+  --surface-glass: rgba(14, 20, 38, 0.82);
+  --surface-glass-heavy: rgba(9, 13, 26, 0.94);
+  --surface-card: rgba(255, 255, 255, 0.04);
+  --surface-card-hover: rgba(255, 255, 255, 0.07);
+
+  /* Brand Pigments & Calibrated Accessible Accents */
+  --sg-red: #ef3340;
+  --sg-red-text: #ff5c67;        /* Calibrated for WCAG AA 4.5:1 on dark */
+  --sg-red-soft: rgba(239, 51, 64, 0.16);
+  --sg-red-glow: rgba(239, 51, 64, 0.28);
+  
+  --peranakan-teal: #2dd4bf;
+  --peranakan-teal-soft: rgba(45, 212, 191, 0.14);
+  --peranakan-gold: #f59e0b;
+  --peranakan-gold-soft: rgba(245, 158, 11, 0.15);
+  --peranakan-pink: #f472b6;
+  --indigo-glow: rgba(99, 102, 241, 0.18);
+
+  /* Editorial Whites & Accessible Slate Hierarchy */
+  --text-primary: #faf8f5;
+  --text-secondary: #c5cedf;      /* High clarity secondary (7.5:1 on #060811) */
+  --text-muted: #94a3b8;          /* High clarity muted text (4.8:1 on #060811, WCAG AA pass) */
+
+  /* Tactile 1px Translucent Borders & Restrained Elevation */
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --border-bright: rgba(255, 255, 255, 0.18);
+  --border-red: rgba(239, 51, 64, 0.5);
+  --shadow-elevation-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow-elevation-md: 0 12px 32px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  --shadow-elevation-lg: 0 24px 60px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  /* Typography Families */
+  --font-display: 'Syne', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Disciplined Modular Type Scale — Tamed for Mobile (390px) */
+  --text-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.84rem);   /* Min 12px floor for readability */
+  --text-sm: clamp(0.86rem, 0.82rem + 0.2vw, 0.96rem);
+  --text-base: clamp(0.96rem, 0.92rem + 0.2vw, 1.08rem);
+  --text-lg: clamp(1.12rem, 1.04rem + 0.4vw, 1.28rem);
+  --text-xl: clamp(1.22rem, 1.12rem + 0.6vw, 1.55rem);
+  --text-2xl: clamp(1.48rem, 1.28rem + 1.1vw, 2.35rem);  /* Capped for max 2-line mobile wraps */
+  --text-hero: clamp(2.2rem, 1.6rem + 3.2vw, 4.4rem);
+
+  /* Spacing & Layout Rhythm */
+  --container-max: 1240px;
+  --container-pad: clamp(1.15rem, 4vw, 2.75rem);
+  --section-space: clamp(4.5rem, 10vh, 8.5rem);
+
+  /* Border Radius Scale */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  /* Emil Kowalski Spring Curves & Tactile Timings */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* Safe Area Insets for Mobile Notches/Home Bars */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Modern Box Sizing & Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+  scroll-behavior: auto; /* Managed by Lenis */
+}
+
+body {
+  min-height: 100svh;
+  background-color: var(--bg-void);
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(79, 70, 229, 0.08), transparent 45%),
+    radial-gradient(circle at 82% 24%, rgba(239, 51, 64, 0.06), transparent 40%);
+  color: var(--text-primary);
+  overflow-x: clip;
+  position: relative;
+}
+
+img,
+canvas,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Keyboard Accessibility Focus Ring */
+:focus-visible {
+  outline: 2px solid var(--sg-red-text);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 10000;
+  background: #c7202f;
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: top 0.2s var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Subtle Tactile Film Grain Overlay (Subordinate, no performance hit) */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Desktop Ambient Cursor Glow (Hidden on Touch/Mobile) */
+.cursor-glow {
+  position: fixed;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(239, 51, 64, 0.08), rgba(99, 102, 241, 0.04), transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s var(--ease-out);
+  opacity: 0;
+  display: none;
+}
+
+@media (pointer: fine) {
+  .cursor-glow {
+    display: block;
+  }
+}
+
+/* Common Layout Containers */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-space);
+  scroll-margin-top: calc(5.5rem + var(--safe-top));
+}
+
+.section-intro {
+  margin-bottom: clamp(2rem, 5vh, 3.5rem);
+  max-width: 62ch;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  color: var(--sg-red-text);
+  text-transform: uppercase;
+}
+
+.section-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  background: var(--sg-red-soft);
+  color: var(--sg-red-text);
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 0.85rem;
+}
+
+.section-subtitle {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 58ch;
+}
+
+/* Glass Panels & Tactical Elevation */
+.glass-panel {
+  background: var(--surface-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-elevation-md);
+  transition: border-color 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+}
+
+.glass-panel:hover {
+  border-color: var(--border-bright);
+}
+
+/* Tactile Buttons with Emil Kowalski Active Feedback */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.65rem 1.45rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1;
+  transition:
+    transform 0.14s var(--ease-spring),
+    box-shadow 0.2s var(--ease-out),
+    background-color 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--primary {
+  background: #d62837; /* Solid high-contrast red */
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 18px rgba(214, 40, 55, 0.35);
+}
+
+.btn--primary:hover {
+  background: #e62f3f;
+  box-shadow: 0 6px 24px rgba(214, 40, 55, 0.45);
+}
+
+.btn--glass {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border: 1px solid var(--border-bright);
+}
+
+.btn--glass:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn--sm {
+  min-height: 44px; /* Strictly satisfies 44px minimum touch target */
+  padding: 0.45rem 1.05rem;
+  font-size: var(--text-xs);
+}
+
+/* Micro-Badges & Chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.chip--accent {
+  background: var(--sg-red-soft);
+  border-color: rgba(239, 51, 64, 0.35);
+  color: var(--sg-red-text);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

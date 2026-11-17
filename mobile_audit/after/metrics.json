@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "SINGAPORE — The Little Red Dot That Became a Giant",
-    "timestamp": "2026-11-17T11:59:23.596Z",
+    "timestamp": "2026-11-17T12:33:22.223Z",
     "auditType": "Mobile Comprehensive Empirical Audit (Part 3 After Verification)",
     "testedBy": "Antigravity (Node 24 + Chrome 157 CDP / ANGLE WebGL Direct3D11)",
     "operatingSystem": "Windows 11",
@@ -1339,8 +1339,8 @@
       },
       {
         "fileName": "m_390x844_economy_stage0_1965.png",
-        "sizeKb": 2148,
-        "capturedAt": "2026-11-17T11:56:19.182Z"
+        "sizeKb": 2271,
+        "capturedAt": "2026-11-17T12:33:03.421Z"
       },
       {
         "fileName": "m_390x844_economy_stage1_industrial.png",
@@ -1359,8 +1359,8 @@
       },
       {
         "fileName": "m_390x844_economy_top.png",
-        "sizeKb": 2229,
-        "capturedAt": "2026-11-17T11:56:07.646Z"
+        "sizeKb": 2272,
+        "capturedAt": "2026-11-17T12:33:00.812Z"
       },
       {
         "fileName": "m_390x844_explore_baba_step1_collapsed.png",
@@ -1414,8 +1414,8 @@
       },
       {
         "fileName": "m_390x844_explore_nyonya_step1_collapsed.png",
-        "sizeKb": 1979,
-        "capturedAt": "2026-11-17T11:56:45.311Z"
+        "sizeKb": 2137,
+        "capturedAt": "2026-11-17T12:33:13.360Z"
       },
       {
         "fileName": "m_390x844_explore_nyonya_step1_expanded.png",
@@ -1519,18 +1519,18 @@
       },
       {
         "fileName": "m_390x844_studio_baba_alone.png",
-        "sizeKb": 1979,
-        "capturedAt": "2026-11-17T11:56:42.346Z"
+        "sizeKb": 2131,
+        "capturedAt": "2026-11-17T12:33:10.973Z"
       },
       {
         "fileName": "m_390x844_studio_both_characters.png",
-        "sizeKb": 1979,
-        "capturedAt": "2026-11-17T11:56:36.594Z"
+        "sizeKb": 2102,
+        "capturedAt": "2026-11-17T12:33:06.625Z"
       },
       {
         "fileName": "m_390x844_studio_nyonya_alone.png",
-        "sizeKb": 1979,
-        "capturedAt": "2026-11-17T11:56:39.528Z"
+        "sizeKb": 2105,
+        "capturedAt": "2026-11-17T12:33:08.733Z"
       },
       {
         "fileName": "m_844x390_history_era1_landscape.png",

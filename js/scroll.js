@@ -162,26 +162,27 @@ export function initScrollSystem(quality) {
 
     // Numeric Counter (e.g., 80%+ HDB)
     const counterEls = document.querySelectorAll('[data-count-target]');
-    counterEls.forEach((el) => {
-      const targetVal = parseFloat(el.getAttribute('data-count-target')) || 80;
-      const suffix = el.getAttribute('data-count-suffix') || '';
-      const state = { val: 0 };
+    if (hasGSAP && !quality.reducedMotion) {
+      counterEls.forEach((el) => {
+        const targetVal = parseFloat(el.getAttribute('data-count-target')) || 80;
+        const suffix = el.getAttribute('data-count-suffix') || '';
+        const state = { val: 0 };
 
-      window.gsap.to(state, {
-        val: targetVal,
-        duration: 1.6,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          once: true
-        },
-        onUpdate: () => {
-          el.textContent = `${Math.round(state.val)}${suffix}`;
-        }
+        window.gsap.to(state, {
+          val: targetVal,
+          duration: 1.6,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            once: true
+          },
+          onUpdate: () => {
+            el.textContent = `${Math.round(state.val)}${suffix}`;
+          }
+        });
       });
-    });
-  }
+    }
 
   return { lenis };
 }

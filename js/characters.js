@@ -68,6 +68,7 @@ function createBatikTexture(bgHex, primaryHex, secondaryHex, goldHex) {
   }
 
   const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
   tex.wrapS = THREE.RepeatWrapping;
   tex.wrapT = THREE.RepeatWrapping;
   tex.repeat.set(2, 1.5);
@@ -106,6 +107,7 @@ function createKebayaLaceTexture(baseHex, embroideryHex) {
   }
 
   const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
   tex.wrapS = THREE.RepeatWrapping;
   tex.wrapT = THREE.ClampToEdgeWrapping;
   return tex;
@@ -129,9 +131,19 @@ export function buildNyonyaCharacter(xPos, segments) {
     metalness: 0.2
   });
 
-  // Base Mannequin Body (Head, Neck, Arms, Legs — always visible)
+  // Base Mannequin Body (Head, Neck, Arms, Torso Form, Legs — always visible)
   const mannequin = new THREE.Group();
   mannequin.name = 'mannequin_female';
+
+  const formMat = new THREE.MeshStandardMaterial({
+    color: 0x1f293d,
+    roughness: 0.65,
+    metalness: 0.1
+  });
+  const torsoForm = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.24, 1.85, segments), formMat);
+  torsoForm.position.set(0, 1.65, 0);
+  torsoForm.scale.set(1.02, 1, 0.76);
+  mannequin.add(torsoForm);
 
   const head = new THREE.Mesh(new THREE.SphereGeometry(0.29, segments, segments), skinMat);
   head.position.set(0, 3.05, 0);
@@ -378,6 +390,22 @@ export function buildBabaCharacter(xPos, segments) {
     const hand = new THREE.Mesh(new THREE.SphereGeometry(0.085, 12, 12), skinMat);
     hand.position.set(ax * 1.12, 1.56, 0.06);
     mannequin.add(hand);
+  });
+
+  const formMat = new THREE.MeshStandardMaterial({
+    color: 0x1f293d,
+    roughness: 0.65,
+    metalness: 0.1
+  });
+  const torsoForm = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.28, 1.85, segments), formMat);
+  torsoForm.position.set(0, 1.68, 0);
+  torsoForm.scale.set(1.04, 1, 0.8);
+  mannequin.add(torsoForm);
+
+  [-0.19, 0.19].forEach((lx) => {
+    const ankle = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.085, 0.65, 12), skinMat);
+    ankle.position.set(lx, 0.42, 0);
+    mannequin.add(ankle);
   });
 
   root.add(mannequin);

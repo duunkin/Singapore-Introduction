@@ -139,3 +139,25 @@
   - Option B: On mobile devices (`@media (max-width: 768px) and (pointer: coarse)`), restrict header blur to 8px and replace card backdrop-filters with 94% opaque tinted solid glass (`rgba(6, 8, 17, 0.94)`).
 - **Chosen:** Option B. Reduced active blur coverage from 1.48x viewport to 0.37x viewport, maintaining aesthetic sophistication while achieving consistent 60 FPS scrolling.
 
+### Decision 013: Syntax Error Fix in scroll.js Restoring Section Initializations
+- **What was seen:** `js/scroll.js` had a dangling brace closing `initScrollSystem` early, leaving `return { lenis };` on line 186 as an illegal return statement. This caused `js/main.js` to halt before executing `initHistorySection`, `initEconomySection`, and `initCultureSection`.
+- **Options considered:**
+  - Option A: Inline scroll logic into `main.js`.
+  - Option B: Correct the scope of the numeric counter animation block inside `initScrollSystem` with proper `if (hasGSAP && !quality.reducedMotion)` guards and ensure clean syntax.
+- **Chosen:** Option B. Resolved all syntax errors across `js/` modules; all downstream 3D modules now initialize reliably.
+
+### Decision 014: Mobile Optimization of Economy Top & Stage 0 Viewport Layout
+- **What was seen:** At `economy_top`, the 555px tall stage card started at `top: 428px`, pushing the 3D canvas bottom and stage buttons below the 844px fold (`bottom: 983px`). The 4 stage buttons used `overflow-x: auto; scrollbar-width: none;`, hiding Stages 2 and 3 off-screen.
+- **Options considered:**
+  - Option A: Remove the section intro on mobile.
+  - Option B: Compress section padding on mobile (`<= 768px`), optimize canvas height to `clamp(220px, 32vh, 280px)`, convert stage buttons to an accessible 2x2 grid (`156x44px` each), and add dynamic stage narrative summaries (`#economy-stage-desc`).
+- **Chosen:** Option B. At `economy_top`, the section intro, 3D mini-world canvas, and all 4 stage buttons now fit completely within the 844px mobile viewport (`bottom: 839px`, `cardWithinViewport: true`, `allButtonsVisible: true`).
+
+### Decision 015: Peranakan Costume Model Visual Refinement & Color Fidelity
+- **What was seen:** Procedural batik and kebaya lace textures lacked explicit `sRGBColorSpace`, rendering washed out in Three.js ACESFilmicToneMapping. Mannequins lacked torso support and Baba lacked lower legs, causing floating parts when garments exploded in Explore mode. Initial camera distance on mobile was set too far (13m away), making characters appear tiny.
+- **Options considered:**
+  - Option A: Downscale models or replace with 2D sprites.
+  - Option B: Set `tex.colorSpace = THREE.SRGBColorSpace;` on procedural CanvasTextures; add neutral tailor dress-form torso cores and complete lower legs to the mannequins; and initialize mobile framing directly on the active character (`Nyonya` at `cx: -1.65`) at distance ~5.1m.
+- **Chosen:** Option B. Characters now display rich, radiant batik luster with full structural integrity and close-up, high-fidelity mobile framing.
+
+

@@ -434,8 +434,13 @@ export function initCultureSection(quality) {
     new ResizeObserver(() => refocus(0.3)).observe(inspectorEl);
   }
 
-  // initial wide view of both characters (replaces the old defaultCamPos / defaultLookTarget framing)
-  focusOn(0, 1.75, 1.95, 2.4, 0);
+  // Initial view: on mobile portrait, frame the active character (Nyonya) cleanly; on desktop, frame both
+  const initialKey = charTabs.find((t) => t.classList.contains('is-active'))?.getAttribute('data-char-select') || 'female';
+  if (window.innerWidth < 680 && OUTFIT_DATA[initialKey]) {
+    focusOn(OUTFIT_DATA[initialKey].baseX, 1.75, 1.95, 0.95, 0);
+  } else {
+    focusOn(0, 1.75, 1.95, 2.4, 0);
+  }
 
   // -------------------------------------------------------------------------
   // Explore / Layer-by-Layer Assembly State Machine

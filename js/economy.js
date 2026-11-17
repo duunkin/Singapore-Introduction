@@ -18,6 +18,7 @@ const ECON_STAGES = [
     index: 0,
     yearText: '1965',
     title: '1965: Starting Point',
+    summary: 'Survival without resources: turning acute vulnerability into rapid industrialization.',
     cameraPos: { x: 8.5, y: 7.2, z: 12.5 },
     gridColor: new THREE.Color(0xf59e0b),
     flowSpeed: 0.15,
@@ -27,6 +28,7 @@ const ECON_STAGES = [
     index: 1,
     yearText: 'STAGE 1',
     title: 'Stage 1: Jurong Industrialization',
+    summary: '1968–1980: Transforming pioneer swampland into an export-oriented manufacturing engine.',
     cameraPos: { x: 9.8, y: 8.0, z: 13.0 },
     gridColor: new THREE.Color(0x38bdf8),
     flowSpeed: 0.45,
@@ -36,6 +38,7 @@ const ECON_STAGES = [
     index: 2,
     yearText: '1980s–90s',
     title: 'Stage 2: Global Port & Aviation Hubs',
+    summary: '1981–1990: World-class container shipping and Changi Airport aviation dominance.',
     cameraPos: { x: 10.5, y: 8.8, z: 13.5 },
     gridColor: new THREE.Color(0x2dd4bf),
     flowSpeed: 0.8,
@@ -45,6 +48,7 @@ const ECON_STAGES = [
     index: 3,
     yearText: 'TODAY',
     title: 'Stage 3: Smart Nation & Finance Hub',
+    summary: 'Today: Premier international wealth hub, green towers, digital twins, and AI civic platforms.',
     cameraPos: { x: 11.2, y: 9.6, z: 14.2 },
     gridColor: new THREE.Color(0xef3340),
     flowSpeed: 1.15,
@@ -169,6 +173,7 @@ function initEconomy3DStage(quality) {
   const canvas = document.getElementById('economy-canvas');
   const stageCard = document.getElementById('economy-stage-card');
   const stageLabelEl = document.getElementById('economy-stage-label');
+  const stageDescEl = document.getElementById('economy-stage-desc');
   const yearCounterEl = document.getElementById('economy-year-counter');
   const stageButtons = Array.from(document.querySelectorAll('.econ-stage-btn'));
   const narrativeCards = Array.from(document.querySelectorAll('.econ-card[data-econ-card]'));
@@ -190,13 +195,18 @@ function initEconomy3DStage(quality) {
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x05070f, 0.038);
 
+  const isNarrowMobile = window.innerWidth < 680;
   const camera = new THREE.PerspectiveCamera(
-    42,
+    isNarrowMobile ? 46 : 42,
     canvasWrap.clientWidth / canvasWrap.clientHeight,
     0.1,
     100
   );
-  camera.position.set(8.5, 7.2, 12.5);
+  camera.position.set(
+    isNarrowMobile ? 9.6 : 8.5,
+    isNarrowMobile ? 8.0 : 7.2,
+    isNarrowMobile ? 13.8 : 12.5
+  );
 
   // Lighting
   const ambient = new THREE.AmbientLight(0x1e295b, 1.5);
@@ -343,6 +353,7 @@ function initEconomy3DStage(quality) {
     const stageData = ECON_STAGES[clamped];
 
     if (stageLabelEl) stageLabelEl.textContent = stageData.title;
+    if (stageDescEl && stageData.summary) stageDescEl.textContent = stageData.summary;
     if (yearCounterEl) yearCounterEl.textContent = stageData.yearText;
 
     stageButtons.forEach((btn, idx) => {

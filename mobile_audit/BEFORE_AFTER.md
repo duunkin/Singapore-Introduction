@@ -106,10 +106,16 @@ All 134 test matrix screenshots were re-captured with Headless Chrome CDP and sa
 2. **History Pinned Stage (`m_*_history_*.png`):**
    - Historical cards are completely visible within the 100dvh pinned container. Milestone tags and text wrap naturally without overflowing card boundaries.
 3. **Economy Stage & Hotspots (`m_*_economy_*.png`):**
-   - Responsive grid stacks cleanly into a single-column layout on mobile. Hotspots now feature a persistent, high-contrast bottom caption card (`#econ-hotspot-caption`) displaying trade facts on tap.
-4. **Peranakan Studio & Drawer (`m_*_studio_*.png`, `m_*_explore_*.png`):**
+   - At `economy_top`, the section intro, 3D mini-world canvas, and all 4 stage buttons fit completely within the 844px mobile viewport (`bottom: 839px`, `cardWithinViewport: true`).
+   - The stage selector buttons were upgraded from an unlabelled horizontal scroller into an accessible 2x2 grid (`156x44px` each), making all 4 stages (1965 Baseline, Jurong, Hubs, Smart Nation) immediately visible and tap-operable.
+   - Dynamic narrative stage summaries (`#economy-stage-desc`) update in place, providing full historical context alongside the 3D model.
+   - Hotspots feature persistent bottom caption cards (`#econ-hotspot-caption`) displaying trade facts on tap.
+4. **Peranakan Studio, Costume Models & Drawer (`m_*_studio_*.png`, `m_*_explore_*.png`):**
+   - Resolved syntax error in `js/scroll.js` that previously blocked downstream module execution on initial load.
+   - Procedural CanvasTextures for Peranakan batik and kebaya lace upgraded with `THREE.SRGBColorSpace`, producing radiant, authentic Straits Chinese color luster under ACES tone mapping.
+   - Added museum tailor dress-form torso cores and Baba lower leg/ankle geometry, ensuring complete structural integrity during exploded-layer Explore mode.
+   - Calibrated mobile portrait camera framing to focus directly on the active character (`Nyonya` at `cx: -1.65`) at distance ~5.1m rather than zooming out 13m into an empty void.
    - In collapsed state (`m_390x844_explore_nyonya_step1_collapsed.png`), the inspector bottom sheet occupies only 28dvh, leaving 72% of the screen completely unobstructed for the 3D character mannequins.
-   - Character head, hands, and feet remain framed within the upper canvas viewport.
    - In expanded state (`m_390x844_explore_nyonya_step1_expanded.png`), the drawer expands smoothly to 52dvh with internal scrolling, presenting full cultural text and fabric details without overflowing the screen.
 5. **Landscape Orientation (`m_844x390_*_landscape.png`):**
    - Pedestal UI transforms into a compact horizontal bar with safe area padding, preventing screen cutoff.

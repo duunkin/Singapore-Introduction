@@ -32,10 +32,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 3. Initialize Hero 3D Skyline
   setProgress(75, 'Building Marina Bay 3D Skyline');
-  initHero3D(quality);
+  try {
+    initHero3D(quality);
+  } catch (err) {
+    console.warn('[Hero3D] Initialization fallback:', err);
+  }
 
-  // 4. Load Section Modules (Resilient Dynamic Imports for Phases 2, 3 & 4)
-  setProgress(90, 'Preparing Historical & Cultural Stages');
+  // 4. Dismiss Loader Immediately (Target <= 1.2s, hard cap 1.8s)
+  // HTML/CSS and Hero 3D / first screen text are ready.
+  let loaderDismissed = false;
+  const dismissLoader = () => {
+    if (loaderDismissed) return;
+    loaderDismissed = true;
+    setProgress(100, 'Welcome to Singapore');
+    if (loaderEl) loaderEl.classList.add('is-complete');
+    if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+  };
+
+  // Hard timeout failsafe ensures the loader never blocks the user
+  const loaderTimer = setTimeout(dismissLoader, 1500);
+
+  // Complete loader on next available frame
+  requestAnimationFrame(() => {
+    setTimeout(dismissLoader, 180);
+  });
+
+  // 5. Background Lazy Load Section Modules (Non-blocking for instant TTI)
   const loadOptionalModule = async (path, initFnName) => {
     try {
       const mod = await import(path);
@@ -43,24 +65,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         mod[initFnName](quality, scrollSystem);
       }
     } catch (err) {
-      // Module will be populated in subsequent phases
+      console.warn(`[Module] Deferred load ${path}:`, err);
     }
   };
 
-  await Promise.allSettled([
+  Promise.allSettled([
     loadOptionalModule('./history.js', 'initHistorySection'),
     loadOptionalModule('./economy.js', 'initEconomySection'),
     loadOptionalModule('./culture3d.js', 'initCultureSection')
-  ]);
-
-  // 5. Complete Loader & Reveal Hero
-  setProgress(100, 'Welcome to Singapore');
-  setTimeout(() => {
-    if (loaderEl) {
-      loaderEl.classList.add('is-complete');
-    }
-    if (window.ScrollTrigger) {
-      window.ScrollTrigger.refresh();
-    }
-  }, 280);
+  ]).then(() => {
+    if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+  });
 });

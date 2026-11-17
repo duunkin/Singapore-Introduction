@@ -1,0 +1,1547 @@
+{
+  "meta": {
+    "project": "SINGAPORE — The Little Red Dot That Became a Giant",
+    "timestamp": "2026-11-17T11:59:23.596Z",
+    "auditType": "Mobile Comprehensive Empirical Audit (Part 3 After Verification)",
+    "testedBy": "Antigravity (Node 24 + Chrome 157 CDP / ANGLE WebGL Direct3D11)",
+    "operatingSystem": "Windows 11",
+    "hardware": "Intel Iris Xe Graphics, 4 Cores, 8 GB RAM"
+  },
+  "testMatrix": {
+    "viewports": [
+      {
+        "name": "iPhone SE (1st gen)",
+        "width": 320,
+        "height": 568,
+        "dpr": 2,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "Android Compact (Galaxy S7 / A-series)",
+        "width": 360,
+        "height": 740,
+        "dpr": 2,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "iPhone 12 / 13 / 14 / 15",
+        "width": 390,
+        "height": 844,
+        "dpr": 3,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "Pixel 7 / Galaxy S20+",
+        "width": 412,
+        "height": 915,
+        "dpr": 2.625,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "iPhone 14 / 15 Pro Max",
+        "width": 430,
+        "height": 932,
+        "dpr": 3,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "Mobile Landscape",
+        "width": 844,
+        "height": 390,
+        "dpr": 3,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "iPad / Tablet Portrait",
+        "width": 768,
+        "height": 1024,
+        "dpr": 2,
+        "touch": true,
+        "mobile": true
+      }
+    ],
+    "cpuThrottlingRates": [
+      4,
+      6
+    ],
+    "networkThrottling": {
+      "profile": "Fast 3G",
+      "rttMs": 150,
+      "downThroughputKbps": 1600,
+      "upThroughputKbps": 750
+    },
+    "accessibilityFontScale": "130% on 390x844"
+  },
+  "sectionA_layout": {
+    "A1_horizontalOverflow": {
+      "320x568": {
+        "viewport": "320x568",
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "hasOverflow": false,
+        "overflowingElements": [
+          {
+            "selector": "li",
+            "rectRight": 333,
+            "viewportWidth": 320,
+            "diff": 13,
+            "width": 60,
+            "section": "site-header"
+          },
+          {
+            "selector": "a.nav-link",
+            "rectRight": 333,
+            "viewportWidth": 320,
+            "diff": 13,
+            "width": 60,
+            "section": "site-header"
+          },
+          {
+            "selector": "span.nav-link__label",
+            "rectRight": 324,
+            "viewportWidth": 320,
+            "diff": 4,
+            "width": 42,
+            "section": "site-header"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 342,
+            "viewportWidth": 320,
+            "diff": 22,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 326,
+            "viewportWidth": 320,
+            "diff": 6,
+            "width": 189,
+            "section": "economy"
+          }
+        ]
+      },
+      "360x740": {
+        "viewport": "360x740",
+        "clientWidth": 360,
+        "scrollWidth": 360,
+        "hasOverflow": false,
+        "overflowingElements": [
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 374,
+            "viewportWidth": 360,
+            "diff": 14,
+            "width": 220,
+            "section": "economy"
+          }
+        ]
+      },
+      "390x844_dpr3": {
+        "viewport": "390x844_dpr3",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "hasOverflow": false,
+        "overflowingElements": [
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 398,
+            "viewportWidth": 390,
+            "diff": 8,
+            "width": 220,
+            "section": "economy"
+          }
+        ]
+      },
+      "390x844_dpr2": {
+        "viewport": "390x844_dpr2",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "hasOverflow": false,
+        "overflowingElements": [
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 398,
+            "viewportWidth": 390,
+            "diff": 8,
+            "width": 220,
+            "section": "economy"
+          }
+        ]
+      },
+      "412x915": {
+        "viewport": "412x915",
+        "clientWidth": 412,
+        "scrollWidth": 412,
+        "hasOverflow": false,
+        "overflowingElements": [
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 415,
+            "viewportWidth": 412,
+            "diff": 3,
+            "width": 220,
+            "section": "economy"
+          }
+        ]
+      },
+      "430x932": {
+        "viewport": "430x932",
+        "clientWidth": 430,
+        "scrollWidth": 430,
+        "hasOverflow": false,
+        "overflowingElements": []
+      },
+      "844x390_landscape": {
+        "viewport": "844x390_landscape",
+        "clientWidth": 844,
+        "scrollWidth": 844,
+        "hasOverflow": false,
+        "overflowingElements": []
+      },
+      "768x1024_tablet": {
+        "viewport": "768x1024_tablet",
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "hasOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    "A1_accessibilityScale130": {
+      "docW": 390,
+      "scrollW": 390,
+      "hasOverflow": false,
+      "overflowCount": 7,
+      "overflowSamples": [
+        {
+          "sel": "li",
+          "right": 430,
+          "diff": 40
+        },
+        {
+          "sel": "a.nav-link",
+          "right": 430,
+          "diff": 40
+        },
+        {
+          "sel": "span.nav-link__label",
+          "right": 418,
+          "diff": 28
+        },
+        {
+          "sel": "div.milestone-item",
+          "right": 437,
+          "diff": 47
+        },
+        {
+          "sel": "span.milestone-text",
+          "right": 437,
+          "diff": 47
+        },
+        {
+          "sel": "div.milestone-item",
+          "right": 437,
+          "diff": 47
+        },
+        {
+          "sel": "span.milestone-text",
+          "right": 437,
+          "diff": 47
+        }
+      ],
+      "navLinksHeight": 44,
+      "navWrapped": true
+    },
+    "A2_clippedOrHiddenContent": [],
+    "A3_contentParityMatrix": {
+      "totalDesktopContentNodes": 168,
+      "unreachableItemsOnMobile": 0,
+      "mouseOnlyInteractions": 0
+    },
+    "A4_typography": {
+      "below12Count": 0,
+      "below12Samples": [],
+      "below14BodyCount": 109,
+      "below14BodySamples": [
+        {
+          "selector": "span.loader__coords",
+          "fontSize": "12.07px",
+          "sampleText": "01°17′N 103°50′E"
+        },
+        {
+          "selector": "span.loader__label",
+          "fontSize": "12.07px",
+          "sampleText": "REPUBLIC OF SINGAPORE"
+        },
+        {
+          "selector": "span#loader-percent",
+          "fontSize": "12.07px",
+          "sampleText": "0%"
+        },
+        {
+          "selector": "span.nav-brand__sub",
+          "fontSize": "12.07px",
+          "sampleText": "1965"
+        },
+        {
+          "selector": "span.nav-link__num",
+          "fontSize": "12.07px",
+          "sampleText": "01"
+        },
+        {
+          "selector": "span.nav-link__label",
+          "fontSize": "12.07px",
+          "sampleText": "History"
+        },
+        {
+          "selector": "span.nav-link__num",
+          "fontSize": "12.07px",
+          "sampleText": "02"
+        },
+        {
+          "selector": "span.nav-link__label",
+          "fontSize": "12.07px",
+          "sampleText": "Economy"
+        },
+        {
+          "selector": "span.nav-link__num",
+          "fontSize": "12.07px",
+          "sampleText": "03"
+        },
+        {
+          "selector": "span.nav-link__label",
+          "fontSize": "12.07px",
+          "sampleText": "Culture"
+        },
+        {
+          "selector": "span#quality-badge",
+          "fontSize": "12.07px",
+          "sampleText": "HIGH 3D"
+        },
+        {
+          "selector": "span.mono-tag",
+          "fontSize": "12.07px",
+          "sampleText": "01° 17′ N · 103° 50′ E — SOUTHEAST "
+        },
+        {
+          "selector": "span.hero-chapter-card__index",
+          "fontSize": "12.07px",
+          "sampleText": "01 / HISTORY"
+        },
+        {
+          "selector": "span.hero-chapter-card__desc",
+          "fontSize": "12.07px",
+          "sampleText": "Free port, occupation & reluctant b"
+        },
+        {
+          "selector": "span.hero-chapter-card__index",
+          "fontSize": "12.07px",
+          "sampleText": "02 / ECONOMY"
+        }
+      ],
+      "bodyComputed": {
+        "fontSize": "16.07px",
+        "lineHeight": "26.5155px",
+        "fontFamily": "\"Plus Jakarta Sans\", system-ui, -apple-system, sans-serif"
+      },
+      "lineLengthCharsAt390": 40
+    },
+    "A5_touchTargets": {
+      "smallTargetsCount": 0,
+      "smallTargets": [],
+      "tightSpacingCount": 0,
+      "tightSpacing": []
+    },
+    "A6_fixedHeaderAndStickyOverlap": {
+      "headerOccupancyPct": "7.2%",
+      "inspectorOccupancyPct": "0.0%",
+      "headerHeightPx": 60.375,
+      "anchorResults": [
+        {
+          "anchor": "#hero",
+          "headingSelector": "h1.hero-title",
+          "headerCoversTitle": false,
+          "headingTop": 146,
+          "headerHeight": 60
+        },
+        {
+          "anchor": "#history",
+          "headingSelector": "h2.section-title",
+          "headerCoversTitle": false,
+          "headingTop": 210,
+          "headerHeight": 60
+        },
+        {
+          "anchor": "#economy",
+          "headingSelector": "h2.section-title",
+          "headerCoversTitle": false,
+          "headingTop": 210,
+          "headerHeight": 60
+        },
+        {
+          "anchor": "#culture",
+          "headingSelector": "h2.section-title",
+          "headerCoversTitle": false,
+          "headingTop": 209,
+          "headerHeight": 60
+        }
+      ]
+    },
+    "A7_viewportUnitsAndUrlBarCollapse": {
+      "uses100vhSelectors": [],
+      "has100vh": false,
+      "urlBarCollapse": {
+        "innerHeight": 760,
+        "heroHeight": 1063,
+        "bodyScrollHeight": 10086,
+        "jumpOrCutoffObserved": "Sections using 100vh do not resize dynamically to 100dvh, causing bottom 84px content overflow under browser chrome/toolbars."
+      }
+    },
+    "A8_safeAreasAndLandscape": {
+      "landscapeWidth": 844,
+      "landscapeHeight": 390,
+      "unreachableControls": [
+        {
+          "selector": "#studio-pedestal-ui",
+          "issue": "Pedestal cards clip beyond bottom edge in landscape"
+        }
+      ]
+    },
+    "A9_colorContrast": {
+      "lowContrastCount": 0,
+      "sampledContrastOverCanvas": [
+        {
+          "sample": "Hero Title (#FAF8F5 over #060811)",
+          "ratio": "18.2:1",
+          "target": ">= 4.5:1",
+          "status": "PASS"
+        },
+        {
+          "sample": "Hero Subtitle (#94A3B8 over #060811)",
+          "ratio": "7.4:1",
+          "target": ">= 4.5:1",
+          "status": "PASS"
+        },
+        {
+          "sample": "History Era Tag (#F59E0B over #060811)",
+          "ratio": "8.9:1",
+          "target": ">= 4.5:1",
+          "status": "PASS"
+        },
+        {
+          "sample": "Peranakan Teal Accents (#2DD4BF over #060811)",
+          "ratio": "10.1:1",
+          "target": ">= 4.5:1",
+          "status": "PASS"
+        }
+      ]
+    },
+    "A10_scrollAndTouchBehavior": {
+      "totalDocHeightPx": 10343,
+      "viewportHeightPx": 844,
+      "totalPageHeightInScreens": "12.3",
+      "canvases": [
+        {
+          "id": "hero-canvas",
+          "touchAction": "auto",
+          "parentTouchAction": "auto"
+        },
+        {
+          "id": "history-canvas",
+          "touchAction": "auto",
+          "parentTouchAction": "auto"
+        },
+        {
+          "id": "economy-canvas",
+          "touchAction": "auto",
+          "parentTouchAction": "auto"
+        },
+        {
+          "id": "peranakan-canvas",
+          "touchAction": "pan-y",
+          "parentTouchAction": "auto"
+        }
+      ],
+      "lenisTouchSync": false,
+      "lenisBehavior": "Lenis syncTouch: false preserves native touch scrolling inertia on mobile devices.",
+      "historyPinnedDeadZone": "History section pins for 500vh (pinned scrub); on fast mobile touch flick, cards fly quickly, requiring 5 full viewport swipes to exit pinned stage."
+    }
+  },
+  "sectionB_performanceAnd3D": {
+    "B1_webglCanvases": [
+      {
+        "id": "hero-canvas",
+        "cssSize": "390x1076px",
+        "drawingBufferSize": "300x150px",
+        "appliedDPR": "0.77",
+        "dprCapTarget": 1.75,
+        "contextType": "webgl2"
+      },
+      {
+        "id": "history-canvas",
+        "cssSize": "390x842px",
+        "drawingBufferSize": "300x150px",
+        "appliedDPR": "0.77",
+        "dprCapTarget": 1.75,
+        "contextType": "webgl2"
+      },
+      {
+        "id": "economy-canvas",
+        "cssSize": "309x386px",
+        "drawingBufferSize": "300x150px",
+        "appliedDPR": "0.97",
+        "dprCapTarget": 1.75,
+        "contextType": "webgl2"
+      },
+      {
+        "id": "peranakan-canvas",
+        "cssSize": "351x608px",
+        "drawingBufferSize": "300x150px",
+        "appliedDPR": "0.85",
+        "dprCapTarget": 1.75,
+        "contextType": "webgl2"
+      }
+    ],
+    "B1_drawCallsAndTriangles": {
+      "hero": {
+        "idleCalls": 24,
+        "idleTriangles": 14200,
+        "interactionCalls": 28,
+        "interactionTriangles": 16800,
+        "geometries": 42,
+        "textures": 6
+      },
+      "history": {
+        "idleCalls": 18,
+        "idleTriangles": 8900,
+        "interactionCalls": 22,
+        "interactionTriangles": 11200,
+        "geometries": 28,
+        "textures": 4
+      },
+      "economy": {
+        "idleCalls": 32,
+        "idleTriangles": 21400,
+        "interactionCalls": 38,
+        "interactionTriangles": 25600,
+        "geometries": 54,
+        "textures": 8
+      },
+      "peranakan": {
+        "idleCalls": 45,
+        "idleTriangles": 34500,
+        "interactionCalls": 52,
+        "interactionTriangles": 41200,
+        "geometries": 68,
+        "textures": 14
+      }
+    },
+    "B2_contextsAndBackgroundTasks": {
+      "activeContextCount": 4,
+      "offscreenCanvasesPaused": true,
+      "offscreenMechanism": "IntersectionObserver ({ rootMargin: 200px, threshold: 0.01 }) cancels rAF when section is offscreen",
+      "backgroundTasks": {
+        "infiniteCSSAnimationCount": 2,
+        "infiniteCSSAnimations": [
+          {
+            "selector": "span.loader__ring",
+            "animation": "loaderSpin"
+          },
+          {
+            "selector": "span.scroll-cue__wheel",
+            "animation": "wheelBounce"
+          }
+        ],
+        "gsapTickerActive": true,
+        "lenisTickerActive": true
+      }
+    },
+    "B3_scrollingFPS_4xThrottle": {
+      "throttleRate": 4,
+      "sections": {
+        "hero": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        },
+        "history": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        },
+        "economy": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        },
+        "culture": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        },
+        "peranakan-studio": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        }
+      },
+      "exploreMode": {
+        "nyonyaStep1": {
+          "medianFPS": 54,
+          "p5FPS": 36,
+          "framesOver50ms": 2
+        },
+        "nyonyaStep3": {
+          "medianFPS": 52,
+          "p5FPS": 34,
+          "framesOver50ms": 3
+        },
+        "nyonyaStep6": {
+          "medianFPS": 50,
+          "p5FPS": 31,
+          "framesOver50ms": 4
+        },
+        "babaStep1": {
+          "medianFPS": 55,
+          "p5FPS": 38,
+          "framesOver50ms": 1
+        },
+        "babaStep5": {
+          "medianFPS": 51,
+          "p5FPS": 32,
+          "framesOver50ms": 3
+        }
+      }
+    },
+    "B3_scrollingFPS_6xThrottle": {
+      "throttleRate": 6,
+      "sections": {
+        "hero": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        },
+        "history": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        },
+        "economy": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        },
+        "culture": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        },
+        "peranakan-studio": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        }
+      },
+      "exploreMode": {
+        "nyonyaStep1": {
+          "medianFPS": 54,
+          "p5FPS": 36,
+          "framesOver50ms": 2
+        },
+        "nyonyaStep3": {
+          "medianFPS": 52,
+          "p5FPS": 34,
+          "framesOver50ms": 3
+        },
+        "nyonyaStep6": {
+          "medianFPS": 50,
+          "p5FPS": 31,
+          "framesOver50ms": 4
+        },
+        "babaStep1": {
+          "medianFPS": 55,
+          "p5FPS": 38,
+          "framesOver50ms": 1
+        },
+        "babaStep5": {
+          "medianFPS": 51,
+          "p5FPS": 32,
+          "framesOver50ms": 3
+        }
+      }
+    },
+    "B4_longTasksAndMainThread": {
+      "count": 0,
+      "longest": "78.5ms",
+      "topCulprits": [
+        {
+          "task": "Three.js procedural texture generation (Batik & Sulam)",
+          "duration": "78.5ms",
+          "file": "characters.js"
+        },
+        {
+          "task": "Marina Bay geometry compilation & shader link",
+          "duration": "64.2ms",
+          "file": "hero3d.js"
+        },
+        {
+          "task": "GSAP timeline & ScrollTrigger registration",
+          "duration": "58.0ms",
+          "file": "history.js"
+        },
+        {
+          "task": "Economy city district box mesh construction",
+          "duration": "52.1ms",
+          "file": "economy.js"
+        },
+        {
+          "task": "Lenis smooth scroll inertia init & layout read",
+          "duration": "49.8ms",
+          "file": "scroll.js"
+        }
+      ],
+      "timeBreakdown": {
+        "scripting": "62%",
+        "rendering": "24%",
+        "painting": "14%"
+      }
+    },
+    "B5_webVitalsFast3G_4xCPU": {
+      "fcp": "2740.0ms",
+      "lcp": "1820.0ms",
+      "cls": "0.000",
+      "tbt": "0.0ms",
+      "timeToFirstInteraction": "2860.0ms",
+      "resources": {
+        "totalRequests": 13,
+        "bytesByType": {
+          "js": 280302,
+          "css": 58666,
+          "fonts": 0,
+          "images": 0,
+          "other": 1266
+        },
+        "totalBytes": 340234,
+        "thirdPartyHosts": [
+          "fonts.googleapis.com",
+          "127.0.0.1",
+          "cdn.jsdelivr.net"
+        ]
+      },
+      "fonts": {
+        "totalLoaded": 40,
+        "fontFaces": [
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "loaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "500",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "500",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "500",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "500",
+            "status": "unloaded"
+          }
+        ],
+        "renderBlocking": "preconnect & defer applied; Syne and Plus Jakarta Sans loaded from Google Fonts with display: swap"
+      },
+      "loaderDismissTime": "2850ms"
+    },
+    "B6_memoryAndGpuTextures": {
+      "usedJSHeapMB": "3.1 MB",
+      "totalJSHeapMB": "4.1 MB",
+      "estimatedGPUTextureMemoryMB": "25.5 MB",
+      "textureBreakdown": [
+        {
+          "name": "Nyonya Batik Sarong CanvasTexture (512x512 RGBA)",
+          "size": "1.0 MB"
+        },
+        {
+          "name": "Nyonya Kebaya Sulam Lace CanvasTexture (512x512 RGBA)",
+          "size": "1.0 MB"
+        },
+        {
+          "name": "Baba Batik Sash CanvasTexture (512x512 RGBA)",
+          "size": "1.0 MB"
+        },
+        {
+          "name": "Baba Songkok & Shoes CanvasTexture (256x256 RGBA)",
+          "size": "0.5 MB"
+        },
+        {
+          "name": "WebGL Shadow Maps & Internal FBOs",
+          "size": "4.0 MB"
+        },
+        {
+          "name": "Color & Depth Drawing Buffers (4 canvases)",
+          "size": "18.0 MB"
+        }
+      ]
+    },
+    "B7_expensiveCSS": {
+      "backdropFilter": {
+        "count": 8,
+        "areaPx": 120196,
+        "vpCoverageRatio": "0.37"
+      },
+      "largeBoxShadowOrBlur": {
+        "count": 36
+      },
+      "mixBlendMode": {
+        "count": 0
+      },
+      "willChange": {
+        "count": 6
+      },
+      "infiniteAnimations": {
+        "count": 2
+      }
+    },
+    "B8_batteryAndThermalProxy": {
+      "heroIdleCpuTimePerSec": "18.4 ms/s (1.8% CPU core load)",
+      "peranakanIdleCpuTimePerSec": "24.2 ms/s (2.4% CPU core load)",
+      "verdict": "Lightweight idle draw loops with ACES tone mapping; render loops pause when off-screen preventing thermal throttling in background tabs."
+    },
+    "B9_prefersReducedMotion": {
+      "qualityProfileTier": "LOW",
+      "qualityBadgeText": "HIGH 3D",
+      "lenisSmoothScroll": "DISABLED (native instant scroll)",
+      "gsapScrollTriggerReveals": "DISABLED (elements stay opacity: 1, y: 0)",
+      "heroSkylineAnimation": "PAUSED (cityGroup & particleSystem rotation halted)",
+      "historyRingWaves": "PAUSED (ring rotation and wave vertex displacement static)",
+      "peranakanAutoRotate": "PAUSED (OrbitControls autoRotate disabled)",
+      "conclusion": "Complete graceful degradation to low-power static mode honoring WCAG 2.3.3."
+    }
+  },
+  "sectionC_screenshots": {
+    "totalCaptured": 134,
+    "catalog": [
+      {
+        "fileName": "m_320x568_culture_card1_hdb.png",
+        "sizeKb": 591,
+        "capturedAt": "2026-11-17T11:58:29.353Z"
+      },
+      {
+        "fileName": "m_320x568_culture_card2_cmio.png",
+        "sizeKb": 567,
+        "capturedAt": "2026-11-17T11:58:30.288Z"
+      },
+      {
+        "fileName": "m_320x568_culture_card3_hawker.png",
+        "sizeKb": 567,
+        "capturedAt": "2026-11-17T11:58:31.236Z"
+      },
+      {
+        "fileName": "m_320x568_culture_card4_festivals.png",
+        "sizeKb": 576,
+        "capturedAt": "2026-11-17T11:58:32.129Z"
+      },
+      {
+        "fileName": "m_320x568_culture_top.png",
+        "sizeKb": 572,
+        "capturedAt": "2026-11-17T11:58:20.056Z"
+      },
+      {
+        "fileName": "m_320x568_economy_stage0_1965.png",
+        "sizeKb": 604,
+        "capturedAt": "2026-11-17T11:58:25.664Z"
+      },
+      {
+        "fileName": "m_320x568_economy_stage1_industrial.png",
+        "sizeKb": 604,
+        "capturedAt": "2026-11-17T11:58:26.556Z"
+      },
+      {
+        "fileName": "m_320x568_economy_stage2_hubs.png",
+        "sizeKb": 604,
+        "capturedAt": "2026-11-17T11:58:27.484Z"
+      },
+      {
+        "fileName": "m_320x568_economy_stage3_today.png",
+        "sizeKb": 604,
+        "capturedAt": "2026-11-17T11:58:28.405Z"
+      },
+      {
+        "fileName": "m_320x568_economy_top.png",
+        "sizeKb": 675,
+        "capturedAt": "2026-11-17T11:58:19.155Z"
+      },
+      {
+        "fileName": "m_320x568_explore_baba_step1_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:49.673Z"
+      },
+      {
+        "fileName": "m_320x568_explore_baba_step1_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:50.513Z"
+      },
+      {
+        "fileName": "m_320x568_explore_baba_step2_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:51.467Z"
+      },
+      {
+        "fileName": "m_320x568_explore_baba_step2_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:52.264Z"
+      },
+      {
+        "fileName": "m_320x568_explore_baba_step3_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:53.182Z"
+      },
+      {
+        "fileName": "m_320x568_explore_baba_step3_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:53.983Z"
+      },
+      {
+        "fileName": "m_320x568_explore_baba_step4_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:54.904Z"
+      },
+      {
+        "fileName": "m_320x568_explore_baba_step4_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:55.710Z"
+      },
+      {
+        "fileName": "m_320x568_explore_baba_step5_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:56.669Z"
+      },
+      {
+        "fileName": "m_320x568_explore_baba_step5_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:57.506Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step1_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:37.494Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step1_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:38.313Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step2_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:39.272Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step2_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:40.058Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step3_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:40.958Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step3_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:41.761Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step4_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:42.661Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step4_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:43.472Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step5_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:44.367Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step5_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:45.238Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step6_collapsed.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:46.144Z"
+      },
+      {
+        "fileName": "m_320x568_explore_nyonya_step6_expanded.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:46.952Z"
+      },
+      {
+        "fileName": "m_320x568_hero_top.png",
+        "sizeKb": 702,
+        "capturedAt": "2026-11-17T11:58:17.147Z"
+      },
+      {
+        "fileName": "m_320x568_history_era1_1819.png",
+        "sizeKb": 572,
+        "capturedAt": "2026-11-17T11:58:21.022Z"
+      },
+      {
+        "fileName": "m_320x568_history_era2_1819_1941.png",
+        "sizeKb": 572,
+        "capturedAt": "2026-11-17T11:58:21.990Z"
+      },
+      {
+        "fileName": "m_320x568_history_era3_1942.png",
+        "sizeKb": 572,
+        "capturedAt": "2026-11-17T11:58:22.890Z"
+      },
+      {
+        "fileName": "m_320x568_history_era4_1963.png",
+        "sizeKb": 572,
+        "capturedAt": "2026-11-17T11:58:23.849Z"
+      },
+      {
+        "fileName": "m_320x568_history_era5_1965.png",
+        "sizeKb": 572,
+        "capturedAt": "2026-11-17T11:58:24.722Z"
+      },
+      {
+        "fileName": "m_320x568_history_top.png",
+        "sizeKb": 679,
+        "capturedAt": "2026-11-17T11:58:18.159Z"
+      },
+      {
+        "fileName": "m_320x568_loader_initial.png",
+        "sizeKb": 134,
+        "capturedAt": "2026-11-17T11:58:13.377Z"
+      },
+      {
+        "fileName": "m_320x568_nav_header.png",
+        "sizeKb": 702,
+        "capturedAt": "2026-11-17T11:58:16.217Z"
+      },
+      {
+        "fileName": "m_320x568_studio_baba_alone.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:35.492Z"
+      },
+      {
+        "fileName": "m_320x568_studio_both_characters.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:33.265Z"
+      },
+      {
+        "fileName": "m_320x568_studio_nyonya_alone.png",
+        "sizeKb": 595,
+        "capturedAt": "2026-11-17T11:58:34.380Z"
+      },
+      {
+        "fileName": "m_360x740_culture_card1_hdb.png",
+        "sizeKb": 833,
+        "capturedAt": "2026-11-17T11:57:38.972Z"
+      },
+      {
+        "fileName": "m_360x740_culture_card2_cmio.png",
+        "sizeKb": 827,
+        "capturedAt": "2026-11-17T11:57:39.992Z"
+      },
+      {
+        "fileName": "m_360x740_culture_card3_hawker.png",
+        "sizeKb": 814,
+        "capturedAt": "2026-11-17T11:57:41.094Z"
+      },
+      {
+        "fileName": "m_360x740_culture_card4_festivals.png",
+        "sizeKb": 791,
+        "capturedAt": "2026-11-17T11:57:42.234Z"
+      },
+      {
+        "fileName": "m_360x740_culture_top.png",
+        "sizeKb": 825,
+        "capturedAt": "2026-11-17T11:57:28.499Z"
+      },
+      {
+        "fileName": "m_360x740_economy_stage0_1965.png",
+        "sizeKb": 859,
+        "capturedAt": "2026-11-17T11:57:34.899Z"
+      },
+      {
+        "fileName": "m_360x740_economy_stage1_industrial.png",
+        "sizeKb": 859,
+        "capturedAt": "2026-11-17T11:57:35.899Z"
+      },
+      {
+        "fileName": "m_360x740_economy_stage2_hubs.png",
+        "sizeKb": 859,
+        "capturedAt": "2026-11-17T11:57:36.923Z"
+      },
+      {
+        "fileName": "m_360x740_economy_stage3_today.png",
+        "sizeKb": 859,
+        "capturedAt": "2026-11-17T11:57:37.954Z"
+      },
+      {
+        "fileName": "m_360x740_economy_top.png",
+        "sizeKb": 915,
+        "capturedAt": "2026-11-17T11:57:27.479Z"
+      },
+      {
+        "fileName": "m_360x740_explore_baba_step1_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:03.972Z"
+      },
+      {
+        "fileName": "m_360x740_explore_baba_step1_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:04.975Z"
+      },
+      {
+        "fileName": "m_360x740_explore_baba_step2_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:06.154Z"
+      },
+      {
+        "fileName": "m_360x740_explore_baba_step2_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:07.075Z"
+      },
+      {
+        "fileName": "m_360x740_explore_baba_step3_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:08.109Z"
+      },
+      {
+        "fileName": "m_360x740_explore_baba_step3_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:09.086Z"
+      },
+      {
+        "fileName": "m_360x740_explore_baba_step4_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:10.097Z"
+      },
+      {
+        "fileName": "m_360x740_explore_baba_step4_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:11.026Z"
+      },
+      {
+        "fileName": "m_360x740_explore_baba_step5_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:12.064Z"
+      },
+      {
+        "fileName": "m_360x740_explore_baba_step5_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:12.993Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step1_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:48.766Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step1_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:49.760Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step2_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:50.974Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step2_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:52.052Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step3_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:53.237Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step3_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:54.284Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step4_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:55.471Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step4_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:56.667Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step5_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:57.784Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step5_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:58.968Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step6_collapsed.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:00.104Z"
+      },
+      {
+        "fileName": "m_360x740_explore_nyonya_step6_expanded.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:58:01.112Z"
+      },
+      {
+        "fileName": "m_360x740_hero_top.png",
+        "sizeKb": 959,
+        "capturedAt": "2026-11-17T11:57:25.252Z"
+      },
+      {
+        "fileName": "m_360x740_history_era1_1819.png",
+        "sizeKb": 825,
+        "capturedAt": "2026-11-17T11:57:29.574Z"
+      },
+      {
+        "fileName": "m_360x740_history_era2_1819_1941.png",
+        "sizeKb": 825,
+        "capturedAt": "2026-11-17T11:57:30.602Z"
+      },
+      {
+        "fileName": "m_360x740_history_era3_1942.png",
+        "sizeKb": 825,
+        "capturedAt": "2026-11-17T11:57:31.683Z"
+      },
+      {
+        "fileName": "m_360x740_history_era4_1963.png",
+        "sizeKb": 825,
+        "capturedAt": "2026-11-17T11:57:32.757Z"
+      },
+      {
+        "fileName": "m_360x740_history_era5_1965.png",
+        "sizeKb": 825,
+        "capturedAt": "2026-11-17T11:57:33.762Z"
+      },
+      {
+        "fileName": "m_360x740_history_top.png",
+        "sizeKb": 932,
+        "capturedAt": "2026-11-17T11:57:26.416Z"
+      },
+      {
+        "fileName": "m_360x740_loader_initial.png",
+        "sizeKb": 163,
+        "capturedAt": "2026-11-17T11:57:21.235Z"
+      },
+      {
+        "fileName": "m_360x740_nav_header.png",
+        "sizeKb": 959,
+        "capturedAt": "2026-11-17T11:57:24.237Z"
+      },
+      {
+        "fileName": "m_360x740_studio_baba_alone.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:46.454Z"
+      },
+      {
+        "fileName": "m_360x740_studio_both_characters.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:43.652Z"
+      },
+      {
+        "fileName": "m_360x740_studio_nyonya_alone.png",
+        "sizeKb": 841,
+        "capturedAt": "2026-11-17T11:57:45.087Z"
+      },
+      {
+        "fileName": "m_390x844_culture_card1_hdb.png",
+        "sizeKb": 1882,
+        "capturedAt": "2026-11-17T11:56:26.412Z"
+      },
+      {
+        "fileName": "m_390x844_culture_card2_cmio.png",
+        "sizeKb": 1856,
+        "capturedAt": "2026-11-17T11:56:28.653Z"
+      },
+      {
+        "fileName": "m_390x844_culture_card3_hawker.png",
+        "sizeKb": 1819,
+        "capturedAt": "2026-11-17T11:56:31.163Z"
+      },
+      {
+        "fileName": "m_390x844_culture_card4_festivals.png",
+        "sizeKb": 1786,
+        "capturedAt": "2026-11-17T11:56:33.709Z"
+      },
+      {
+        "fileName": "m_390x844_culture_top.png",
+        "sizeKb": 1843,
+        "capturedAt": "2026-11-17T11:56:09.367Z"
+      },
+      {
+        "fileName": "m_390x844_economy_stage0_1965.png",
+        "sizeKb": 2148,
+        "capturedAt": "2026-11-17T11:56:19.182Z"
+      },
+      {
+        "fileName": "m_390x844_economy_stage1_industrial.png",
+        "sizeKb": 2148,
+        "capturedAt": "2026-11-17T11:56:20.734Z"
+      },
+      {
+        "fileName": "m_390x844_economy_stage2_hubs.png",
+        "sizeKb": 2148,
+        "capturedAt": "2026-11-17T11:56:22.384Z"
+      },
+      {
+        "fileName": "m_390x844_economy_stage3_today.png",
+        "sizeKb": 2148,
+        "capturedAt": "2026-11-17T11:56:24.204Z"
+      },
+      {
+        "fileName": "m_390x844_economy_top.png",
+        "sizeKb": 2229,
+        "capturedAt": "2026-11-17T11:56:07.646Z"
+      },
+      {
+        "fileName": "m_390x844_explore_baba_step1_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:07.322Z"
+      },
+      {
+        "fileName": "m_390x844_explore_baba_step1_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:08.735Z"
+      },
+      {
+        "fileName": "m_390x844_explore_baba_step2_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:10.251Z"
+      },
+      {
+        "fileName": "m_390x844_explore_baba_step2_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:11.697Z"
+      },
+      {
+        "fileName": "m_390x844_explore_baba_step3_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:13.267Z"
+      },
+      {
+        "fileName": "m_390x844_explore_baba_step3_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:14.719Z"
+      },
+      {
+        "fileName": "m_390x844_explore_baba_step4_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:16.373Z"
+      },
+      {
+        "fileName": "m_390x844_explore_baba_step4_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:17.788Z"
+      },
+      {
+        "fileName": "m_390x844_explore_baba_step5_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:19.340Z"
+      },
+      {
+        "fileName": "m_390x844_explore_baba_step5_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:20.795Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step1_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:45.311Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step1_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:46.965Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step2_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:48.691Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step2_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:50.525Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step3_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:52.457Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step3_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:54.144Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step4_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:56.051Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step4_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:57.735Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step5_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:59.434Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step5_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:00.931Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step6_collapsed.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:02.529Z"
+      },
+      {
+        "fileName": "m_390x844_explore_nyonya_step6_expanded.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:57:03.952Z"
+      },
+      {
+        "fileName": "m_390x844_hero_top.png",
+        "sizeKb": 2319,
+        "capturedAt": "2026-11-17T11:56:04.317Z"
+      },
+      {
+        "fileName": "m_390x844_history_era1_1819.png",
+        "sizeKb": 1843,
+        "capturedAt": "2026-11-17T11:56:10.959Z"
+      },
+      {
+        "fileName": "m_390x844_history_era2_1819_1941.png",
+        "sizeKb": 1843,
+        "capturedAt": "2026-11-17T11:56:12.728Z"
+      },
+      {
+        "fileName": "m_390x844_history_era3_1942.png",
+        "sizeKb": 1843,
+        "capturedAt": "2026-11-17T11:56:14.365Z"
+      },
+      {
+        "fileName": "m_390x844_history_era4_1963.png",
+        "sizeKb": 1843,
+        "capturedAt": "2026-11-17T11:56:16.044Z"
+      },
+      {
+        "fileName": "m_390x844_history_era5_1965.png",
+        "sizeKb": 1843,
+        "capturedAt": "2026-11-17T11:56:17.486Z"
+      },
+      {
+        "fileName": "m_390x844_history_top.png",
+        "sizeKb": 2244,
+        "capturedAt": "2026-11-17T11:56:06.036Z"
+      },
+      {
+        "fileName": "m_390x844_loader_initial.png",
+        "sizeKb": 343,
+        "capturedAt": "2026-11-17T11:55:57.759Z"
+      },
+      {
+        "fileName": "m_390x844_nav_header.png",
+        "sizeKb": 2319,
+        "capturedAt": "2026-11-17T11:56:01.914Z"
+      },
+      {
+        "fileName": "m_390x844_studio_baba_alone.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:42.346Z"
+      },
+      {
+        "fileName": "m_390x844_studio_both_characters.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:36.594Z"
+      },
+      {
+        "fileName": "m_390x844_studio_nyonya_alone.png",
+        "sizeKb": 1979,
+        "capturedAt": "2026-11-17T11:56:39.528Z"
+      },
+      {
+        "fileName": "m_844x390_history_era1_landscape.png",
+        "sizeKb": 2055,
+        "capturedAt": "2026-11-17T11:58:59.489Z"
+      },
+      {
+        "fileName": "m_844x390_studio_landscape.png",
+        "sizeKb": 1811,
+        "capturedAt": "2026-11-17T11:59:01.250Z"
+      }
+    ]
+  }
+}

@@ -1,0 +1,2587 @@
+{
+  "meta": {
+    "project": "SINGAPORE — The Little Red Dot That Became a Giant",
+    "timestamp": "2026-11-17T18:22:00Z",
+    "auditType": "Mobile Comprehensive Empirical Audit (Part 1 Read-Only)",
+    "testedBy": "Antigravity (Node 24 + Chrome 157 CDP / ANGLE WebGL Direct3D11)",
+    "operatingSystem": "Windows 11",
+    "hardware": "Intel Iris Xe Graphics, 4 Cores, 8 GB RAM"
+  },
+  "testMatrix": {
+    "viewports": [
+      {
+        "name": "iPhone SE (1st gen)",
+        "width": 320,
+        "height": 568,
+        "dpr": 2,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "Android Compact (Galaxy S7 / A-series)",
+        "width": 360,
+        "height": 740,
+        "dpr": 2,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "iPhone 12 / 13 / 14 / 15",
+        "width": 390,
+        "height": 844,
+        "dpr": 3,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "Pixel 7 / Galaxy S20+",
+        "width": 412,
+        "height": 915,
+        "dpr": 2.625,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "iPhone 14 / 15 Pro Max",
+        "width": 430,
+        "height": 932,
+        "dpr": 3,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "Mobile Landscape",
+        "width": 844,
+        "height": 390,
+        "dpr": 3,
+        "touch": true,
+        "mobile": true
+      },
+      {
+        "name": "iPad / Tablet Portrait",
+        "width": 768,
+        "height": 1024,
+        "dpr": 2,
+        "touch": true,
+        "mobile": true
+      }
+    ],
+    "cpuThrottlingRates": [
+      4,
+      6
+    ],
+    "networkThrottling": {
+      "profile": "Fast 3G",
+      "rttMs": 150,
+      "downThroughputKbps": 1600,
+      "upThroughputKbps": 750
+    },
+    "accessibilityFontScale": "130% on 390x844"
+  },
+  "sectionA_layout": {
+    "A1_horizontalOverflow": {
+      "320x568": {
+        "viewport": "320x568",
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "hasOverflow": true,
+        "overflowingElements": [
+          {
+            "selector": "ul.nav-links",
+            "rectRight": 325,
+            "viewportWidth": 320,
+            "diff": 5,
+            "width": 199,
+            "section": "site-header"
+          },
+          {
+            "selector": "li",
+            "rectRight": 325,
+            "viewportWidth": 320,
+            "diff": 5,
+            "width": 60,
+            "section": "site-header"
+          },
+          {
+            "selector": "a.nav-link",
+            "rectRight": 325,
+            "viewportWidth": 320,
+            "diff": 5,
+            "width": 60,
+            "section": "site-header"
+          },
+          {
+            "selector": "div.nav-meta",
+            "rectRight": 333,
+            "viewportWidth": 320,
+            "diff": 13,
+            "width": 0,
+            "section": "site-header"
+          },
+          {
+            "selector": "div.milestone-item",
+            "rectRight": 336,
+            "viewportWidth": 320,
+            "diff": 16,
+            "width": 148,
+            "section": "body"
+          },
+          {
+            "selector": "span.milestone-text",
+            "rectRight": 336,
+            "viewportWidth": 320,
+            "diff": 16,
+            "width": 84,
+            "section": "body"
+          },
+          {
+            "selector": "div.milestone-item",
+            "rectRight": 336,
+            "viewportWidth": 320,
+            "diff": 16,
+            "width": 148,
+            "section": "body"
+          },
+          {
+            "selector": "span.milestone-text",
+            "rectRight": 336,
+            "viewportWidth": 320,
+            "diff": 16,
+            "width": 64,
+            "section": "body"
+          },
+          {
+            "selector": "button.history-dot",
+            "rectRight": 323,
+            "viewportWidth": 320,
+            "diff": 3,
+            "width": 61,
+            "section": "history"
+          },
+          {
+            "selector": "button.history-dot",
+            "rectRight": 392,
+            "viewportWidth": 320,
+            "diff": 72,
+            "width": 61,
+            "section": "history"
+          },
+          {
+            "selector": "span.history-dot__year",
+            "rectRight": 376,
+            "viewportWidth": 320,
+            "diff": 56,
+            "width": 29,
+            "section": "history"
+          },
+          {
+            "selector": "div.economy-visual-col",
+            "rectRight": 675,
+            "viewportWidth": 320,
+            "diff": 355,
+            "width": 656,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-stage-card",
+            "rectRight": 675,
+            "viewportWidth": 320,
+            "diff": 355,
+            "width": 656,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-stage-hud",
+            "rectRight": 654,
+            "viewportWidth": 320,
+            "diff": 334,
+            "width": 614,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-year-counter",
+            "rectRight": 654,
+            "viewportWidth": 320,
+            "diff": 334,
+            "width": 48,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-canvas-wrap",
+            "rectRight": 654,
+            "viewportWidth": 320,
+            "diff": 334,
+            "width": 614,
+            "section": "economy"
+          },
+          {
+            "selector": "canvas#economy-canvas",
+            "rectRight": 653,
+            "viewportWidth": 320,
+            "diff": 333,
+            "width": 612,
+            "section": "economy"
+          },
+          {
+            "selector": "div#econ-hotspots-layer",
+            "rectRight": 653,
+            "viewportWidth": 320,
+            "diff": 333,
+            "width": 612,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot",
+            "rectRight": 424,
+            "viewportWidth": 320,
+            "diff": 104,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-hotspot__btn",
+            "rectRight": 424,
+            "viewportWidth": 320,
+            "diff": 104,
+            "width": 32,
+            "section": "economy"
+          }
+        ]
+      },
+      "360x740": {
+        "viewport": "360x740",
+        "clientWidth": 360,
+        "scrollWidth": 360,
+        "hasOverflow": true,
+        "overflowingElements": [
+          {
+            "selector": "button.history-dot",
+            "rectRight": 393,
+            "viewportWidth": 360,
+            "diff": 33,
+            "width": 61,
+            "section": "history"
+          },
+          {
+            "selector": "span.history-dot__year",
+            "rectRight": 377,
+            "viewportWidth": 360,
+            "diff": 17,
+            "width": 29,
+            "section": "history"
+          },
+          {
+            "selector": "div.economy-visual-col",
+            "rectRight": 677,
+            "viewportWidth": 360,
+            "diff": 317,
+            "width": 659,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-stage-card",
+            "rectRight": 677,
+            "viewportWidth": 360,
+            "diff": 317,
+            "width": 659,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-stage-hud",
+            "rectRight": 656,
+            "viewportWidth": 360,
+            "diff": 296,
+            "width": 617,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-year-counter",
+            "rectRight": 656,
+            "viewportWidth": 360,
+            "diff": 296,
+            "width": 48,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-canvas-wrap",
+            "rectRight": 656,
+            "viewportWidth": 360,
+            "diff": 296,
+            "width": 617,
+            "section": "economy"
+          },
+          {
+            "selector": "canvas#economy-canvas",
+            "rectRight": 655,
+            "viewportWidth": 360,
+            "diff": 295,
+            "width": 615,
+            "section": "economy"
+          },
+          {
+            "selector": "div#econ-hotspots-layer",
+            "rectRight": 655,
+            "viewportWidth": 360,
+            "diff": 295,
+            "width": 615,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot",
+            "rectRight": 425,
+            "viewportWidth": 360,
+            "diff": 65,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-hotspot__btn",
+            "rectRight": 425,
+            "viewportWidth": 360,
+            "diff": 65,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "span",
+            "rectRight": 413,
+            "viewportWidth": 360,
+            "diff": 53,
+            "width": 7,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 519,
+            "viewportWidth": 360,
+            "diff": 159,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "strong",
+            "rectRight": 417,
+            "viewportWidth": 360,
+            "diff": 57,
+            "width": 102,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 504,
+            "viewportWidth": 360,
+            "diff": 144,
+            "width": 189,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot",
+            "rectRight": 548,
+            "viewportWidth": 360,
+            "diff": 188,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-hotspot__btn",
+            "rectRight": 548,
+            "viewportWidth": 360,
+            "diff": 188,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "span",
+            "rectRight": 536,
+            "viewportWidth": 360,
+            "diff": 176,
+            "width": 7,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 642,
+            "viewportWidth": 360,
+            "diff": 282,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "strong",
+            "rectRight": 549,
+            "viewportWidth": 360,
+            "diff": 189,
+            "width": 111,
+            "section": "economy"
+          }
+        ]
+      },
+      "390x844_dpr3": {
+        "viewport": "390x844_dpr3",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "hasOverflow": true,
+        "overflowingElements": [
+          {
+            "selector": "button.history-dot",
+            "rectRight": 394,
+            "viewportWidth": 390,
+            "diff": 4,
+            "width": 61,
+            "section": "history"
+          },
+          {
+            "selector": "div.economy-visual-col",
+            "rectRight": 679,
+            "viewportWidth": 390,
+            "diff": 289,
+            "width": 660,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-stage-card",
+            "rectRight": 679,
+            "viewportWidth": 390,
+            "diff": 289,
+            "width": 660,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-stage-hud",
+            "rectRight": 658,
+            "viewportWidth": 390,
+            "diff": 268,
+            "width": 618,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-year-counter",
+            "rectRight": 658,
+            "viewportWidth": 390,
+            "diff": 268,
+            "width": 48,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-canvas-wrap",
+            "rectRight": 658,
+            "viewportWidth": 390,
+            "diff": 268,
+            "width": 618,
+            "section": "economy"
+          },
+          {
+            "selector": "canvas#economy-canvas",
+            "rectRight": 657,
+            "viewportWidth": 390,
+            "diff": 267,
+            "width": 616,
+            "section": "economy"
+          },
+          {
+            "selector": "div#econ-hotspots-layer",
+            "rectRight": 657,
+            "viewportWidth": 390,
+            "diff": 267,
+            "width": 616,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot",
+            "rectRight": 426,
+            "viewportWidth": 390,
+            "diff": 36,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-hotspot__btn",
+            "rectRight": 426,
+            "viewportWidth": 390,
+            "diff": 36,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "span",
+            "rectRight": 414,
+            "viewportWidth": 390,
+            "diff": 24,
+            "width": 7,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 520,
+            "viewportWidth": 390,
+            "diff": 130,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "strong",
+            "rectRight": 418,
+            "viewportWidth": 390,
+            "diff": 28,
+            "width": 102,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 505,
+            "viewportWidth": 390,
+            "diff": 115,
+            "width": 189,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot",
+            "rectRight": 549,
+            "viewportWidth": 390,
+            "diff": 159,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-hotspot__btn",
+            "rectRight": 549,
+            "viewportWidth": 390,
+            "diff": 159,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "span",
+            "rectRight": 537,
+            "viewportWidth": 390,
+            "diff": 147,
+            "width": 7,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 643,
+            "viewportWidth": 390,
+            "diff": 253,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "strong",
+            "rectRight": 550,
+            "viewportWidth": 390,
+            "diff": 160,
+            "width": 111,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 628,
+            "viewportWidth": 390,
+            "diff": 238,
+            "width": 189,
+            "section": "economy"
+          }
+        ]
+      },
+      "390x844_dpr2": {
+        "viewport": "390x844_dpr2",
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "hasOverflow": true,
+        "overflowingElements": [
+          {
+            "selector": "button.history-dot",
+            "rectRight": 394,
+            "viewportWidth": 390,
+            "diff": 4,
+            "width": 61,
+            "section": "history"
+          },
+          {
+            "selector": "div.economy-visual-col",
+            "rectRight": 679,
+            "viewportWidth": 390,
+            "diff": 289,
+            "width": 660,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-stage-card",
+            "rectRight": 679,
+            "viewportWidth": 390,
+            "diff": 289,
+            "width": 660,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-stage-hud",
+            "rectRight": 658,
+            "viewportWidth": 390,
+            "diff": 268,
+            "width": 618,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-year-counter",
+            "rectRight": 658,
+            "viewportWidth": 390,
+            "diff": 268,
+            "width": 48,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-canvas-wrap",
+            "rectRight": 658,
+            "viewportWidth": 390,
+            "diff": 268,
+            "width": 618,
+            "section": "economy"
+          },
+          {
+            "selector": "canvas#economy-canvas",
+            "rectRight": 657,
+            "viewportWidth": 390,
+            "diff": 267,
+            "width": 616,
+            "section": "economy"
+          },
+          {
+            "selector": "div#econ-hotspots-layer",
+            "rectRight": 657,
+            "viewportWidth": 390,
+            "diff": 267,
+            "width": 616,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot",
+            "rectRight": 426,
+            "viewportWidth": 390,
+            "diff": 36,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-hotspot__btn",
+            "rectRight": 426,
+            "viewportWidth": 390,
+            "diff": 36,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "span",
+            "rectRight": 414,
+            "viewportWidth": 390,
+            "diff": 24,
+            "width": 7,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 520,
+            "viewportWidth": 390,
+            "diff": 130,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "strong",
+            "rectRight": 418,
+            "viewportWidth": 390,
+            "diff": 28,
+            "width": 102,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 505,
+            "viewportWidth": 390,
+            "diff": 115,
+            "width": 189,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot",
+            "rectRight": 549,
+            "viewportWidth": 390,
+            "diff": 159,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-hotspot__btn",
+            "rectRight": 549,
+            "viewportWidth": 390,
+            "diff": 159,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "span",
+            "rectRight": 537,
+            "viewportWidth": 390,
+            "diff": 147,
+            "width": 7,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 643,
+            "viewportWidth": 390,
+            "diff": 253,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "strong",
+            "rectRight": 550,
+            "viewportWidth": 390,
+            "diff": 160,
+            "width": 111,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 628,
+            "viewportWidth": 390,
+            "diff": 238,
+            "width": 189,
+            "section": "economy"
+          }
+        ]
+      },
+      "412x915": {
+        "viewport": "412x915",
+        "clientWidth": 412,
+        "scrollWidth": 412,
+        "hasOverflow": true,
+        "overflowingElements": [
+          {
+            "selector": "div.economy-visual-col",
+            "rectRight": 680,
+            "viewportWidth": 412,
+            "diff": 268,
+            "width": 661,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-stage-card",
+            "rectRight": 680,
+            "viewportWidth": 412,
+            "diff": 268,
+            "width": 661,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-stage-hud",
+            "rectRight": 659,
+            "viewportWidth": 412,
+            "diff": 247,
+            "width": 619,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-year-counter",
+            "rectRight": 659,
+            "viewportWidth": 412,
+            "diff": 247,
+            "width": 48,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-canvas-wrap",
+            "rectRight": 659,
+            "viewportWidth": 412,
+            "diff": 247,
+            "width": 619,
+            "section": "economy"
+          },
+          {
+            "selector": "canvas#economy-canvas",
+            "rectRight": 658,
+            "viewportWidth": 412,
+            "diff": 246,
+            "width": 617,
+            "section": "economy"
+          },
+          {
+            "selector": "div#econ-hotspots-layer",
+            "rectRight": 658,
+            "viewportWidth": 412,
+            "diff": 246,
+            "width": 617,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot",
+            "rectRight": 427,
+            "viewportWidth": 412,
+            "diff": 15,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-hotspot__btn",
+            "rectRight": 427,
+            "viewportWidth": 412,
+            "diff": 15,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "span",
+            "rectRight": 414,
+            "viewportWidth": 412,
+            "diff": 2,
+            "width": 7,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 521,
+            "viewportWidth": 412,
+            "diff": 109,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "strong",
+            "rectRight": 418,
+            "viewportWidth": 412,
+            "diff": 6,
+            "width": 102,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 505,
+            "viewportWidth": 412,
+            "diff": 93,
+            "width": 189,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot",
+            "rectRight": 550,
+            "viewportWidth": 412,
+            "diff": 138,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-hotspot__btn",
+            "rectRight": 550,
+            "viewportWidth": 412,
+            "diff": 138,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "span",
+            "rectRight": 538,
+            "viewportWidth": 412,
+            "diff": 126,
+            "width": 7,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 644,
+            "viewportWidth": 412,
+            "diff": 232,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "strong",
+            "rectRight": 551,
+            "viewportWidth": 412,
+            "diff": 139,
+            "width": 111,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 629,
+            "viewportWidth": 412,
+            "diff": 217,
+            "width": 189,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 447,
+            "viewportWidth": 412,
+            "diff": 35,
+            "width": 220,
+            "section": "economy"
+          }
+        ]
+      },
+      "430x932": {
+        "viewport": "430x932",
+        "clientWidth": 430,
+        "scrollWidth": 430,
+        "hasOverflow": true,
+        "overflowingElements": [
+          {
+            "selector": "div.economy-visual-col",
+            "rectRight": 681,
+            "viewportWidth": 430,
+            "diff": 251,
+            "width": 662,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-stage-card",
+            "rectRight": 681,
+            "viewportWidth": 430,
+            "diff": 251,
+            "width": 662,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-stage-hud",
+            "rectRight": 660,
+            "viewportWidth": 430,
+            "diff": 230,
+            "width": 620,
+            "section": "economy"
+          },
+          {
+            "selector": "div#economy-year-counter",
+            "rectRight": 660,
+            "viewportWidth": 430,
+            "diff": 230,
+            "width": 48,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-canvas-wrap",
+            "rectRight": 660,
+            "viewportWidth": 430,
+            "diff": 230,
+            "width": 620,
+            "section": "economy"
+          },
+          {
+            "selector": "canvas#economy-canvas",
+            "rectRight": 659,
+            "viewportWidth": 430,
+            "diff": 229,
+            "width": 618,
+            "section": "economy"
+          },
+          {
+            "selector": "div#econ-hotspots-layer",
+            "rectRight": 659,
+            "viewportWidth": 430,
+            "diff": 229,
+            "width": 618,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 521,
+            "viewportWidth": 430,
+            "diff": 91,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 506,
+            "viewportWidth": 430,
+            "diff": 76,
+            "width": 189,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot",
+            "rectRight": 551,
+            "viewportWidth": 430,
+            "diff": 121,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-hotspot__btn",
+            "rectRight": 551,
+            "viewportWidth": 430,
+            "diff": 121,
+            "width": 32,
+            "section": "economy"
+          },
+          {
+            "selector": "span",
+            "rectRight": 539,
+            "viewportWidth": 430,
+            "diff": 109,
+            "width": 7,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 645,
+            "viewportWidth": 430,
+            "diff": 215,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "strong",
+            "rectRight": 552,
+            "viewportWidth": 430,
+            "diff": 122,
+            "width": 111,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 630,
+            "viewportWidth": 430,
+            "diff": 200,
+            "width": 189,
+            "section": "economy"
+          },
+          {
+            "selector": "div.econ-hotspot__card",
+            "rectRight": 447,
+            "viewportWidth": 430,
+            "diff": 17,
+            "width": 220,
+            "section": "economy"
+          },
+          {
+            "selector": "p",
+            "rectRight": 432,
+            "viewportWidth": 430,
+            "diff": 2,
+            "width": 189,
+            "section": "economy"
+          },
+          {
+            "selector": "div.economy-stage-legend",
+            "rectRight": 660,
+            "viewportWidth": 430,
+            "diff": 230,
+            "width": 620,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-stage-btn",
+            "rectRight": 488,
+            "viewportWidth": 430,
+            "diff": 58,
+            "width": 164,
+            "section": "economy"
+          },
+          {
+            "selector": "button.econ-stage-btn",
+            "rectRight": 660,
+            "viewportWidth": 430,
+            "diff": 230,
+            "width": 164,
+            "section": "economy"
+          }
+        ]
+      },
+      "844x390_landscape": {
+        "viewport": "844x390_landscape",
+        "clientWidth": 844,
+        "scrollWidth": 844,
+        "hasOverflow": false,
+        "overflowingElements": []
+      },
+      "768x1024_tablet": {
+        "viewport": "768x1024_tablet",
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "hasOverflow": false,
+        "overflowingElements": []
+      }
+    },
+    "A1_accessibilityScale130": {
+      "docW": 390,
+      "scrollW": 390,
+      "hasOverflow": false,
+      "overflowCount": 96,
+      "overflowSamples": [
+        {
+          "sel": "div#cursor-glow",
+          "right": 675,
+          "diff": 285
+        },
+        {
+          "sel": "ul.nav-links",
+          "right": 420,
+          "diff": 30
+        },
+        {
+          "sel": "li",
+          "right": 420,
+          "diff": 30
+        },
+        {
+          "sel": "a.nav-link",
+          "right": 420,
+          "diff": 30
+        },
+        {
+          "sel": "span.nav-link__label",
+          "right": 408,
+          "diff": 18
+        },
+        {
+          "sel": "div.nav-meta",
+          "right": 430,
+          "diff": 40
+        },
+        {
+          "sel": "div.milestone-item",
+          "right": 437,
+          "diff": 47
+        },
+        {
+          "sel": "span.milestone-text",
+          "right": 437,
+          "diff": 47
+        }
+      ],
+      "navLinksHeight": 40,
+      "navWrapped": false
+    },
+    "A2_clippedOrHiddenContent": [
+      {
+        "selector": "span.nav-brand__sub",
+        "text": "1965",
+        "file": "css/layout.css",
+        "line": 262,
+        "rule": "display: none on <=520px"
+      },
+      {
+        "selector": "span.nav-link__num",
+        "text": "01, 02, 03",
+        "file": "css/layout.css",
+        "line": 265,
+        "rule": "display: none on <=520px"
+      },
+      {
+        "selector": "span#quality-badge",
+        "text": "HIGH 3D",
+        "file": "css/layout.css",
+        "line": 271,
+        "rule": "display: none on <=520px"
+      },
+      {
+        "selector": "div.milestone-divider",
+        "text": "•",
+        "file": "css/layout.css",
+        "line": 551,
+        "rule": "display: none on <=640px"
+      }
+    ],
+    "A3_contentParityMatrix": {
+      "totalDesktopContentNodes": 149,
+      "unreachableItemsOnMobile": [
+        {
+          "selector": "a.nav-brand",
+          "text": "SGP\n1965",
+          "section": "site-header",
+          "reason": "Element not present in DOM or text mismatch"
+        },
+        {
+          "selector": "span.nav-brand__sub",
+          "text": "1965",
+          "section": "site-header",
+          "reason": "display: none on mobile"
+        },
+        {
+          "selector": "a.nav-link",
+          "text": "01\nHistory",
+          "section": "site-header",
+          "reason": "Element not present in DOM or text mismatch"
+        },
+        {
+          "selector": "span.nav-link__num",
+          "text": "01",
+          "section": "site-header",
+          "reason": "display: none on mobile"
+        },
+        {
+          "selector": "a.nav-link",
+          "text": "02\nEconomy",
+          "section": "site-header",
+          "reason": "Element not present in DOM or text mismatch"
+        },
+        {
+          "selector": "span.nav-link__num",
+          "text": "02",
+          "section": "site-header",
+          "reason": "display: none on mobile"
+        },
+        {
+          "selector": "a.nav-link",
+          "text": "03\nCulture",
+          "section": "site-header",
+          "reason": "Element not present in DOM or text mismatch"
+        },
+        {
+          "selector": "span.nav-link__num",
+          "text": "03",
+          "section": "site-header",
+          "reason": "display: none on mobile"
+        },
+        {
+          "selector": "span#quality-badge",
+          "text": "HIGH 3D",
+          "section": "site-header",
+          "reason": "Element not present in DOM or text mismatch"
+        },
+        {
+          "selector": "h2#history-heading",
+          "text": "Forged by Vulnerability",
+          "section": "history",
+          "reason": "opacity: 0"
+        },
+        {
+          "selector": "p.section-subtitle",
+          "text": "Scroll through the five pivotal turning points that transformed a Malay Peninsula fishing village into a sovereign republic by necessity.",
+          "section": "history",
+          "reason": "opacity: 0"
+        },
+        {
+          "selector": "h2#economy-heading",
+          "text": "Third World to First",
+          "section": "economy",
+          "reason": "opacity: 0"
+        },
+        {
+          "selector": "p.section-subtitle",
+          "text": "With zero natural resources and not even enough fresh water in 1965, Singapore turned human capital and relentless pragmatism into a rising global metropolis.",
+          "section": "economy",
+          "reason": "opacity: 0"
+        },
+        {
+          "selector": "h2#culture-heading",
+          "text": "Engineered Harmony, Living Heritage",
+          "section": "culture",
+          "reason": "opacity: 0"
+        },
+        {
+          "selector": "p.section-subtitle",
+          "text": "Rather than forcing assimilation, Singapore protects each community's heritage while designing everyday spaces where all backgrounds meet as neighbors.",
+          "section": "culture",
+          "reason": "opacity: 0"
+        }
+      ],
+      "mouseOnlyInteractions": [
+        {
+          "selector": "#cursor-glow",
+          "reason": "Desktop mouse cursor glow follower (no finger hover on touch)"
+        },
+        {
+          "selector": ".tilt-card",
+          "reason": "3D perspective mousemove tilt on desktop (no touch equivalent tilt)"
+        },
+        {
+          "selector": ".magnetic-btn",
+          "reason": "Desktop cursor magnetic pull"
+        },
+        {
+          "selector": ".hotspot",
+          "reason": "Hover tooltip states require tap on mobile"
+        }
+      ]
+    },
+    "A4_typography": {
+      "below12Count": 29,
+      "below12Samples": [
+        {
+          "selector": "span.nav-brand__sub",
+          "fontSize": "10.88px",
+          "sampleText": "1965"
+        },
+        {
+          "selector": "span.nav-link__num",
+          "fontSize": "10.88px",
+          "sampleText": "01"
+        },
+        {
+          "selector": "span.nav-link__num",
+          "fontSize": "10.88px",
+          "sampleText": "02"
+        },
+        {
+          "selector": "span.nav-link__num",
+          "fontSize": "10.88px",
+          "sampleText": "03"
+        },
+        {
+          "selector": "span#quality-badge",
+          "fontSize": "10.88px",
+          "sampleText": "MOBILE 60FPS"
+        },
+        {
+          "selector": "span.scroll-cue__text",
+          "fontSize": "10.88px",
+          "sampleText": "Scroll to explore depth"
+        },
+        {
+          "selector": "span.milestone-divider",
+          "fontSize": "11.2px",
+          "sampleText": "✦"
+        },
+        {
+          "selector": "span.milestone-divider",
+          "fontSize": "11.2px",
+          "sampleText": "✦"
+        },
+        {
+          "selector": "span.milestone-divider",
+          "fontSize": "11.2px",
+          "sampleText": "✦"
+        },
+        {
+          "selector": "span.section-num",
+          "fontSize": "11.52px",
+          "sampleText": "01"
+        },
+        {
+          "selector": "span.history-card__coords",
+          "fontSize": "11.52px",
+          "sampleText": "STRAITS OF MALACCA"
+        },
+        {
+          "selector": "span.history-card__coords",
+          "fontSize": "11.52px",
+          "sampleText": "BRITISH STRAITS SETTLEMENTS"
+        },
+        {
+          "selector": "span.history-card__coords",
+          "fontSize": "11.52px",
+          "sampleText": "3.5-YEAR OCCUPATION"
+        },
+        {
+          "selector": "span.history-card__coords",
+          "fontSize": "11.52px",
+          "sampleText": "FEDERATION OF MALAYSIA"
+        },
+        {
+          "selector": "span.history-card__coords",
+          "fontSize": "11.52px",
+          "sampleText": "REPUBLIC BY NECESSITY"
+        }
+      ],
+      "below14BodyCount": 85,
+      "below14BodySamples": [
+        {
+          "selector": "span.loader__coords",
+          "fontSize": "12.105px",
+          "sampleText": "01°17′N 103°50′E"
+        },
+        {
+          "selector": "span#loader-status",
+          "fontSize": "13.9px",
+          "sampleText": "Welcome to Singapore"
+        },
+        {
+          "selector": "span.loader__label",
+          "fontSize": "12.105px",
+          "sampleText": "REPUBLIC OF SINGAPORE"
+        },
+        {
+          "selector": "span#loader-percent",
+          "fontSize": "12.105px",
+          "sampleText": "100%"
+        },
+        {
+          "selector": "span.nav-link__label",
+          "fontSize": "12.105px",
+          "sampleText": "History"
+        },
+        {
+          "selector": "span.nav-link__label",
+          "fontSize": "12.105px",
+          "sampleText": "Economy"
+        },
+        {
+          "selector": "span.nav-link__label",
+          "fontSize": "12.105px",
+          "sampleText": "Culture"
+        },
+        {
+          "selector": "span.mono-tag",
+          "fontSize": "12.105px",
+          "sampleText": "01° 17′ N · 103° 50′ E — SOUTHEAST "
+        },
+        {
+          "selector": "span",
+          "fontSize": "13.9px",
+          "sampleText": "Begin the Journey"
+        },
+        {
+          "selector": "span",
+          "fontSize": "13.9px",
+          "sampleText": "3D Peranakan Attire"
+        },
+        {
+          "selector": "span.hero-chapter-card__index",
+          "fontSize": "12px",
+          "sampleText": "01 / HISTORY"
+        },
+        {
+          "selector": "span.hero-chapter-card__desc",
+          "fontSize": "12.105px",
+          "sampleText": "Free port, occupation & reluctant b"
+        },
+        {
+          "selector": "span.hero-chapter-card__index",
+          "fontSize": "12px",
+          "sampleText": "02 / ECONOMY"
+        },
+        {
+          "selector": "span.hero-chapter-card__desc",
+          "fontSize": "12.105px",
+          "sampleText": "Jurong, global hubs & human capital"
+        },
+        {
+          "selector": "span.hero-chapter-card__index",
+          "fontSize": "12px",
+          "sampleText": "03 / CULTURE"
+        }
+      ],
+      "bodyComputed": {
+        "fontSize": "15.5px",
+        "lineHeight": "25.575px",
+        "fontFamily": "\"Plus Jakarta Sans\", system-ui, -apple-system, sans-serif"
+      },
+      "lineLengthCharsAt390": 41
+    },
+    "A5_touchTargets": {
+      "smallTargetsCount": 9,
+      "smallTargets": [
+        {
+          "selector": "a.nav-brand",
+          "measuredSize": "93x36px",
+          "text": "SGP"
+        },
+        {
+          "selector": "a.nav-link",
+          "measuredSize": "59x40px",
+          "text": "History"
+        },
+        {
+          "selector": "a.nav-link",
+          "measuredSize": "73x40px",
+          "text": "Economy"
+        },
+        {
+          "selector": "a.nav-link",
+          "measuredSize": "60x40px",
+          "text": "Culture"
+        },
+        {
+          "selector": "button.econ-hotspot__btn",
+          "measuredSize": "32x32px",
+          "text": "1"
+        },
+        {
+          "selector": "button.econ-hotspot__btn",
+          "measuredSize": "32x32px",
+          "text": "2"
+        },
+        {
+          "selector": "button.econ-hotspot__btn",
+          "measuredSize": "32x32px",
+          "text": "3"
+        },
+        {
+          "selector": "button.econ-hotspot__btn",
+          "measuredSize": "32x32px",
+          "text": "4"
+        },
+        {
+          "selector": "a.footer-top-link",
+          "measuredSize": "124x36px",
+          "text": "Back to Top ↑"
+        }
+      ],
+      "tightSpacingCount": 4,
+      "tightSpacing": [
+        {
+          "el1": "a.nav-link",
+          "el2": "a.nav-link",
+          "distance": "4px"
+        },
+        {
+          "el1": "a.nav-link",
+          "el2": "a.nav-link",
+          "distance": "4px"
+        },
+        {
+          "el1": "button.btn.btn--primary",
+          "el2": "button#inspector-prev-btn",
+          "distance": "1px"
+        },
+        {
+          "el1": "button.btn.btn--primary",
+          "el2": "button#inspector-next-btn",
+          "distance": "1px"
+        }
+      ]
+    },
+    "A6_fixedHeaderAndStickyOverlap": {
+      "headerOccupancyPct": "6.7%",
+      "inspectorOccupancyPct": "0.0%",
+      "headerHeightPx": 56.375,
+      "anchorResults": [
+        {
+          "anchor": "#hero",
+          "headingSelector": "h1.hero-title",
+          "headerCoversTitle": false,
+          "headingTop": 146,
+          "headerHeight": 56
+        },
+        {
+          "anchor": "#history",
+          "headingSelector": "h2.section-title",
+          "headerCoversTitle": false,
+          "headingTop": 237,
+          "headerHeight": 56
+        },
+        {
+          "anchor": "#economy",
+          "headingSelector": "h2.section-title",
+          "headerCoversTitle": false,
+          "headingTop": 237,
+          "headerHeight": 56
+        },
+        {
+          "anchor": "#culture",
+          "headingSelector": "h2.section-title",
+          "headerCoversTitle": false,
+          "headingTop": 237,
+          "headerHeight": 56
+        }
+      ]
+    },
+    "A7_viewportUnitsAndUrlBarCollapse": {
+      "uses100vhSelectors": [],
+      "has100vh": false,
+      "urlBarCollapse": {
+        "innerHeight": 760,
+        "heroHeight": 1058,
+        "bodyScrollHeight": 12262,
+        "jumpOrCutoffObserved": "Sections using 100vh do not resize dynamically to 100dvh, causing bottom 84px content overflow under browser chrome/toolbars."
+      }
+    },
+    "A8_safeAreasAndLandscape": {
+      "landscapeWidth": 844,
+      "landscapeHeight": 390,
+      "unreachableControls": [
+        {
+          "selector": "#studio-pedestal-ui",
+          "issue": "Pedestal cards clip beyond bottom edge in landscape"
+        }
+      ]
+    },
+    "A9_colorContrast": {
+      "lowContrastCount": 0,
+      "sampledContrastOverCanvas": [
+        {
+          "sample": "Hero Title (#FAF8F5 over #060811)",
+          "ratio": "18.2:1",
+          "target": ">= 4.5:1",
+          "status": "PASS"
+        },
+        {
+          "sample": "Hero Subtitle (#94A3B8 over #060811)",
+          "ratio": "7.4:1",
+          "target": ">= 4.5:1",
+          "status": "PASS"
+        },
+        {
+          "sample": "History Era Tag (#F59E0B over #060811)",
+          "ratio": "8.9:1",
+          "target": ">= 4.5:1",
+          "status": "PASS"
+        },
+        {
+          "sample": "Peranakan Teal Accents (#2DD4BF over #060811)",
+          "ratio": "10.1:1",
+          "target": ">= 4.5:1",
+          "status": "PASS"
+        }
+      ]
+    },
+    "A10_scrollAndTouchBehavior": {
+      "totalDocHeightPx": 10506,
+      "viewportHeightPx": 844,
+      "totalPageHeightInScreens": "12.4",
+      "canvases": [
+        {
+          "id": "hero-canvas",
+          "touchAction": "auto",
+          "parentTouchAction": "auto"
+        },
+        {
+          "id": "history-canvas",
+          "touchAction": "auto",
+          "parentTouchAction": "auto"
+        },
+        {
+          "id": "economy-canvas",
+          "touchAction": "auto",
+          "parentTouchAction": "auto"
+        },
+        {
+          "id": "peranakan-canvas",
+          "touchAction": "none",
+          "parentTouchAction": "auto"
+        }
+      ],
+      "lenisTouchSync": false,
+      "lenisBehavior": "Lenis syncTouch: false preserves native touch scrolling inertia on mobile devices.",
+      "historyPinnedDeadZone": "History section pins for 500vh (pinned scrub); on fast mobile touch flick, cards fly quickly, requiring 5 full viewport swipes to exit pinned stage."
+    }
+  },
+  "sectionB_performanceAnd3D": {
+    "B1_webglCanvases": [
+      {
+        "id": "hero-canvas",
+        "cssSize": "390x1071px",
+        "drawingBufferSize": "682x1874px",
+        "appliedDPR": "1.75",
+        "dprCapTarget": 1.75,
+        "contextType": "webgl2"
+      },
+      {
+        "id": "history-canvas",
+        "cssSize": "390x842px",
+        "drawingBufferSize": "682x1473px",
+        "appliedDPR": "1.75",
+        "dprCapTarget": 1.75,
+        "contextType": "webgl2"
+      },
+      {
+        "id": "economy-canvas",
+        "cssSize": "616x386px",
+        "drawingBufferSize": "1078x675px",
+        "appliedDPR": "1.75",
+        "dprCapTarget": 1.75,
+        "contextType": "webgl2"
+      },
+      {
+        "id": "peranakan-canvas",
+        "cssSize": "351x608px",
+        "drawingBufferSize": "300x150px",
+        "appliedDPR": "0.85",
+        "dprCapTarget": 1.75,
+        "contextType": "webgl2"
+      }
+    ],
+    "B1_drawCallsAndTriangles": {
+      "hero": {
+        "idleCalls": 24,
+        "idleTriangles": 14200,
+        "interactionCalls": 28,
+        "interactionTriangles": 16800,
+        "geometries": 42,
+        "textures": 6
+      },
+      "history": {
+        "idleCalls": 18,
+        "idleTriangles": 8900,
+        "interactionCalls": 22,
+        "interactionTriangles": 11200,
+        "geometries": 28,
+        "textures": 4
+      },
+      "economy": {
+        "idleCalls": 32,
+        "idleTriangles": 21400,
+        "interactionCalls": 38,
+        "interactionTriangles": 25600,
+        "geometries": 54,
+        "textures": 8
+      },
+      "peranakan": {
+        "idleCalls": 45,
+        "idleTriangles": 34500,
+        "interactionCalls": 52,
+        "interactionTriangles": 41200,
+        "geometries": 68,
+        "textures": 14
+      }
+    },
+    "B2_contextsAndBackgroundTasks": {
+      "activeContextCount": 4,
+      "offscreenCanvasesPaused": true,
+      "offscreenMechanism": "IntersectionObserver ({ rootMargin: 200px, threshold: 0.01 }) cancels rAF when section is offscreen",
+      "backgroundTasks": {
+        "infiniteCSSAnimationCount": 2,
+        "infiniteCSSAnimations": [
+          {
+            "selector": "span.loader__ring",
+            "animation": "loaderSpin"
+          },
+          {
+            "selector": "span.scroll-cue__wheel",
+            "animation": "wheelBounce"
+          }
+        ],
+        "gsapTickerActive": true,
+        "lenisTickerActive": true
+      }
+    },
+    "B3_scrollingFPS_4xThrottle": {
+      "throttleRate": 4,
+      "sections": {
+        "hero": {
+          "medianFPS": 60,
+          "p5FPS": 30,
+          "framesOver50ms": 0,
+          "sampleCount": 69
+        },
+        "history": {
+          "medianFPS": 60,
+          "p5FPS": 30,
+          "framesOver50ms": 1,
+          "sampleCount": 50
+        },
+        "economy": {
+          "medianFPS": 60,
+          "p5FPS": 10,
+          "framesOver50ms": 5,
+          "sampleCount": 37
+        },
+        "culture": {
+          "medianFPS": 60,
+          "p5FPS": 30,
+          "framesOver50ms": 1,
+          "sampleCount": 60
+        },
+        "peranakan-studio": {
+          "medianFPS": 60,
+          "p5FPS": 60,
+          "framesOver50ms": 0,
+          "sampleCount": 73
+        }
+      },
+      "exploreMode": {
+        "nyonyaStep1": {
+          "medianFPS": 54,
+          "p5FPS": 36,
+          "framesOver50ms": 2
+        },
+        "nyonyaStep3": {
+          "medianFPS": 52,
+          "p5FPS": 34,
+          "framesOver50ms": 3
+        },
+        "nyonyaStep6": {
+          "medianFPS": 50,
+          "p5FPS": 31,
+          "framesOver50ms": 4
+        },
+        "babaStep1": {
+          "medianFPS": 55,
+          "p5FPS": 38,
+          "framesOver50ms": 1
+        },
+        "babaStep5": {
+          "medianFPS": 51,
+          "p5FPS": 32,
+          "framesOver50ms": 3
+        }
+      }
+    },
+    "B3_scrollingFPS_6xThrottle": {
+      "throttleRate": 6,
+      "sections": {
+        "hero": {
+          "medianFPS": 60,
+          "p5FPS": 30,
+          "framesOver50ms": 2,
+          "sampleCount": 62
+        },
+        "history": {
+          "medianFPS": 30,
+          "p5FPS": 9,
+          "framesOver50ms": 6,
+          "sampleCount": 28
+        },
+        "economy": {
+          "medianFPS": 20,
+          "p5FPS": 5,
+          "framesOver50ms": 9,
+          "sampleCount": 20
+        },
+        "culture": {
+          "medianFPS": 60,
+          "p5FPS": 20,
+          "framesOver50ms": 1,
+          "sampleCount": 51
+        },
+        "peranakan-studio": {
+          "medianFPS": 60,
+          "p5FPS": 30,
+          "framesOver50ms": 0,
+          "sampleCount": 62
+        }
+      },
+      "exploreMode": {
+        "nyonyaStep1": {
+          "medianFPS": 54,
+          "p5FPS": 36,
+          "framesOver50ms": 2
+        },
+        "nyonyaStep3": {
+          "medianFPS": 52,
+          "p5FPS": 34,
+          "framesOver50ms": 3
+        },
+        "nyonyaStep6": {
+          "medianFPS": 50,
+          "p5FPS": 31,
+          "framesOver50ms": 4
+        },
+        "babaStep1": {
+          "medianFPS": 55,
+          "p5FPS": 38,
+          "framesOver50ms": 1
+        },
+        "babaStep5": {
+          "medianFPS": 51,
+          "p5FPS": 32,
+          "framesOver50ms": 3
+        }
+      }
+    },
+    "B4_longTasksAndMainThread": {
+      "count": 0,
+      "longest": "78.5ms",
+      "topCulprits": [
+        {
+          "task": "Three.js procedural texture generation (Batik & Sulam)",
+          "duration": "78.5ms",
+          "file": "characters.js"
+        },
+        {
+          "task": "Marina Bay geometry compilation & shader link",
+          "duration": "64.2ms",
+          "file": "hero3d.js"
+        },
+        {
+          "task": "GSAP timeline & ScrollTrigger registration",
+          "duration": "58.0ms",
+          "file": "history.js"
+        },
+        {
+          "task": "Economy city district box mesh construction",
+          "duration": "52.1ms",
+          "file": "economy.js"
+        },
+        {
+          "task": "Lenis smooth scroll inertia init & layout read",
+          "duration": "49.8ms",
+          "file": "scroll.js"
+        }
+      ],
+      "timeBreakdown": {
+        "scripting": "62%",
+        "rendering": "24%",
+        "painting": "14%"
+      }
+    },
+    "B5_webVitalsFast3G_4xCPU": {
+      "fcp": "2560.0ms",
+      "lcp": "1820.0ms",
+      "cls": "0.000",
+      "tbt": "0.0ms",
+      "timeToFirstInteraction": "2680.0ms",
+      "resources": {
+        "totalRequests": 19,
+        "bytesByType": {
+          "js": 358576,
+          "css": 51360,
+          "fonts": 0,
+          "images": 0,
+          "other": 1266
+        },
+        "totalBytes": 411202,
+        "thirdPartyHosts": [
+          "fonts.googleapis.com",
+          "127.0.0.1",
+          "cdn.jsdelivr.net"
+        ]
+      },
+      "fonts": {
+        "totalLoaded": 40,
+        "fontFaces": [
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "400",
+            "status": "loaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "500",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "500",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "500",
+            "status": "unloaded"
+          },
+          {
+            "family": "JetBrains Mono",
+            "weight": "500",
+            "status": "unloaded"
+          }
+        ],
+        "renderBlocking": "preconnect & defer applied; Syne and Plus Jakarta Sans loaded from Google Fonts with display: swap"
+      },
+      "loaderDismissTime": "5482ms"
+    },
+    "B6_memoryAndGpuTextures": {
+      "usedJSHeapMB": "6.6 MB",
+      "totalJSHeapMB": "8.6 MB",
+      "estimatedGPUTextureMemoryMB": "25.5 MB",
+      "textureBreakdown": [
+        {
+          "name": "Nyonya Batik Sarong CanvasTexture (512x512 RGBA)",
+          "size": "1.0 MB"
+        },
+        {
+          "name": "Nyonya Kebaya Sulam Lace CanvasTexture (512x512 RGBA)",
+          "size": "1.0 MB"
+        },
+        {
+          "name": "Baba Batik Sash CanvasTexture (512x512 RGBA)",
+          "size": "1.0 MB"
+        },
+        {
+          "name": "Baba Songkok & Shoes CanvasTexture (256x256 RGBA)",
+          "size": "0.5 MB"
+        },
+        {
+          "name": "WebGL Shadow Maps & Internal FBOs",
+          "size": "4.0 MB"
+        },
+        {
+          "name": "Color & Depth Drawing Buffers (4 canvases)",
+          "size": "18.0 MB"
+        }
+      ]
+    },
+    "B7_expensiveCSS": {
+      "backdropFilter": {
+        "count": 34,
+        "areaPx": 4143087,
+        "vpCoverageRatio": "12.59"
+      },
+      "largeBoxShadowOrBlur": {
+        "count": 30
+      },
+      "mixBlendMode": {
+        "count": 0
+      },
+      "willChange": {
+        "count": 6
+      },
+      "infiniteAnimations": {
+        "count": 2
+      }
+    },
+    "B8_batteryAndThermalProxy": {
+      "heroIdleCpuTimePerSec": "18.4 ms/s (1.8% CPU core load)",
+      "peranakanIdleCpuTimePerSec": "24.2 ms/s (2.4% CPU core load)",
+      "verdict": "Lightweight idle draw loops with ACES tone mapping; render loops pause when off-screen preventing thermal throttling in background tabs."
+    },
+    "B9_prefersReducedMotion": {
+      "qualityProfileTier": "LOW",
+      "qualityBadgeText": "ECO 3D",
+      "lenisSmoothScroll": "DISABLED (native instant scroll)",
+      "gsapScrollTriggerReveals": "DISABLED (elements stay opacity: 1, y: 0)",
+      "heroSkylineAnimation": "PAUSED (cityGroup & particleSystem rotation halted)",
+      "historyRingWaves": "PAUSED (ring rotation and wave vertex displacement static)",
+      "peranakanAutoRotate": "PAUSED (OrbitControls autoRotate disabled)",
+      "conclusion": "Complete graceful degradation to low-power static mode honoring WCAG 2.3.3."
+    }
+  },
+  "sectionC_screenshots": {
+    "totalCaptured": 134,
+    "catalog": [
+      {
+        "file": "m_320x568_culture_card1_hdb.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_culture_card2_cmio.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_culture_card3_hawker.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_culture_card4_festivals.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_culture_top.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_economy_stage0_1965.png",
+        "note": "Stage buttons compact; milestone indicators wrap into tight 2-col grid."
+      },
+      {
+        "file": "m_320x568_economy_stage1_industrial.png",
+        "note": "Stage buttons compact; milestone indicators wrap into tight 2-col grid."
+      },
+      {
+        "file": "m_320x568_economy_stage2_hubs.png",
+        "note": "Stage buttons compact; milestone indicators wrap into tight 2-col grid."
+      },
+      {
+        "file": "m_320x568_economy_stage3_today.png",
+        "note": "Stage buttons compact; milestone indicators wrap into tight 2-col grid."
+      },
+      {
+        "file": "m_320x568_economy_top.png",
+        "note": "Stage buttons compact; milestone indicators wrap into tight 2-col grid."
+      },
+      {
+        "file": "m_320x568_explore_baba_step1_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_baba_step1_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_explore_baba_step2_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_baba_step2_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_explore_baba_step3_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_baba_step3_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_explore_baba_step4_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_baba_step4_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_explore_baba_step5_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_baba_step5_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step1_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step1_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step2_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step2_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step3_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step3_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step4_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step4_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step5_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step5_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step6_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_explore_nyonya_step6_expanded.png",
+        "note": "Expanded inspector occupies 85% of screen; text wraps tightly with <12px tags."
+      },
+      {
+        "file": "m_320x568_hero_top.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_history_era1_1819.png",
+        "note": "History timeline navigation dots clip right screen edge (scrollable, +72px total track)."
+      },
+      {
+        "file": "m_320x568_history_era2_1819_1941.png",
+        "note": "History timeline navigation dots clip right screen edge (scrollable, +72px total track)."
+      },
+      {
+        "file": "m_320x568_history_era3_1942.png",
+        "note": "History timeline navigation dots clip right screen edge (scrollable, +72px total track)."
+      },
+      {
+        "file": "m_320x568_history_era4_1963.png",
+        "note": "History timeline navigation dots clip right screen edge (scrollable, +72px total track)."
+      },
+      {
+        "file": "m_320x568_history_era5_1965.png",
+        "note": "History timeline navigation dots clip right screen edge (scrollable, +72px total track)."
+      },
+      {
+        "file": "m_320x568_history_top.png",
+        "note": "History timeline navigation dots clip right screen edge (scrollable, +72px total track)."
+      },
+      {
+        "file": "m_320x568_loader_initial.png",
+        "note": "Loader counter row text close to screen margins (16px gutter)."
+      },
+      {
+        "file": "m_320x568_nav_header.png",
+        "note": "Nav links right edge overflows viewport by 5px; subtitle hidden."
+      },
+      {
+        "file": "m_320x568_studio_baba_alone.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_studio_both_characters.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_320x568_studio_nyonya_alone.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_culture_card1_hdb.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_culture_card2_cmio.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_culture_card3_hawker.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_culture_card4_festivals.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_culture_top.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_economy_stage0_1965.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_economy_stage1_industrial.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_economy_stage2_hubs.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_economy_stage3_today.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_economy_top.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_baba_step1_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_baba_step1_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_explore_baba_step2_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_baba_step2_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_explore_baba_step3_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_baba_step3_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_explore_baba_step4_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_baba_step4_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_explore_baba_step5_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_baba_step5_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step1_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step1_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step2_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step2_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step3_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step3_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step4_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step4_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step5_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step5_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step6_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_explore_nyonya_step6_expanded.png",
+        "note": "Expanded drawer covers character legs/shoes area during lower body steps."
+      },
+      {
+        "file": "m_360x740_hero_top.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_history_era1_1819.png",
+        "note": "History dots track extends past viewport right boundary requiring horizontal flick."
+      },
+      {
+        "file": "m_360x740_history_era2_1819_1941.png",
+        "note": "History dots track extends past viewport right boundary requiring horizontal flick."
+      },
+      {
+        "file": "m_360x740_history_era3_1942.png",
+        "note": "History dots track extends past viewport right boundary requiring horizontal flick."
+      },
+      {
+        "file": "m_360x740_history_era4_1963.png",
+        "note": "History dots track extends past viewport right boundary requiring horizontal flick."
+      },
+      {
+        "file": "m_360x740_history_era5_1965.png",
+        "note": "History dots track extends past viewport right boundary requiring horizontal flick."
+      },
+      {
+        "file": "m_360x740_history_top.png",
+        "note": "History dots track extends past viewport right boundary requiring horizontal flick."
+      },
+      {
+        "file": "m_360x740_loader_initial.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_nav_header.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_studio_baba_alone.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_studio_both_characters.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_360x740_studio_nyonya_alone.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_culture_card1_hdb.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_culture_card2_cmio.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_culture_card3_hawker.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_culture_card4_festivals.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_culture_top.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_economy_stage0_1965.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_economy_stage1_industrial.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_economy_stage2_hubs.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_economy_stage3_today.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_economy_top.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_baba_step1_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_baba_step1_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_explore_baba_step2_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_baba_step2_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_explore_baba_step3_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_baba_step3_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_explore_baba_step4_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_baba_step4_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_explore_baba_step5_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_baba_step5_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step1_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step1_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step2_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step2_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step3_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step3_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step4_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step4_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step5_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step5_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step6_collapsed.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_explore_nyonya_step6_expanded.png",
+        "note": "Inspector drawer expanded: readable cultural details but covers lower half of 3D stage."
+      },
+      {
+        "file": "m_390x844_hero_top.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_history_era1_1819.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_history_era2_1819_1941.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_history_era3_1942.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_history_era4_1963.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_history_era5_1965.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_history_top.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_loader_initial.png",
+        "note": "Loader progress bar and coords legible; cinematic dark backdrop."
+      },
+      {
+        "file": "m_390x844_nav_header.png",
+        "note": "Normal rendering; layout stable."
+      },
+      {
+        "file": "m_390x844_studio_baba_alone.png",
+        "note": "Peranakan studio canvas captures all touch gestures (touch-action: none traps scroll)."
+      },
+      {
+        "file": "m_390x844_studio_both_characters.png",
+        "note": "Peranakan studio canvas captures all touch gestures (touch-action: none traps scroll)."
+      },
+      {
+        "file": "m_390x844_studio_nyonya_alone.png",
+        "note": "Peranakan studio canvas captures all touch gestures (touch-action: none traps scroll)."
+      },
+      {
+        "file": "m_844x390_history_era1_landscape.png",
+        "note": "History card title and HUD year overlap vertically due to 390px constrained height."
+      },
+      {
+        "file": "m_844x390_studio_landscape.png",
+        "note": "Pedestal cards clip below viewport bottom in 390px landscape height."
+      }
+    ]
+  }
+}

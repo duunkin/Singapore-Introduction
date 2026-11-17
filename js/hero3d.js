@@ -233,15 +233,22 @@ export function initHero3D(quality) {
     { passive: true }
   );
 
-  // Resize Handler
+  // Resize Handler with ResizeObserver & DPR Cap (P1-3)
   const handleResize = () => {
+    if (!section || !renderer || !camera) return;
     const w = section.clientWidth;
     const h = section.clientHeight;
+    if (w <= 0 || h <= 0) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    const dpr = Math.min(window.devicePixelRatio || 1, quality.dpr);
+    renderer.setPixelRatio(dpr);
     renderer.setSize(w, h, false);
   };
   window.addEventListener('resize', handleResize);
+  if ('ResizeObserver' in window && section) {
+    new ResizeObserver(handleResize).observe(section);
+  }
 
   // Render Loop Controlled by Viewport Visibility
   let isActive = true;

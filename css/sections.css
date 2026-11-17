@@ -19,8 +19,9 @@
 .history-stage {
   position: relative;
   width: 100%;
+  height: 100vh;
   height: 100svh;
-  min-height: 640px;
+  min-height: 480px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -210,7 +211,7 @@
 
 .history-card__coords {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.12em;
   color: var(--text-muted);
 }
@@ -297,6 +298,8 @@
 
 .economy-visual-col {
   position: relative;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .economy-stage-card {
@@ -304,6 +307,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.95rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* Clean Stacked HUD — No Awkward Title/Year Collision */
@@ -406,14 +411,14 @@
   top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%) translateY(-6px);
-  width: 220px;
+  width: min(220px, calc(100vw - 2.5rem));
+  max-width: 220px;
   padding: 0.75rem 0.9rem;
   border-radius: var(--radius-sm);
   background: rgba(9, 13, 26, 0.96);
-  backdrop-filter: blur(16px);
   border: 1px solid var(--border-bright);
   box-shadow: var(--shadow-elevation-md);
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
   color: var(--text-primary);
   line-height: 1.45;
   opacity: 0;
@@ -421,6 +426,21 @@
   pointer-events: none;
   transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out), visibility 0.2s;
   z-index: 10;
+}
+
+@media (max-width: 640px) {
+  .econ-hotspot:nth-child(3) .econ-hotspot__card,
+  .econ-hotspot:nth-child(4) .econ-hotspot__card {
+    left: auto;
+    right: 0;
+    transform: translateY(-6px);
+  }
+  .econ-hotspot:nth-child(3):hover .econ-hotspot__card,
+  .econ-hotspot:nth-child(4):hover .econ-hotspot__card,
+  .econ-hotspot:nth-child(3).is-active .econ-hotspot__card,
+  .econ-hotspot:nth-child(4).is-active .econ-hotspot__card {
+    transform: translateY(0) !important;
+  }
 }
 
 .econ-hotspot:hover .econ-hotspot__card,
@@ -509,7 +529,7 @@
 
 .econ-card__status {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.06);
@@ -654,7 +674,7 @@
 
 .phone-demo__label {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   color: var(--text-muted);
   text-transform: uppercase;
 }
@@ -1026,7 +1046,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  touch-action: none;
+  touch-action: pan-y !important;
   cursor: grab;
 }
 
@@ -1071,7 +1091,7 @@
 
 .pedestal-card__tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
   color: var(--peranakan-teal);
   letter-spacing: 0.08em;
 }
@@ -1269,7 +1289,7 @@
   color: var(--text-primary);
 }
 
-/* Mobile-Specific Adaptations: Bottom Sheet Drawer (390px) */
+/* Mobile-Specific Adaptations: Bottom Sheet Drawer (<= 640px) */
 @media (max-width: 640px) {
   .studio-pedestal-ui {
     grid-template-columns: 1fr;
@@ -1277,6 +1297,23 @@
   }
   .inspector-drawer-handle {
     display: block;
+    width: 44px;
+    height: 18px;
+    padding: 6px 0;
+    margin: 0 auto 0.2rem;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    position: relative;
+  }
+  .inspector-drawer-handle::after {
+    content: '';
+    display: block;
+    width: 38px;
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.4);
+    margin: 0 auto;
   }
   .inspector-panel {
     left: 0.5rem;
@@ -1284,8 +1321,182 @@
     bottom: 0.5rem;
     width: auto;
     max-width: none;
-    padding: 1.15rem;
+    padding: 0.75rem 0.95rem;
     border-radius: var(--radius-lg);
     background: rgba(8, 12, 24, 0.96);
+    box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.7);
+    gap: 0.4rem;
+    max-height: 28dvh; /* <= 30dvh collapsed state budget */
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s ease;
+  }
+  .inspector-panel.is-expanded {
+    max-height: 52dvh; /* <= 55dvh expanded state budget */
+  }
+  .inspector-details-wrap {
+    display: none;
+    flex-direction: column;
+    gap: 0.35rem;
+    overflow-y: auto;
+    max-height: calc(52dvh - 165px);
+    padding-right: 0.25rem;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  .inspector-panel.is-expanded .inspector-details-wrap {
+    display: flex;
+  }
+  .inspector-detail-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-pill);
+    color: var(--peranakan-teal);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    padding: 0.3rem 0.75rem;
+    cursor: pointer;
+    min-height: 44px;
+    margin-block: 0.15rem;
+  }
+  .inspector-dots {
+    padding-block: 0.15rem;
+    gap: 0.55rem;
+  }
+  .inspector-dot {
+    min-width: 44px;
+    min-height: 44px;
   }
 }
+
+/* Studio 3D Canvas Rotate Controls for Touch / Accessibility (44x44px) */
+.studio-rotate-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.55rem;
+  z-index: 5;
+}
+
+.btn-rotate-cue {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  background: rgba(10, 14, 29, 0.88);
+  border: 1px solid var(--border-bright);
+  color: var(--text-primary);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.18s var(--ease-spring);
+}
+
+.btn-rotate-cue:hover,
+.btn-rotate-cue:focus-visible {
+  background: rgba(20, 28, 55, 0.95);
+  border-color: var(--peranakan-teal);
+  color: var(--peranakan-teal);
+}
+
+.btn-rotate-cue:active {
+  transform: scale(0.92);
+}
+
+/* Economy Interactive Hotspots Tap & Caption */
+.econ-hotspot__btn {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.econ-hotspot__btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.econ-hotspot__btn:active {
+  transform: scale(0.92);
+}
+
+.econ-hotspot.is-active .econ-hotspot__card {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.econ-hotspot-caption {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  background: rgba(10, 14, 29, 0.96);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.95rem;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  z-index: 3;
+  display: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.econ-hotspot-caption.is-visible {
+  display: block;
+}
+
+/* Landscape Viewport Optimization (844x390, max-height 500px) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .studio-pedestal-ui {
+    display: flex !important;
+    flex-direction: row !important;
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    bottom: 0.35rem !important;
+    gap: 0.5rem !important;
+    padding: 0.35rem !important;
+  }
+  .pedestal-card {
+    padding: 0.35rem 0.65rem !important;
+    flex: 1 !important;
+  }
+  .pedestal-card__name {
+    margin-bottom: 0 !important;
+    font-size: var(--text-xs) !important;
+  }
+  .pedestal-card .btn {
+    min-height: 38px !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+  .phone-demo-wrapper {
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  .phone-demo-frame {
+    transform: scale(0.82);
+    transform-origin: top center;
+  }
+}
+
+/* Tactile :active Press Feedback across all mobile interactive controls */
+@media (pointer: coarse) {
+  button:active,
+  a:active,
+  .btn:active,
+  .inspector-dot:active,
+  .history-dot:active {
+    transform: scale(0.96) !important;
+  }
+}
+

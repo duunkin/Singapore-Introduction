@@ -412,6 +412,9 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Dedicated Accessible Caption Bar for Tap-Activated Hotspot Facts on Touch/Mobile -->
+              <div class="econ-hotspot-caption" id="econ-hotspot-caption" role="status" aria-live="polite"></div>
             </div>
 
             <!-- Swipeable / Scroll-Snap Stage Legend on Mobile -->
@@ -669,9 +672,9 @@
           <div class="bento-motif-wrap" aria-hidden="true">
             <svg class="bento-motif-svg" viewBox="0 0 160 54" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="6" y="8" width="76" height="32" rx="8" fill="#16223e" stroke="#2dd4bf" stroke-width="1.2"/>
-              <text x="18" y="28" fill="#2dd4bf" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">English</text>
+              <text x="18" y="28" fill="#2dd4bf" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">English</text>
               <rect x="74" y="16" width="80" height="32" rx="8" fill="#2a1420" stroke="#ef3340" stroke-width="1.2"/>
-              <text x="86" y="36" fill="#ff5c67" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">母语/Bahasa</text>
+              <text x="86" y="36" fill="#ff5c67" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">母语/Bahasa</text>
             </svg>
           </div>
 
@@ -781,6 +784,12 @@
           <div class="studio-canvas-area" id="peranakan-canvas-wrap">
             <canvas id="peranakan-canvas" aria-label="Interactive 3D Peranakan Nyonya and Baba characters in traditional attire"></canvas>
 
+            <!-- 44x44px Studio Rotation Controls for Accessibility & Coarse Touch Pointers -->
+            <div class="studio-rotate-controls" id="studio-rotate-controls" aria-label="Rotate 3D Stage">
+              <button type="button" class="btn-rotate-cue" id="studio-rotate-left" aria-label="Rotate view left 45 degrees" title="Rotate left 45°">↺</button>
+              <button type="button" class="btn-rotate-cue" id="studio-rotate-right" aria-label="Rotate view right 45 degrees" title="Rotate right 45°">↻</button>
+            </div>
+
             <!-- Floating Character Pedestal Triggers (Default Mode) -->
             <div class="studio-pedestal-ui" id="studio-pedestal-ui">
               <div class="pedestal-card">
@@ -820,14 +829,22 @@
 
               <h4 class="inspector-panel__title" id="inspector-layer-title">Base Undergarment Layer</h4>
 
-              <div class="inspector-panel__detail">
-                <span class="inspector-detail-label">What it is</span>
-                <p id="inspector-what">A breathable cotton inner camisole that creates a modest silhouette beneath the sheer lace blouse.</p>
-              </div>
+              <!-- Mobile Expandable Details Container (P0-1) -->
+              <button type="button" class="inspector-detail-toggle" id="inspector-detail-toggle" aria-expanded="false" aria-controls="inspector-details-wrap">
+                <span id="inspector-toggle-text">Show Details</span>
+                <span class="inspector-toggle-arrow" aria-hidden="true">▾</span>
+              </button>
 
-              <div class="inspector-panel__detail">
-                <span class="inspector-detail-label">How it is worn</span>
-                <p id="inspector-how">Worn snugly as the foundation layer before wrapping the batik sarong and draping the kebaya.</p>
+              <div class="inspector-details-wrap" id="inspector-details-wrap">
+                <div class="inspector-panel__detail">
+                  <span class="inspector-detail-label">What it is</span>
+                  <p id="inspector-what">A breathable cotton inner camisole that creates a modest silhouette beneath the sheer lace blouse.</p>
+                </div>
+
+                <div class="inspector-panel__detail">
+                  <span class="inspector-detail-label">How it is worn</span>
+                  <p id="inspector-how">Worn snugly as the foundation layer before wrapping the batik sarong and draping the kebaya.</p>
+                </div>
               </div>
 
               <!-- Step Dots (44x44px touch targets) -->

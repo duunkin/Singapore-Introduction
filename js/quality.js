@@ -57,7 +57,7 @@ export function detectQualityProfile() {
     MEDIUM: {
       tier: 'MEDIUM',
       label: 'MOBILE 60FPS',
-      dpr: Math.min(rawDpr, 1.75),
+      dpr: Math.min(rawDpr, 1.5),
       antialias: true,
       shadows: false,
       shadowMapSize: 512,
@@ -71,7 +71,7 @@ export function detectQualityProfile() {
     LOW: {
       tier: 'LOW',
       label: 'ECO 3D',
-      dpr: Math.min(rawDpr, 1.25),
+      dpr: Math.min(rawDpr, 1.0),
       antialias: false,
       shadows: false,
       shadowMapSize: 256,

@@ -335,15 +335,22 @@ export function initHistorySection(quality, scrollSystem) {
   const particles = new THREE.Points(pGeo, pMat);
   scene.add(particles);
 
-  // Resize Listener
+  // Resize Listener with ResizeObserver & DPR Cap (P1-3)
   const handleResize = () => {
+    if (!stageEl || !renderer || !camera) return;
     const w = stageEl.clientWidth;
     const h = stageEl.clientHeight;
+    if (w <= 0 || h <= 0) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    const dpr = Math.min(window.devicePixelRatio || 1, quality.dpr);
+    renderer.setPixelRatio(dpr);
     renderer.setSize(w, h, false);
   };
   window.addEventListener('resize', handleResize);
+  if ('ResizeObserver' in window && stageEl) {
+    new ResizeObserver(handleResize).observe(stageEl);
+  }
 
   // Render Loop with Smooth Era Mood Interpolation
   let isActive = false;
@@ -379,17 +386,19 @@ export function initHistorySection(quality, scrollSystem) {
       innerCrystal.rotation.y += 0.01 * targetMood.rotSpeed;
       innerCrystal.rotation.x = elapsed * 0.2;
 
-      // Animate maritime/historical wave vertices
-      const posAttr = waveGeo.attributes.position;
-      const arr = posAttr.array;
-      for (let i = 0; i < arr.length; i += 3) {
-        const bx = baseWavePos[i];
-        const bz = baseWavePos[i + 2];
-        arr[i + 1] =
-          Math.sin(bx * 0.35 + elapsed * targetMood.waveSpeed) * 0.42 +
-          Math.cos(bz * 0.35 + elapsed * targetMood.waveSpeed * 0.8) * 0.32;
+      // Animate maritime/historical wave vertices (HIGH tier only; static on MEDIUM/LOW to eliminate CPU overhead)
+      if (quality.tier === 'HIGH') {
+        const posAttr = waveGeo.attributes.position;
+        const arr = posAttr.array;
+        for (let i = 0; i < arr.length; i += 3) {
+          const bx = baseWavePos[i];
+          const bz = baseWavePos[i + 2];
+          arr[i + 1] =
+            Math.sin(bx * 0.35 + elapsed * targetMood.waveSpeed) * 0.42 +
+            Math.cos(bz * 0.35 + elapsed * targetMood.waveSpeed * 0.8) * 0.32;
+        }
+        posAttr.needsUpdate = true;
       }
-      posAttr.needsUpdate = true;
 
       particles.rotation.y = elapsed * 0.03;
     }

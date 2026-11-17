@@ -181,8 +181,26 @@ export function initCultureSection(quality) {
   controls.enablePan = false;
   controls.minDistance = 1.6;
   controls.maxDistance = 16;
-  controls.minPolarAngle = Math.PI * 0.18;
-  controls.maxPolarAngle = Math.PI * 0.52;
+
+  // Touch & Coarse Pointer Controls (P0-3)
+  const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+  if (isCoarse) {
+    // Lock vertical orbit on touch screens so one-finger vertical swipe scrolls the page
+    controls.minPolarAngle = 1.34;
+    controls.maxPolarAngle = 1.36;
+  } else {
+    controls.minPolarAngle = Math.PI * 0.18;
+    controls.maxPolarAngle = Math.PI * 0.52;
+  }
+
+  // Explicit touch configuration: 1-finger horizontal rotates, 2-finger pinches zoom
+  controls.touches = {
+    ONE: THREE.TOUCH.ROTATE,
+    TWO: THREE.TOUCH.DOLLY_PAN
+  };
+
+  canvas.style.touchAction = 'pan-y';
+
   controls.autoRotate = !quality.reducedMotion;
   controls.autoRotateSpeed = 0.65;
 
@@ -192,14 +210,16 @@ export function initCultureSection(quality) {
     controls.autoRotate = false;
     if (idleTimer) clearTimeout(idleTimer);
   });
-  controls.addEventListener('end', () => {
+  const resumeAutoRotate = () => {
     if (idleTimer) clearTimeout(idleTimer);
     idleTimer = setTimeout(() => {
       if (!quality.reducedMotion && !exploreState.active) {
         controls.autoRotate = true;
       }
     }, 3500);
-  });
+  };
+  controls.addEventListener('end', resumeAutoRotate);
+  canvas.addEventListener('pointercancel', resumeAutoRotate);
 
   // Studio Three-Point Lighting
   const hemiLight = new THREE.HemisphereLight(0xfaf8f5, 0x10162b, 1.35);
@@ -267,16 +287,50 @@ export function initCultureSection(quality) {
   stageGroup.add(createPedestal(OUTFIT_DATA.female.baseX, 0x2dd4bf));
   stageGroup.add(createPedestal(OUTFIT_DATA.male.baseX, 0xef3340));
 
-  // Build Nyonya & Baba Characters
-  const nyonya = buildNyonyaCharacter(OUTFIT_DATA.female.baseX, quality.geometrySegments);
-  const baba = buildBabaCharacter(OUTFIT_DATA.male.baseX, quality.geometrySegments);
-  stageGroup.add(nyonya.root);
-  stageGroup.add(baba.root);
-
+  // Build Nyonya & Baba Characters Asynchronously Across Frames (P1-2)
   const characters = {
-    female: nyonya,
-    male: baba
+    female: null,
+    male: null
   };
+
+  let charactersBuilt = false;
+  let charactersBuilding = false;
+
+  const buildCharactersAsync = async () => {
+    if (charactersBuilt || charactersBuilding) return;
+    charactersBuilding = true;
+    const t0 = performance.now();
+
+    const nyonya = buildNyonyaCharacter(OUTFIT_DATA.female.baseX, quality.geometrySegments);
+    stageGroup.add(nyonya.root);
+    characters.female = nyonya;
+
+    // Yield main thread to next frame so no task blocks > 50ms
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+
+    const baba = buildBabaCharacter(OUTFIT_DATA.male.baseX, quality.geometrySegments);
+    stageGroup.add(baba.root);
+    characters.male = baba;
+
+    charactersBuilt = true;
+    charactersBuilding = false;
+    const t1 = performance.now();
+    console.log(`[Culture3D] Characters constructed in ${(t1 - t0).toFixed(1)}ms across frames`);
+  };
+
+  // Schedule character construction when Culture section is within 800px
+  const cultureSectionEl = document.getElementById('culture');
+  if ('IntersectionObserver' in window && cultureSectionEl) {
+    const buildObserver = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        buildCharactersAsync();
+        buildObserver.disconnect();
+      }
+    }, { rootMargin: '800px 0px' });
+    buildObserver.observe(cultureSectionEl);
+  } else {
+    buildCharactersAsync();
+  }
 
   // -------------------------------------------------------------------------
   // Highlighting Helper (Emissive Glow Outline on Active Layer)
@@ -413,7 +467,8 @@ export function initCultureSection(quality) {
    * 1) Disassembles all garments outward into an exploded floating view
    * 2) Assembles Step 1 into place and focuses the camera + inspector card
    */
-  const startExploreMode = (charKey) => {
+  const startExploreMode = async (charKey) => {
+    if (!charactersBuilt) await buildCharactersAsync();
     exploreState.active = true;
     exploreState.charKey = charKey;
     exploreState.stepIndex = 0;
@@ -518,13 +573,15 @@ export function initCultureSection(quality) {
     );
   };
 
-  const resetToFullOutfits = (focusMode = 'both') => {
+  const resetToFullOutfits = async (focusMode = 'both') => {
     exploreState.active = false;
+    if (!charactersBuilt) await buildCharactersAsync();
 
     // Reassemble all layers on both characters and clear highlights
     ['female', 'male'].forEach((key) => {
       const cfg = OUTFIT_DATA[key];
       const obj = characters[key];
+      if (!obj) return;
       cfg.steps.forEach((step) => {
         const grp = obj.layers[step.id];
         if (!grp) return;
@@ -600,16 +657,71 @@ export function initCultureSection(quality) {
     });
   });
 
-  // Resize Listener
+  // Mobile Bottom Sheet Expand / Collapse Toggle (P0-1)
+  const detailToggleBtn = document.getElementById('inspector-detail-toggle');
+  const toggleText = document.getElementById('inspector-toggle-text');
+  const drawerHandle = document.querySelector('.inspector-drawer-handle');
+
+  const toggleInspectorExpand = () => {
+    if (!inspectorEl) return;
+    const isExpanded = inspectorEl.classList.toggle('is-expanded');
+    if (detailToggleBtn) detailToggleBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    if (toggleText) toggleText.textContent = isExpanded ? 'Hide Details' : 'Show Details';
+    refocus(0.3);
+  };
+
+  detailToggleBtn?.addEventListener('click', toggleInspectorExpand);
+  drawerHandle?.addEventListener('click', toggleInspectorExpand);
+
+  // 44x44px Rotate Left / Right Controls for Coarse Pointers & Accessibility (P0-3)
+  const rotateLeftBtn = document.getElementById('studio-rotate-left');
+  const rotateRightBtn = document.getElementById('studio-rotate-right');
+
+  const rotateStage = (angleDelta) => {
+    controls.autoRotate = false;
+    const offset = camera.position.clone().sub(controls.target);
+    const radius = Math.sqrt(offset.x * offset.x + offset.z * offset.z);
+    const curAngle = Math.atan2(offset.x, offset.z);
+    const targetAngle = curAngle + angleDelta;
+    const targetX = controls.target.x + radius * Math.sin(targetAngle);
+    const targetZ = controls.target.z + radius * Math.cos(targetAngle);
+
+    if (window.gsap && !quality.reducedMotion) {
+      window.gsap.to(camera.position, {
+        x: targetX,
+        z: targetZ,
+        duration: 0.5,
+        ease: 'power2.out',
+        onUpdate: () => controls.update()
+      });
+    } else {
+      camera.position.x = targetX;
+      camera.position.z = targetZ;
+      controls.update();
+    }
+    resumeAutoRotate();
+  };
+
+  rotateLeftBtn?.addEventListener('click', () => rotateStage(Math.PI / 4));
+  rotateRightBtn?.addEventListener('click', () => rotateStage(-Math.PI / 4));
+
+  // Canvas Buffer Sizing with ResizeObserver on Canvas Wrapper (P1-3)
   const handleResize = () => {
+    if (!canvasWrap || !renderer || !camera) return;
     const w = canvasWrap.clientWidth;
     const h = canvasWrap.clientHeight;
+    if (w <= 0 || h <= 0) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    const dpr = Math.min(window.devicePixelRatio || 1, quality.dpr);
+    renderer.setPixelRatio(dpr);
     renderer.setSize(w, h, false);
     refocus(0);
   };
   window.addEventListener('resize', handleResize);
+  if ('ResizeObserver' in window && canvasWrap) {
+    new ResizeObserver(handleResize).observe(canvasWrap);
+  }
 
   // Render Loop with Subtle Idle Breathing Animation
   let isActive = false;
@@ -624,9 +736,13 @@ export function initCultureSection(quality) {
     controls.update();
 
     if (!quality.reducedMotion) {
-      // Gentle breathing bob on both characters
-      nyonya.root.position.y = Math.sin(elapsed * 1.7) * 0.025;
-      baba.root.position.y = Math.sin(elapsed * 1.7 + 1.2) * 0.025;
+      // Gentle breathing bob on both characters once constructed
+      if (characters.female && characters.female.root) {
+        characters.female.root.position.y = Math.sin(elapsed * 1.7) * 0.025;
+      }
+      if (characters.male && characters.male.root) {
+        characters.male.root.position.y = Math.sin(elapsed * 1.7 + 1.2) * 0.025;
+      }
     }
 
     renderer.render(scene, camera);
@@ -635,6 +751,7 @@ export function initCultureSection(quality) {
   createVisibilityController(studioEl, (visible) => {
     isActive = visible;
     if (isActive) {
+      handleResize();
       clock.start();
       animate();
     } else if (rafId) {

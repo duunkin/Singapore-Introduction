@@ -389,16 +389,57 @@ function initEconomy3DStage(quality) {
     });
   }
 
-  // Resize Handling
+  // Resize Handling with ResizeObserver & DPR Cap (P1-3)
   const handleResize = () => {
-    if (!canvasWrap) return;
+    if (!canvasWrap || !renderer || !camera) return;
     const w = canvasWrap.clientWidth;
     const h = canvasWrap.clientHeight;
+    if (w <= 0 || h <= 0) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    const dpr = Math.min(window.devicePixelRatio || 1, quality.dpr);
+    renderer.setPixelRatio(dpr);
     renderer.setSize(w, h, false);
   };
   window.addEventListener('resize', handleResize);
+  if ('ResizeObserver' in window && canvasWrap) {
+    new ResizeObserver(handleResize).observe(canvasWrap);
+  }
+
+  // Interactive Tap-to-Toggle Hotspots & Readable Bottom Caption (P2)
+  const hotspotEls = document.querySelectorAll('.econ-hotspot');
+  const captionEl = document.getElementById('econ-hotspot-caption');
+
+  hotspotEls.forEach((spot) => {
+    const btn = spot.querySelector('.econ-hotspot__btn');
+    const card = spot.querySelector('.econ-hotspot__card');
+    if (!btn || !card) return;
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isAlreadyActive = spot.classList.contains('is-active');
+      hotspotEls.forEach((s) => s.classList.remove('is-active'));
+
+      if (!isAlreadyActive) {
+        spot.classList.add('is-active');
+        if (captionEl) {
+          const title = card.querySelector('strong')?.textContent || '';
+          const desc = card.querySelector('p')?.textContent || '';
+          captionEl.innerHTML = `<strong>${title}</strong> — ${desc}`;
+          captionEl.classList.add('is-visible');
+        }
+      } else {
+        if (captionEl) captionEl.classList.remove('is-visible');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.econ-hotspot') && !e.target.closest('.econ-hotspot-caption')) {
+      hotspotEls.forEach((s) => s.classList.remove('is-active'));
+      if (captionEl) captionEl.classList.remove('is-visible');
+    }
+  });
 
   // Render Loop Controlled by Viewport Visibility
   let isActive = false;

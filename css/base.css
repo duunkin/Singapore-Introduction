@@ -46,12 +46,12 @@
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Disciplined Modular Type Scale — Tamed for Mobile (390px) */
-  --text-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.84rem);   /* Min 12px floor for readability */
-  --text-sm: clamp(0.86rem, 0.82rem + 0.2vw, 0.96rem);
-  --text-base: clamp(0.96rem, 0.92rem + 0.2vw, 1.08rem);
-  --text-lg: clamp(1.12rem, 1.04rem + 0.4vw, 1.28rem);
-  --text-xl: clamp(1.22rem, 1.12rem + 0.6vw, 1.55rem);
-  --text-2xl: clamp(1.48rem, 1.28rem + 1.1vw, 2.35rem);  /* Capped for max 2-line mobile wraps */
+  --text-xs: clamp(0.75rem, 0.73rem + 0.1vw, 0.84rem);   /* Strict 12px min floor */
+  --text-sm: clamp(0.875rem, 0.86rem + 0.1vw, 0.96rem); /* Strict 14px min secondary */
+  --text-base: clamp(1rem, 0.98rem + 0.1vw, 1.125rem);   /* Strict 16px min body text */
+  --text-lg: clamp(1.125rem, 1.06rem + 0.3vw, 1.3rem);
+  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.6rem);
+  --text-2xl: clamp(1.5rem, 1.32rem + 0.9vw, 2.35rem);  /* Capped for max 2-line mobile wraps */
   --text-hero: clamp(2.2rem, 1.6rem + 3.2vw, 4.4rem);
 
   /* Spacing & Layout Rhythm */
@@ -238,7 +238,7 @@ ul {
   background: var(--sg-red-soft);
   color: var(--sg-red-text);
   font-weight: 600;
-  font-size: 0.72rem;
+  font-size: var(--text-xs);
 }
 
 .section-title {

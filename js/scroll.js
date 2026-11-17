@@ -7,6 +7,8 @@ export function initScrollSystem(quality) {
   const hasGSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
   if (hasGSAP) {
     window.gsap.registerPlugin(window.ScrollTrigger);
+    // Prevent mobile URL bar collapse from thrashing ScrollTrigger calculations
+    window.ScrollTrigger.config({ ignoreMobileResize: true });
   }
 
   let lenis = null;
@@ -91,11 +93,12 @@ export function initScrollSystem(quality) {
   window.addEventListener('scroll', updateScrollHUD, { passive: true });
   updateScrollHUD();
 
-  // Scroll-Driven Editorial Reveals & Animated Counters
+  // Scroll-Driven Editorial Reveals & Animated Counters with Failsafe
+  const revealEls = document.querySelectorAll('[data-reveal]');
   if (hasGSAP && !quality.reducedMotion) {
-    const revealEls = document.querySelectorAll('[data-reveal]');
+    document.documentElement.classList.add('js-reveal');
     revealEls.forEach((el) => {
-      window.gsap.fromTo(
+      const tween = window.gsap.fromTo(
         el,
         { y: 28, opacity: 0 },
         {
@@ -106,11 +109,56 @@ export function initScrollSystem(quality) {
           scrollTrigger: {
             trigger: el,
             start: 'top 88%',
-            toggleActions: 'play none none none'
+            toggleActions: 'play none none none',
+            onEnter: () => el.classList.add('is-revealed')
           }
         }
       );
     });
+
+    // Failsafe: IntersectionObserver ensures fast-scrolling/anchor-jumped elements are revealed
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const target = entry.target;
+              if (window.gsap) {
+                window.gsap.to(target, { y: 0, opacity: 1, duration: 0.35, overwrite: 'auto' });
+              } else {
+                target.style.opacity = '1';
+                target.style.transform = 'none';
+              }
+              target.classList.add('is-revealed');
+              revealObserver.unobserve(target);
+            }
+          });
+        },
+        { threshold: 0.05, rootMargin: '50px' }
+      );
+      revealEls.forEach((el) => revealObserver.observe(el));
+    }
+
+    // Hard failsafe: Reveal everything after 3s so nothing is ever stuck hidden
+    setTimeout(() => {
+      revealEls.forEach((el) => {
+        if (!el.classList.contains('is-revealed')) {
+          if (window.gsap) {
+            window.gsap.to(el, { y: 0, opacity: 1, duration: 0.4, overwrite: 'auto' });
+          } else {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          }
+          el.classList.add('is-revealed');
+        }
+      });
+    }, 3000);
+  } else {
+    revealEls.forEach((el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
 
     // Numeric Counter (e.g., 80%+ HDB)
     const counterEls = document.querySelectorAll('[data-count-target]');

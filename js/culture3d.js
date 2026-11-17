@@ -11,7 +11,9 @@
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { createVisibilityController } from './quality.js';
+import { buildNyonyaCharacter, buildBabaCharacter } from './characters.js';
 
 /* ==========================================================================
    1. CULTURAL LAYER DATA (NYONYA 6 STEPS, BABA 5 STEPS)
@@ -26,54 +28,48 @@ const OUTFIT_DATA = {
         title: '1. Base Undergarment Layer',
         what: 'A fitted, breathable cotton inner camisole and petticoat that form a modest, smooth foundation beneath the sheer outer blouse.',
         how: 'Worn snugly against the torso before wrapping the sarong or draping the delicate kebaya.',
-        camTarget: { x: -1.65, y: 2.25, z: 0 },
-        camOffset: { x: 0.15, y: 2.4, z: 3.4 },
-        explodedOffset: { x: 0, y: 0, z: -0.9 }
+        focus: { y: 1.75, halfH: 1.45 },
+        enter: { x: 0, y: 0.9, z: 0 }
       },
       {
         id: 'sarong',
         title: '2. Batik Sarong',
         what: 'A vibrant tubular length of hand-waxed Peranakan batik cotton featuring auspicious floral bouquets and pastel-vivid coastal dyes.',
         how: 'Wrapped around the waist, pleated neatly across the front panel, and secured firmly at the hip.',
-        camTarget: { x: -1.65, y: 1.25, z: 0 },
-        camOffset: { x: 0.2, y: 1.45, z: 3.3 },
-        explodedOffset: { x: -1.1, y: -0.25, z: 0.4 }
+        focus: { y: 1.15, halfH: 1.15 },
+        enter: { x: -1.2, y: -0.2, z: 0.2 }
       },
       {
         id: 'kebaya',
         title: '3. Nyonya Kebaya & Selendang',
         what: 'A tailored, semi-sheer blouse bordered with intricate cutwork embroidery (sulam) paired with a draped shoulder shawl (selendang).',
         how: 'Worn open at the front over the sarong waist with scalloped lace hems resting gracefully over the hips.',
-        camTarget: { x: -1.65, y: 2.35, z: 0 },
-        camOffset: { x: 0.25, y: 2.5, z: 3.1 },
-        explodedOffset: { x: 1.15, y: 0.35, z: 0.45 }
+        focus: { y: 2.15, halfH: 1.0 },
+        enter: { x: 1.2, y: 0.4, z: 0.2 }
       },
       {
         id: 'kerongsang',
         title: '4. Kerongsang Brooch Set',
         what: 'Three ornate gold-and-gemstone filigree brooches (ibu and anak) linked together by fine metallic chains.',
         how: 'Pinned vertically down the open front lapels of the kebaya—replacing buttons—to fasten the blouse securely.',
-        camTarget: { x: -1.65, y: 2.38, z: 0.25 },
-        camOffset: { x: 0.05, y: 2.45, z: 2.25 },
-        explodedOffset: { x: 0, y: 0.25, z: 1.35 }
+        focus: { y: 2.3, halfH: 0.55 },
+        enter: { x: 0.9, y: 0.2, z: 0.4 }
       },
       {
         id: 'sanggul',
         title: '5. Sanggul Bun & Cucuk Sanggul',
         what: 'A sculpted chignon hairstyle crowned with three gold-plated decorative hairpins (cucuk sanggul) embossed with floral motifs.',
         how: 'Hair is coiled tightly at the crown and secured with the fan of gilded pins radiating from the bun.',
-        camTarget: { x: -1.65, y: 3.35, z: 0 },
-        camOffset: { x: 0.15, y: 3.5, z: 2.35 },
-        explodedOffset: { x: 0, y: 1.15, z: 0 }
+        focus: { y: 3.25, halfH: 0.5 },
+        enter: { x: 0, y: 0.9, z: -0.5 }
       },
       {
         id: 'kasut',
         title: '6. Kasut Manek (Beaded Slippers)',
         what: 'Handcrafted velvet-backed slippers stitched with thousands of tiny faceted glass cut beads in Peranakan floral and geometric patterns.',
         how: 'Slipped onto the feet as the finishing jewel of the Nyonya ensemble for weddings and festive occasions.',
-        camTarget: { x: -1.65, y: 0.3, z: 0.2 },
-        camOffset: { x: 0.2, y: 0.75, z: 2.45 },
-        explodedOffset: { x: 0, y: -0.85, z: 1.1 }
+        focus: { y: 0.35, halfH: 0.55 },
+        enter: { x: 0, y: 0.7, z: 0.6 }
       }
     ]
   },
@@ -86,573 +82,44 @@ const OUTFIT_DATA = {
         title: '1. Undershirt Base Layer',
         what: 'A crisp, collarless white cotton undershirt engineered for tropical comfort in the Straits climate.',
         how: 'Worn beneath the outer tunic to absorb moisture and preserve the structure of fine silk or cotton outerwear.',
-        camTarget: { x: 1.65, y: 2.35, z: 0 },
-        camOffset: { x: -0.15, y: 2.5, z: 3.4 },
-        explodedOffset: { x: 0, y: 0, z: -0.9 }
+        focus: { y: 1.8, halfH: 1.55 },
+        enter: { x: 0, y: 0.9, z: 0 }
       },
       {
         id: 'trousers',
         title: '2. Silk Trousers & Batik Panel',
         what: 'Loose-cut traditional trousers paired with a batik waist wrap reflecting both Chinese tailoring and Malay textile heritage.',
         how: 'Fastened comfortably at the waist, allowing unrestricted airflow and ease of movement.',
-        camTarget: { x: 1.65, y: 1.25, z: 0 },
-        camOffset: { x: -0.2, y: 1.45, z: 3.35 },
-        explodedOffset: { x: 1.1, y: -0.25, z: 0.35 }
+        focus: { y: 1.0, halfH: 1.2 },
+        enter: { x: 1.2, y: -0.1, z: 0.2 }
       },
       {
         id: 'baju',
         title: '3. Baju Panjang (Long Tunic)',
         what: 'A generous, knee-length tunic coat featuring wide sleeves and subtle brocade or batik-inspired trim.',
         how: 'Draped loosely over the undershirt and trousers for formal community gatherings and ancestral ceremonies.',
-        camTarget: { x: 1.65, y: 2.2, z: 0 },
-        camOffset: { x: -0.25, y: 2.4, z: 3.25 },
-        explodedOffset: { x: -1.15, y: 0.3, z: 0.45 }
+        focus: { y: 2.2, halfH: 1.15 },
+        enter: { x: -1.2, y: 0.3, z: 0.2 }
       },
       {
         id: 'headwear',
         title: '4. Sash Belt & Songkok-Style Cap',
         what: 'An embroidered waist sash paired with a structured velvet songkok-style cap or traditional skullcap.',
         how: 'The sash cinches the waist over the tunic while the cap crowns the head as a mark of respect and dignity.',
-        camTarget: { x: 1.65, y: 2.95, z: 0 },
-        camOffset: { x: -0.15, y: 3.15, z: 2.85 },
-        explodedOffset: { x: 0, y: 1.1, z: 0.55 }
+        focus: { y: 2.65, halfH: 1.0 },
+        enter: { x: 0, y: 0.9, z: 0.3 }
       },
       {
         id: 'footwear',
         title: '5. Embroidered Baba Footwear',
         what: 'Structured cloth and leather slippers adorned with auspicious gold-thread motifs.',
         how: 'Worn with light socks or bare ankles to complete the dignified Straits Chinese gentleman’s attire.',
-        camTarget: { x: 1.65, y: 0.3, z: 0.2 },
-        camOffset: { x: -0.2, y: 0.75, z: 2.5 },
-        explodedOffset: { x: 0, y: -0.85, z: 1.1 }
+        focus: { y: 0.35, halfH: 0.55 },
+        enter: { x: 0, y: 0.7, z: 0.6 }
       }
     ]
   }
 };
-
-/* ==========================================================================
-   2. PROCEDURAL PERANAKAN CANVAS TEXTURE GENERATORS
-   ========================================================================== */
-function createBatikTexture(bgHex, primaryHex, secondaryHex, goldHex) {
-  const canvas = document.createElement('canvas');
-  canvas.width = 512;
-  canvas.height = 512;
-  const ctx = canvas.getContext('2d');
-
-  ctx.fillStyle = bgHex;
-  ctx.fillRect(0, 0, 512, 512);
-
-  // Diagonal Peranakan lattice (pucuk rebung / geometric batik grid)
-  ctx.strokeStyle = goldHex;
-  ctx.lineWidth = 2;
-  ctx.globalAlpha = 0.35;
-  for (let i = -512; i < 1024; i += 48) {
-    ctx.beginPath();
-    ctx.moveTo(i, 0);
-    ctx.lineTo(i + 512, 512);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(i + 512, 0);
-    ctx.lineTo(i, 512);
-    ctx.stroke();
-  }
-
-  // Floral Rosettes & Foliage Dots
-  ctx.globalAlpha = 0.92;
-  for (let y = 48; y < 512; y += 96) {
-    for (let x = 48; x < 512; x += 96) {
-      // Petals
-      for (let p = 0; p < 6; p++) {
-        const angle = (p * Math.PI) / 3;
-        const px = x + Math.cos(angle) * 16;
-        const py = y + Math.sin(angle) * 16;
-        ctx.fillStyle = p % 2 === 0 ? primaryHex : secondaryHex;
-        ctx.beginPath();
-        ctx.arc(px, py, 9, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      // Gold stamen center
-      ctx.fillStyle = goldHex;
-      ctx.beginPath();
-      ctx.arc(x, y, 6, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  // Bottom Tumpal Border Triangles
-  ctx.fillStyle = goldHex;
-  ctx.globalAlpha = 0.65;
-  for (let x = 0; x < 512; x += 32) {
-    ctx.beginPath();
-    ctx.moveTo(x, 500);
-    ctx.lineTo(x + 16, 440);
-    ctx.lineTo(x + 32, 500);
-    ctx.closePath();
-    ctx.fill();
-  }
-
-  const tex = new THREE.CanvasTexture(canvas);
-  tex.wrapS = THREE.RepeatWrapping;
-  tex.wrapT = THREE.RepeatWrapping;
-  tex.repeat.set(2, 1.5);
-  return tex;
-}
-
-function createKebayaLaceTexture(baseHex, embroideryHex) {
-  const canvas = document.createElement('canvas');
-  canvas.width = 512;
-  canvas.height = 512;
-  const ctx = canvas.getContext('2d');
-
-  // Semi-sheer fabric body
-  ctx.fillStyle = baseHex;
-  ctx.globalAlpha = 0.88;
-  ctx.fillRect(0, 0, 512, 460);
-
-  // Scalloped cutwork lace hem at bottom
-  ctx.globalAlpha = 1.0;
-  ctx.fillStyle = embroideryHex;
-  for (let x = 16; x < 512; x += 32) {
-    ctx.beginPath();
-    ctx.arc(x, 456, 16, 0, Math.PI);
-    ctx.fill();
-  }
-
-  // Sulam floral vine embroidery along front & hem
-  ctx.strokeStyle = embroideryHex;
-  ctx.lineWidth = 4;
-  for (let y = 60; y < 440; y += 64) {
-    for (let x = 40; x < 512; x += 80) {
-      ctx.beginPath();
-      ctx.arc(x, y, 10, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-  }
-
-  const tex = new THREE.CanvasTexture(canvas);
-  tex.wrapS = THREE.RepeatWrapping;
-  tex.wrapT = THREE.ClampToEdgeWrapping;
-  return tex;
-}
-
-/* ==========================================================================
-   3. MODULAR PROCEDURAL CHARACTER BUILDERS
-   ========================================================================== */
-function buildNyonyaCharacter(xPos, segments) {
-  const root = new THREE.Group();
-  root.position.set(xPos, 0, 0);
-
-  const skinMat = new THREE.MeshStandardMaterial({
-    color: 0xe8be9e,
-    roughness: 0.55,
-    metalness: 0.05
-  });
-  const hairMat = new THREE.MeshStandardMaterial({
-    color: 0x17141d,
-    roughness: 0.4,
-    metalness: 0.2
-  });
-
-  // Base Mannequin Body (Head, Neck, Arms, Legs — always visible)
-  const mannequin = new THREE.Group();
-  mannequin.name = 'mannequin_female';
-
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.29, segments, segments), skinMat);
-  head.position.set(0, 3.05, 0);
-  head.scale.set(0.92, 1.08, 0.95);
-  mannequin.add(head);
-
-  const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.13, 0.28, 14), skinMat);
-  neck.position.set(0, 2.72, 0);
-  mannequin.add(neck);
-
-  // Forearms & Hands
-  [-0.48, 0.48].forEach((ax, idx) => {
-    const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.07, 0.95, 12), skinMat);
-    arm.position.set(ax, 2.08, 0.04);
-    arm.rotation.z = idx === 0 ? 0.16 : -0.16;
-    mannequin.add(arm);
-
-    const hand = new THREE.Mesh(new THREE.SphereGeometry(0.08, 12, 12), skinMat);
-    hand.position.set(ax * 1.15, 1.58, 0.08);
-    mannequin.add(hand);
-  });
-
-  // Lower Ankles
-  [-0.17, 0.17].forEach((lx) => {
-    const ankle = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.65, 12), skinMat);
-    ankle.position.set(lx, 0.42, 0);
-    mannequin.add(ankle);
-  });
-
-  root.add(mannequin);
-
-  // Map of Modular Outfit Layer Groups (replaceable by .glb nodes later)
-  const layers = {};
-
-  // LAYER 1: Base Undergarment Camisole
-  const baseGroup = new THREE.Group();
-  const baseMat = new THREE.MeshStandardMaterial({
-    color: 0xfdfBF7,
-    roughness: 0.6,
-    metalness: 0.05
-  });
-  const camisole = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.32, 0.28, 0.88, segments),
-    baseMat
-  );
-  camisole.position.set(0, 2.18, 0);
-  camisole.scale.set(1.05, 1, 0.78);
-  baseGroup.add(camisole);
-  layers.base = baseGroup;
-  root.add(baseGroup);
-
-  // LAYER 2: Batik Sarong
-  const sarongGroup = new THREE.Group();
-  const sarongTex = createBatikTexture('#115e59', '#f472b6', '#2dd4bf', '#fbbf24');
-  const sarongMat = new THREE.MeshStandardMaterial({
-    map: sarongTex,
-    roughness: 0.5,
-    metalness: 0.12
-  });
-  const sarongSkirt = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.31, 0.42, 1.48, segments),
-    sarongMat
-  );
-  sarongSkirt.position.set(0, 1.12, 0);
-  sarongSkirt.scale.set(1.04, 1, 0.84);
-  sarongGroup.add(sarongSkirt);
-
-  // Front Batik Pleat Panel (Kepala Sarong)
-  const pleatPanel = new THREE.Mesh(new THREE.BoxGeometry(0.24, 1.49, 0.04), sarongMat);
-  pleatPanel.position.set(0, 1.12, 0.34);
-  sarongGroup.add(pleatPanel);
-  layers.sarong = sarongGroup;
-  root.add(sarongGroup);
-
-  // LAYER 3: Embroidered Nyonya Kebaya + Draped Selendang Shawl
-  const kebayaGroup = new THREE.Group();
-  const kebayaTex = createKebayaLaceTexture('#fbcfe8', '#f43f5e');
-  const kebayaMat = new THREE.MeshStandardMaterial({
-    map: kebayaTex,
-    color: 0xffd6e7,
-    roughness: 0.42,
-    metalness: 0.1,
-    transparent: true,
-    opacity: 0.94,
-    side: THREE.DoubleSide
-  });
-
-  const kebayaBodice = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.36, 0.41, 0.96, segments, 1, true),
-    kebayaMat
-  );
-  kebayaBodice.position.set(0, 2.12, 0);
-  kebayaBodice.scale.set(1.06, 1, 0.84);
-  kebayaGroup.add(kebayaBodice);
-
-  // Kebaya Long Sleeves
-  [-0.46, 0.46].forEach((sx, idx) => {
-    const sleeve = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.115, 0.13, 0.72, 16),
-      kebayaMat
-    );
-    sleeve.position.set(sx, 2.18, 0.03);
-    sleeve.rotation.z = idx === 0 ? 0.16 : -0.16;
-    kebayaGroup.add(sleeve);
-  });
-
-  // Embroidered V-Lapel Collar
-  const lapelMat = new THREE.MeshStandardMaterial({
-    color: 0xf43f5e,
-    roughness: 0.35,
-    metalness: 0.25
-  });
-  [-0.09, 0.09].forEach((lx, idx) => {
-    const lapel = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.85, 0.03), lapelMat);
-    lapel.position.set(lx, 2.15, 0.31);
-    lapel.rotation.z = idx === 0 ? -0.08 : 0.08;
-    kebayaGroup.add(lapel);
-  });
-
-  // Selendang (Turquoise Shoulder Shawl)
-  const shawlMat = new THREE.MeshStandardMaterial({
-    color: 0x2dd4bf,
-    roughness: 0.45,
-    metalness: 0.15
-  });
-  const shawl = new THREE.Mesh(new THREE.TorusGeometry(0.36, 0.055, 10, 24, Math.PI * 1.15), shawlMat);
-  shawl.position.set(-0.12, 2.48, 0.05);
-  shawl.rotation.set(1.3, 0.3, -0.4);
-  kebayaGroup.add(shawl);
-
-  layers.kebaya = kebayaGroup;
-  root.add(kebayaGroup);
-
-  // LAYER 4: Kerongsang (Three Linked Gold Brooches)
-  const kerongsangGroup = new THREE.Group();
-  const goldMat = new THREE.MeshStandardMaterial({
-    color: 0xfbbf24,
-    roughness: 0.18,
-    metalness: 0.92,
-    emissive: 0x78350f,
-    emissiveIntensity: 0.2
-  });
-
-  [2.42, 2.22, 2.02].forEach((by, idx) => {
-    const brooch = new THREE.Mesh(
-      new THREE.OctahedronGeometry(idx === 0 ? 0.065 : 0.05, 1),
-      goldMat
-    );
-    brooch.position.set(0, by, 0.35);
-    brooch.scale.set(1.2, 1.2, 0.45);
-    kerongsangGroup.add(brooch);
-  });
-
-  // Fine Linking Chain
-  const chain = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.42, 8), goldMat);
-  chain.position.set(0.035, 2.22, 0.35);
-  kerongsangGroup.add(chain);
-
-  layers.kerongsang = kerongsangGroup;
-  root.add(kerongsangGroup);
-
-  // LAYER 5: Sanggul Bun & Cucuk Sanggul Gold Hairpins
-  const sanggulGroup = new THREE.Group();
-  const hairCap = new THREE.Mesh(
-    new THREE.SphereGeometry(0.305, segments, segments, 0, Math.PI * 2, 0, Math.PI * 0.62),
-    hairMat
-  );
-  hairCap.position.set(0, 3.07, -0.02);
-  sanggulGroup.add(hairCap);
-
-  const bun = new THREE.Mesh(new THREE.SphereGeometry(0.16, 16, 16), hairMat);
-  bun.position.set(0, 3.36, -0.1);
-  bun.scale.set(1.15, 0.85, 1.1);
-  sanggulGroup.add(bun);
-
-  // Three Radiating Gold Hairpins (Cucuk Sanggul)
-  [-0.38, 0, 0.38].forEach((angle) => {
-    const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.004, 0.34, 8), goldMat);
-    pin.position.set(Math.sin(angle) * 0.16, 3.48, -0.1);
-    pin.rotation.z = -angle;
-    sanggulGroup.add(pin);
-
-    const pinHead = new THREE.Mesh(new THREE.SphereGeometry(0.032, 10, 10), goldMat);
-    pinHead.position.set(Math.sin(angle) * 0.25, 3.62, -0.1);
-    sanggulGroup.add(pinHead);
-  });
-
-  layers.sanggul = sanggulGroup;
-  root.add(sanggulGroup);
-
-  // LAYER 6: Kasut Manek (Beaded Slippers)
-  const kasutGroup = new THREE.Group();
-  const kasutMat = new THREE.MeshStandardMaterial({
-    color: 0x2dd4bf,
-    roughness: 0.3,
-    metalness: 0.35
-  });
-
-  [-0.17, 0.17].forEach((kx) => {
-    const shoe = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.09, 0.34), kasutMat);
-    shoe.position.set(kx, 0.08, 0.06);
-    kasutGroup.add(shoe);
-
-    const beadTop = new THREE.Mesh(new THREE.BoxGeometry(0.155, 0.03, 0.18), goldMat);
-    beadTop.position.set(kx, 0.13, 0.09);
-    kasutGroup.add(beadTop);
-  });
-
-  layers.kasut = kasutGroup;
-  root.add(kasutGroup);
-
-  return { root, layers, mannequin };
-}
-
-function buildBabaCharacter(xPos, segments) {
-  const root = new THREE.Group();
-  root.position.set(xPos, 0, 0);
-
-  const skinMat = new THREE.MeshStandardMaterial({
-    color: 0xe2b492,
-    roughness: 0.55,
-    metalness: 0.05
-  });
-
-  // Base Mannequin
-  const mannequin = new THREE.Group();
-  mannequin.name = 'mannequin_male';
-
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.3, segments, segments), skinMat);
-  head.position.set(0, 3.12, 0);
-  head.scale.set(0.94, 1.08, 0.96);
-  mannequin.add(head);
-
-  const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.28, 14), skinMat);
-  neck.position.set(0, 2.78, 0);
-  mannequin.add(neck);
-
-  [-0.54, 0.54].forEach((ax, idx) => {
-    const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.08, 0.98, 12), skinMat);
-    arm.position.set(ax, 2.1, 0.03);
-    arm.rotation.z = idx === 0 ? 0.14 : -0.14;
-    mannequin.add(arm);
-
-    const hand = new THREE.Mesh(new THREE.SphereGeometry(0.085, 12, 12), skinMat);
-    hand.position.set(ax * 1.12, 1.56, 0.06);
-    mannequin.add(hand);
-  });
-
-  root.add(mannequin);
-
-  const layers = {};
-
-  // LAYER 1: Cotton Undershirt Base
-  const baseGroup = new THREE.Group();
-  const baseMat = new THREE.MeshStandardMaterial({
-    color: 0xf8fafc,
-    roughness: 0.65,
-    metalness: 0.05
-  });
-  const undershirt = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.36, 0.34, 0.96, segments),
-    baseMat
-  );
-  undershirt.position.set(0, 2.22, 0);
-  undershirt.scale.set(1.08, 1, 0.82);
-  baseGroup.add(undershirt);
-  layers.base = baseGroup;
-  root.add(baseGroup);
-
-  // LAYER 2: Silk Trousers & Batik Panel
-  const trousersGroup = new THREE.Group();
-  const trouserTex = createBatikTexture('#1e1b4b', '#38bdf8', '#f59e0b', '#fde68a');
-  const trouserMat = new THREE.MeshStandardMaterial({
-    map: trouserTex,
-    roughness: 0.48,
-    metalness: 0.15
-  });
-
-  [-0.19, 0.19].forEach((tx) => {
-    const leg = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.165, 0.145, 1.48, 16),
-      trouserMat
-    );
-    leg.position.set(tx, 0.92, 0);
-    trousersGroup.add(leg);
-  });
-
-  const waistWrap = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.37, 0.39, 0.55, segments),
-    trouserMat
-  );
-  waistWrap.position.set(0, 1.55, 0);
-  waistWrap.scale.set(1.06, 1, 0.84);
-  trousersGroup.add(waistWrap);
-
-  layers.trousers = trousersGroup;
-  root.add(trousersGroup);
-
-  // LAYER 3: Baju Panjang (Long Loose Tunic)
-  const bajuGroup = new THREE.Group();
-  const bajuTex = createBatikTexture('#0f2942', '#2dd4bf', '#f59e0b', '#fbbf24');
-  const bajuMat = new THREE.MeshStandardMaterial({
-    map: bajuTex,
-    color: 0xe2e8f0,
-    roughness: 0.42,
-    metalness: 0.18
-  });
-
-  const tunic = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.41, 0.48, 1.46, segments),
-    bajuMat
-  );
-  tunic.position.set(0, 1.96, 0);
-  tunic.scale.set(1.08, 1, 0.86);
-  bajuGroup.add(tunic);
-
-  // Wide Tunic Sleeves
-  [-0.52, 0.52].forEach((sx, idx) => {
-    const sleeve = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.135, 0.16, 0.78, 16),
-      bajuMat
-    );
-    sleeve.position.set(sx, 2.2, 0.03);
-    sleeve.rotation.z = idx === 0 ? 0.15 : -0.15;
-    bajuGroup.add(sleeve);
-  });
-
-  layers.baju = bajuGroup;
-  root.add(bajuGroup);
-
-  // LAYER 4: Embroidered Sash Belt & Songkok-Style Cap
-  const headwearGroup = new THREE.Group();
-  const velvetMat = new THREE.MeshStandardMaterial({
-    color: 0x111827,
-    roughness: 0.7,
-    metalness: 0.1
-  });
-  const goldTrimMat = new THREE.MeshStandardMaterial({
-    color: 0xf59e0b,
-    roughness: 0.25,
-    metalness: 0.85
-  });
-
-  // Songkok Cap
-  const songkok = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.27, 0.29, 0.26, 20),
-    velvetMat
-  );
-  songkok.position.set(0, 3.4, 0);
-  songkok.scale.set(0.92, 1, 1.04);
-  headwearGroup.add(songkok);
-
-  const capBand = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.285, 0.292, 0.045, 20),
-    goldTrimMat
-  );
-  capBand.position.set(0, 3.3, 0);
-  capBand.scale.set(0.92, 1, 1.04);
-  headwearGroup.add(capBand);
-
-  // Waist Sash Belt
-  const sash = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.435, 0.445, 0.18, segments),
-    goldTrimMat
-  );
-  sash.position.set(0, 1.92, 0);
-  sash.scale.set(1.08, 1, 0.87);
-  headwearGroup.add(sash);
-
-  layers.headwear = headwearGroup;
-  root.add(headwearGroup);
-
-  // LAYER 5: Baba Embroidered Footwear
-  const footwearGroup = new THREE.Group();
-  const shoeMat = new THREE.MeshStandardMaterial({
-    color: 0x1e293b,
-    roughness: 0.4,
-    metalness: 0.3
-  });
-
-  [-0.19, 0.19].forEach((fx) => {
-    const shoe = new THREE.Mesh(new THREE.BoxGeometry(0.17, 0.11, 0.38), shoeMat);
-    shoe.position.set(fx, 0.09, 0.07);
-    footwearGroup.add(shoe);
-
-    const crest = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.03, 0.16), goldTrimMat);
-    crest.position.set(fx, 0.15, 0.11);
-    footwearGroup.add(crest);
-  });
-
-  layers.footwear = footwearGroup;
-  root.add(footwearGroup);
-
-  return { root, layers, mannequin };
-}
-
 /* ==========================================================================
    4. MAIN STUDIO INITIALIZATION & EXPLORE ASSEMBLY CONTROLLER
    ========================================================================== */
@@ -689,6 +156,8 @@ export function initCultureSection(quality) {
   renderer.setSize(canvasWrap.clientWidth, canvasWrap.clientHeight, false);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.2;
+  renderer.shadowMap.enabled = !!quality.shadows;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   const scene = new THREE.Scene();
 
@@ -710,8 +179,8 @@ export function initCultureSection(quality) {
   controls.enableDamping = true;
   controls.dampingFactor = 0.06;
   controls.enablePan = false;
-  controls.minDistance = 2.1;
-  controls.maxDistance = 12.0;
+  controls.minDistance = 1.6;
+  controls.maxDistance = 16;
   controls.minPolarAngle = Math.PI * 0.18;
   controls.maxPolarAngle = Math.PI * 0.52;
   controls.autoRotate = !quality.reducedMotion;
@@ -738,6 +207,12 @@ export function initCultureSection(quality) {
 
   const keyLight = new THREE.DirectionalLight(0xfff7ed, 2.2);
   keyLight.position.set(5, 8, 6);
+  keyLight.castShadow = !!quality.shadows;
+  keyLight.shadow.mapSize.set(quality.shadowMapSize, quality.shadowMapSize);
+  const sc = keyLight.shadow.camera;
+  sc.left = -4.5; sc.right = 4.5; sc.top = 5; sc.bottom = -1; sc.near = 1; sc.far = 22;
+  keyLight.shadow.bias = -0.0004;
+  keyLight.shadow.normalBias = 0.02;
   scene.add(keyLight);
 
   const tealRimLight = new THREE.PointLight(0x2dd4bf, 3.2, 16);
@@ -747,6 +222,13 @@ export function initCultureSection(quality) {
   const pinkRimLight = new THREE.PointLight(0xef3340, 2.8, 16);
   pinkRimLight.position.set(4.5, 4.2, -3.5);
   scene.add(pinkRimLight);
+
+  if (quality.tier !== 'LOW') {
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    hemiLight.intensity = 0.55;
+    keyLight.intensity = 1.9;
+  }
 
   // Studio Stage Floor & Glowing Pedestal Rings
   const stageGroup = new THREE.Group();
@@ -764,6 +246,7 @@ export function initCultureSection(quality) {
         metalness: 0.8
       })
     );
+    disc.receiveShadow = true;
     disc.position.y = -0.04;
     pGroup.add(disc);
 
@@ -844,6 +327,62 @@ export function initCultureSection(quality) {
     }
   };
 
+  // ---- Framing: fit a region into the part of the canvas NOT covered by the inspector ----
+  const viewShift = { b: 0, r: 0 };
+  let lastFocus = null;
+
+  const getCovered = () => {
+    if (!inspectorEl || inspectorEl.classList.contains('is-hidden')) return { b: 0, r: 0 };
+    // mobile: bottom sheet covers the bottom; desktop: side panel covers the right
+    return window.innerWidth <= 640
+      ? { b: inspectorEl.offsetHeight, r: 0 }
+      : { b: 0, r: inspectorEl.offsetWidth + 24 };
+  };
+
+  const applyViewShift = () => {
+    const w = canvasWrap.clientWidth;
+    const h = canvasWrap.clientHeight;
+    if (viewShift.b < 0.5 && viewShift.r < 0.5) camera.clearViewOffset();
+    else camera.setViewOffset(w, h, viewShift.r / 2, viewShift.b / 2, w, h);
+  };
+
+  const fitDistance = (halfH, halfW) => {
+    const w = canvasWrap.clientWidth;
+    const h = canvasWrap.clientHeight;
+    const c = getCovered();
+    const fracH = Math.max(0.35, (h - c.b) / h);
+    const fracW = Math.max(0.35, (w - c.r) / w);
+    const t = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    return 1.08 * Math.max(halfH / (t * fracH), halfW / (t * camera.aspect * fracW));
+  };
+
+  const focusOn = (cx, cy, halfH, halfW, duration = 0.8, az = 0.1) => {
+    const dist = fitDistance(halfH, halfW);
+    moveCameraTo(
+      new THREE.Vector3(cx + dist * az, cy + dist * 0.06, dist),
+      new THREE.Vector3(cx, cy, 0),
+      duration
+    );
+    const c = getCovered();
+    if (window.gsap && !quality.reducedMotion && duration > 0) {
+      window.gsap.to(viewShift, { b: c.b, r: c.r, duration, ease: 'power3.out', onUpdate: applyViewShift });
+    } else {
+      viewShift.b = c.b; viewShift.r = c.r; applyViewShift();
+    }
+    lastFocus = { cx, cy, halfH, halfW, az };
+  };
+
+  const refocus = (duration = 0) => {
+    if (lastFocus) focusOn(lastFocus.cx, lastFocus.cy, lastFocus.halfH, lastFocus.halfW, duration, lastFocus.az);
+  };
+
+  if (inspectorEl && 'ResizeObserver' in window) {
+    new ResizeObserver(() => refocus(0.3)).observe(inspectorEl);
+  }
+
+  // initial wide view of both characters (replaces the old defaultCamPos / defaultLookTarget framing)
+  focusOn(0, 1.75, 1.95, 2.4, 0);
+
   // -------------------------------------------------------------------------
   // Explore / Layer-by-Layer Assembly State Machine
   // -------------------------------------------------------------------------
@@ -898,21 +437,15 @@ export function initCultureSection(quality) {
       const grp = charObj.layers[step.id];
       if (!grp) return;
       setLayerHighlight(grp, false);
-      if (window.gsap && !quality.reducedMotion) {
-        window.gsap.to(grp.position, {
-          x: step.explodedOffset.x,
-          y: step.explodedOffset.y,
-          z: step.explodedOffset.z,
-          duration: 0.42,
-          ease: 'power2.out'
-        });
-      }
+      if (window.gsap) window.gsap.killTweensOf(grp.position);
+      grp.visible = false;
+      grp.position.set(step.enter.x, step.enter.y, step.enter.z);
     });
 
     // Then: assemble Step 0 onto the character after brief exploded preview
     setTimeout(() => {
       goToAssemblyStep(0);
-    }, quality.reducedMotion ? 10 : 360);
+    }, quality.reducedMotion ? 10 : 250);
   };
 
   const goToAssemblyStep = (stepIdx) => {
@@ -944,53 +477,43 @@ export function initCultureSection(quality) {
 
     renderStepDots(config.steps, clampedIdx);
 
-    // Animate each layer:
-    // - Layers <= clampedIdx assemble onto the body (0,0,0)
-    // - Layers > clampedIdx stay floating in exploded positions
     config.steps.forEach((step, idx) => {
       const grp = charObj.layers[step.id];
       if (!grp) return;
+      const assembled = idx <= clampedIdx;
+      const isCurrent = idx === clampedIdx;
+      const animate = window.gsap && !quality.reducedMotion;
+      if (animate) window.gsap.killTweensOf(grp.position);
 
-      const isAssembled = idx <= clampedIdx;
-      const isCurrentActive = idx === clampedIdx;
-
-      const targetPos = isAssembled
-        ? { x: 0, y: 0, z: 0 }
-        : step.explodedOffset;
-
-      if (window.gsap && !quality.reducedMotion) {
-        window.gsap.to(grp.position, {
-          x: targetPos.x,
-          y: targetPos.y,
-          z: targetPos.z,
-          duration: 0.65,
-          ease: 'back.out(1.25)'
-        });
-      } else {
-        grp.position.set(targetPos.x, targetPos.y, targetPos.z);
+      if (assembled) {
+        const wasHidden = !grp.visible;
+        grp.visible = true;
+        if (wasHidden) grp.position.set(step.enter.x, step.enter.y, step.enter.z);
+        if (animate) {
+          window.gsap.to(grp.position, { x: 0, y: 0, z: 0, duration: wasHidden ? 0.9 : 0.4, ease: 'power3.out' });
+        } else {
+          grp.position.set(0, 0, 0);
+        }
+      } else if (grp.visible) {
+        if (animate) {
+          window.gsap.to(grp.position, {
+            x: step.enter.x, y: step.enter.y, z: step.enter.z, duration: 0.45, ease: 'power2.in',
+            onComplete: () => { grp.visible = false; }
+          });
+        } else {
+          grp.visible = false;
+        }
       }
 
-      // Highlight the newly added layer with a brief pulse glow
-      setLayerHighlight(grp, isCurrentActive);
-      if (isCurrentActive) {
-        setTimeout(() => {
-          setLayerHighlight(grp, false);
-        }, 1100);
-      }
+      setLayerHighlight(grp, isCurrent);
+      if (isCurrent) setTimeout(() => setLayerHighlight(grp, false), 1100);
     });
 
-    // Focus Camera on the relevant body area for this step
-    moveCameraTo(
-      new THREE.Vector3(
-        config.baseX + currentStep.camOffset.x,
-        currentStep.camOffset.y,
-        currentStep.camOffset.z
-      ),
-      new THREE.Vector3(
-        currentStep.camTarget.x,
-        currentStep.camTarget.y,
-        currentStep.camTarget.z
-      ),
+    focusOn(
+      config.baseX,
+      currentStep.focus.y,
+      currentStep.focus.halfH,
+      Math.max(0.55, currentStep.focus.halfH * 0.9),
       0.8
     );
   };
@@ -1006,6 +529,8 @@ export function initCultureSection(quality) {
         const grp = obj.layers[step.id];
         if (!grp) return;
         setLayerHighlight(grp, false);
+        grp.visible = true;
+        if (window.gsap) window.gsap.killTweensOf(grp.position);
         if (window.gsap && !quality.reducedMotion) {
           window.gsap.to(grp.position, {
             x: 0,
@@ -1023,22 +548,11 @@ export function initCultureSection(quality) {
     inspectorEl?.classList.add('is-hidden');
     pedestalUI?.classList.remove('is-hidden');
 
-    if (focusMode === 'female') {
-      moveCameraTo(
-        new THREE.Vector3(-1.65, 2.1, 4.8),
-        new THREE.Vector3(-1.65, 1.85, 0)
-      );
-    } else if (focusMode === 'male') {
-      moveCameraTo(
-        new THREE.Vector3(1.65, 2.1, 4.8),
-        new THREE.Vector3(1.65, 1.85, 0)
-      );
-    } else {
-      const wideZ = window.innerWidth < 680 ? 9.8 : 7.8;
-      moveCameraTo(new THREE.Vector3(0, 2.25, wideZ), defaultLookTarget);
-      if (!quality.reducedMotion) {
-        controls.autoRotate = true;
-      }
+    if (focusMode === 'female') focusOn(-1.65, 1.75, 1.95, 0.95);
+    else if (focusMode === 'male') focusOn(1.65, 1.75, 1.95, 0.95);
+    else {
+      focusOn(0, 1.75, 1.95, 2.4);
+      if (!quality.reducedMotion) controls.autoRotate = true;
     }
   };
 
@@ -1093,6 +607,7 @@ export function initCultureSection(quality) {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h, false);
+    refocus(0);
   };
   window.addEventListener('resize', handleResize);
 
